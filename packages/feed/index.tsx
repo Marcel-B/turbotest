@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Box, Typography } from "@mui/material";
-import InfoCard from "info";
+import { Box, Divider, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useStore } from "store";
 
@@ -11,17 +10,10 @@ const Feed = () => {
     fetchAquarien();
   }, [fetchAquarien]);
   return (
-    <Box sx={{
-      display: "flex",
-      justifyContent: "space-between"
-    }}>
-      <Box>
-        <Typography variant="h3">Feed</Typography>
-        {aquarien.map(aq => <p key={aq.id}>{aq.name}</p>)}
-      </Box>
-      <Box>
-        <InfoCard />
-      </Box>
+    <Box>
+      <Typography variant="h4">Feed</Typography>
+      <Divider orientation="horizontal" />
+      {aquarien.map(aq => <p key={aq.id}>{aq.name}</p>)}
     </Box>);
 };
 

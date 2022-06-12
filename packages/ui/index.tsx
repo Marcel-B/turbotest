@@ -1,22 +1,15 @@
 import * as React from "react";
-import { AppBar, Toolbar, Typography, Box, Link, Button, Container, MenuItem } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box, Link, Container, MenuItem, Grid } from "@mui/material";
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { useStore } from "store";
 import { useEffect, useState } from "react";
-
-export type Route = {
-  element: React.FunctionComponent;
-  path: string;
-}
-
-export type NavLink = {
-  label: string;
-  path: string;
-};
+import NavLink from "shared-types/nav-link";
+import * as RouteType from "shared-types/Route";
+import Righthand from "righthand";
 
 interface Props {
   title: string;
-  routes: Route[];
+  routes: RouteType.Route[];
   navLinks: NavLink[];
 }
 
@@ -65,9 +58,14 @@ export const AppShell = ({ title, routes, navLinks }: Props) => {
       <Container sx={{
         mt: 2
       }}>
-        <Routes>
-          {routes.map(route => <Route key={route.path} path={route.path} element={<route.element />} />)}
-        </Routes>
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            <Routes>
+              {routes.map(route => <Route key={route.path} path={route.path} element={<route.element />} />)}
+            </Routes>
+          </Grid>
+          <Grid item xs={4}><Righthand /></Grid>
+        </Grid>
       </Container>
       <Outlet />
     </BrowserRouter>

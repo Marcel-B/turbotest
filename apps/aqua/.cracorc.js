@@ -31,6 +31,9 @@ module.exports = () => ({
             ui: {
               singleton: true
             },
+            timer: {
+              singleton: true
+            },
             "shared-types": {
               singleton: true
             },

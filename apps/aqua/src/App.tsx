@@ -3,13 +3,15 @@ import { AppShell } from "ui";
 import Feed from "feed";
 import { Typography } from "@mui/material";
 import { useStore } from "store";
+import NavLink from "shared-types/nav-link";
+import { Route } from "shared-types";
 // @ts-ignore
 const LoginUser = React.lazy(() => import("identity/LoginUser"));
 
 function App() {
   const user = useStore(state => state.displayName);
-  const [navLinks, setNavLinks] = useState<{ label: string; path: string }[]>([]);
-  const [routes, setRoutes] = useState<{ path: string, element: React.FunctionComponent }[]>([]);
+  const [navLinks, setNavLinks] = useState<NavLink[]>([]);
+  const [routes, setRoutes] = useState<Route[]>([]);
 
   useEffect(() => {
     if (user) {
@@ -33,7 +35,6 @@ function App() {
         { path: "/neu", element: () => <Typography variant="h3">Neu</Typography> }
       ]);
     }
-
   }, [user]);
 
   return (

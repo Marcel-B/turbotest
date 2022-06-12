@@ -140,7 +140,6 @@ importers:
       '@types/react-dom': ^18.0.5
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
-      info: workspace:*
       react: ^18.1.0
       store: workspace:*
       tsconfig: workspace:*
@@ -155,7 +154,6 @@ importers:
       '@types/react-dom': 18.0.5
       eslint: 7.32.0
       eslint-config-custom: link:../eslint-config-custom
-      info: link:../info
       react: 18.1.0
       store: link:../store
       tsconfig: link:../tsconfig
@@ -227,6 +225,51 @@ importers:
       tsconfig: link:../tsconfig
       typescript: 4.7.3
 
+  packages/righthand:
+    specifiers:
+      '@emotion/react': ^11.9.0
+      '@emotion/styled': ^11.8.1
+      '@mui/icons-material': ^5.6.2
+      '@mui/lab': ^5.0.0-alpha.78
+      '@mui/material': ^5.8.2
+      '@mui/styled-engine-sc': ^5.8.0
+      '@mui/x-data-grid': ^5.9.0
+      '@types/react': ^18.0.10
+      '@types/react-dom': ^18.0.5
+      eslint: ^7.32.0
+      eslint-config-custom: workspace:*
+      info: workspace:*
+      react: ^18.1.0
+      react-router-dom: ^6.3.0
+      shared-types: workspace:*
+      store: workspace:*
+      styled-components: ^5.3.5
+      timer: workspace:*
+      tsconfig: workspace:*
+      typescript: ^4.5.2
+    dependencies:
+      '@emotion/react': 11.9.0_cbpnieqasrszcwkqeh5i7z7nse
+      '@emotion/styled': 11.8.1_gaubypnipfqwqvjfp7zir6vcs4
+      '@mui/icons-material': 5.8.3_ifofwjkkayyqdrfx22fwqv6xru
+      '@mui/lab': 5.0.0-alpha.85_zkycwwjv4iwoh2kzqoidjuhdxi
+      '@mui/material': 5.8.3_mmveigglvfulwfhs2gmh6qegum
+      '@mui/styled-engine-sc': 5.8.0_styled-components@5.3.5
+      '@mui/x-data-grid': 5.12.1_cpc4pxc574j3meh2yytenrnzty
+      react-router-dom: 6.3.0_react@18.1.0
+      styled-components: 5.3.5_react@18.1.0
+    devDependencies:
+      '@types/react': 18.0.12
+      '@types/react-dom': 18.0.5
+      eslint: 7.32.0
+      eslint-config-custom: link:../eslint-config-custom
+      info: link:../info
+      react: 18.1.0
+      shared-types: link:../shared-types
+      store: link:../store
+      timer: link:../timer
+      tsconfig: link:../tsconfig
+      typescript: 4.7.3
+
   packages/shared-types:
     specifiers:
       '@types/react': ^18.0.10
@@ -268,6 +311,45 @@ importers:
       tsconfig: link:../tsconfig
       typescript: 4.7.3
 
+  packages/timer:
+    specifiers:
+      '@emotion/react': ^11.9.0
+      '@emotion/styled': ^11.8.1
+      '@hookform/resolvers': ^2.9.1
+      '@mui/icons-material': ^5.6.2
+      '@mui/material': ^5.8.2
+      '@mui/styled-engine-sc': ^5.8.0
+      '@types/react': ^18.0.10
+      '@types/react-dom': ^18.0.5
+      eslint: ^7.32.0
+      eslint-config-custom: workspace:*
+      react: ^18.1.0
+      react-hook-form: ^7.32.0
+      shared-types: workspace:*
+      store: workspace:*
+      tsconfig: workspace:*
+      typescript: ^4.5.2
+      yup: ^0.32.11
+    dependencies:
+      '@emotion/react': 11.9.0_cbpnieqasrszcwkqeh5i7z7nse
+      '@emotion/styled': 11.8.1_gaubypnipfqwqvjfp7zir6vcs4
+      '@hookform/resolvers': 2.9.1_react-hook-form@7.32.0
+      '@mui/icons-material': 5.8.3_ifofwjkkayyqdrfx22fwqv6xru
+      '@mui/material': 5.8.3_mmveigglvfulwfhs2gmh6qegum
+      '@mui/styled-engine-sc': 5.8.0
+      react-hook-form: 7.32.0_react@18.1.0
+      yup: 0.32.11
+    devDependencies:
+      '@types/react': 18.0.12
+      '@types/react-dom': 18.0.5
+      eslint: 7.32.0
+      eslint-config-custom: link:../eslint-config-custom
+      react: 18.1.0
+      shared-types: link:../shared-types
+      store: link:../store
+      tsconfig: link:../tsconfig
+      typescript: 4.7.3
+
   packages/tsconfig:
     specifiers: {}
 
@@ -286,8 +368,11 @@ importers:
       eslint-config-custom: workspace:*
       react: ^18.1.0
       react-router-dom: ^6.3.0
+      righthand: workspace:*
+      shared-types: workspace:*
       store: workspace:*
       styled-components: ^5.3.5
+      timer: workspace:*
       tsconfig: workspace:*
       typescript: ^4.5.2
     dependencies:
@@ -306,7 +391,10 @@ importers:
       eslint: 7.32.0
       eslint-config-custom: link:../eslint-config-custom
       react: 18.1.0
+      righthand: link:../righthand
+      shared-types: link:../shared-types
       store: link:../store
+      timer: link:../timer
       tsconfig: link:../tsconfig
       typescript: 4.7.3
 
