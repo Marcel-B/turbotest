@@ -8,10 +8,13 @@ import moment from "moment/min/moment-with-locales";
 const Feed = () => {
   const feed = useStore(state => state.feed);
   const fetchFeed = useStore(state => state.fetchFeed);
+  const user = useStore(state => state.user);
 
   useEffect(() => {
-    fetchFeed(1, 7).catch(e => console.error(e));
-  }, [fetchFeed]);
+    if (user && user.token) {
+      fetchFeed(1, 7).catch(e => console.error(e));
+    }
+  }, [fetchFeed, user]);
 
   const formatValue = (date: Date) => {
     return moment(new Date(date)).locale("de").fromNow();
