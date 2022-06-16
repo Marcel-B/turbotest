@@ -33,7 +33,7 @@ const LoginUserForm = ({ redirectUrl }: Props) => {
 
   return (
     <Box>
-      <Typography variant="h3">Anmelden</Typography>
+      <Typography variant="h4">Anmelden</Typography>
       <Divider orientation="horizontal" sx={{ mb: 2 }} />
       <form onSubmit={handleSubmit(submit)}>
         <Grid container spacing={2}

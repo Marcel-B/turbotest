@@ -8,5 +8,3 @@ export enum TestType {
   PH,
   K,
 }
-
-export default TestType;

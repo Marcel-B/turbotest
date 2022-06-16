@@ -34,6 +34,9 @@ module.exports = () => ({
             timer: {
               singleton: true
             },
+            righthand: {
+              singleton: true
+            },
             "shared-types": {
               singleton: true
             },

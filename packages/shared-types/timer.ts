@@ -1,4 +1,4 @@
-import TestType from "./test-type";
+import { TestType } from "./test-type";
 
 export interface Timer {
   /**

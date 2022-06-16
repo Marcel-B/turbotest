@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import TimerIcon from "@mui/icons-material/Timer";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useStore } from "store";
+import TimerItem from "./TimerItem";
 
 export const testTimerTypes: TestTimer[] = [
   { text: "", type: TestType.Common, description: "", seconds: 0 },
@@ -24,7 +25,9 @@ export const testTimerTypes: TestTimer[] = [
   { text: "K", type: TestType.K, description: "15ml Wasser, 10 Tropfen 1, 1 großer Löffel 2", seconds: 60 }
 ];
 
-const schema = yup.object({}).required();
+const schema = yup.object({
+  timerName: yup.string().required("benötigt")
+}).required();
 
 const Timer = () => {
   const addTimer = useStore(state => state.addTimer);
@@ -109,3 +112,4 @@ const Timer = () => {
 };
 
 export default Timer;
+export { TimerItem };

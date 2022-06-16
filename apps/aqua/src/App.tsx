@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { AppShell } from "ui";
-import Feed from "feed";
 import { Typography } from "@mui/material";
 import { useStore } from "store";
 import NavLink from "shared-types/nav-link";
 import { Route } from "shared-types";
+import Feed from "feed";
 // @ts-ignore
 const LoginUser = React.lazy(() => import("identity/LoginUser"));
 

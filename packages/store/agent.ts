@@ -2,6 +2,10 @@ import axios, { AxiosResponse } from "axios";
 import { Aquarium } from "shared-types";
 import User from "shared-types/user";
 import UserLogin from "shared-types/user-login";
+import Feed from "shared-types/feed";
+
+//const token = useStore.getState().token;
+//const unsub1 = useStore.subscribe(console.log);
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 //axios.defaults.baseURL = process.env.REACT_APP_API_URL;
@@ -9,7 +13,7 @@ axios.defaults.baseURL = "http://localhost:5046";
 //axios.defaults.baseURL = "http://192.168.2.103:3088";
 
 axios.interceptors.request.use(config => {
-  const token = "123";// window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("token");
   if (token) {
     if (config.headers)
       config.headers.Authorization = `Bearer ${token}`;
@@ -60,11 +64,11 @@ const MessungCall = {
   update: (messung: MessungFormValues) => requests.put<Messung>(`/api/messung/${messung.id}`, messung),
   delete: (id: string) => requests.del<string>(`/api/messung/${id}`),
 };
-
+*/
 const FeedCall = {
-  list: () => requests.get<Feed>('/api/feed/grouped')
+  list: (page: number, days: number) => requests.get<Feed>(`/api/feed/grouped?page=${page}&days=${days}`)
 };
-
+/*
 const TagCall = {
   list: () => requests.get<string[]>('/api/tag')
 };
@@ -78,7 +82,8 @@ const AccountCall = {
 
 export const agent = {
   AquariumCall,
-  AccountCall
+  AccountCall,
+  FeedCall
 };
 
 export default agent;
