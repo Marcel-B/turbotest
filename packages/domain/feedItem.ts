@@ -1,4 +1,4 @@
-import { Aquarium } from "./dist";
+import { Aquarium } from "./aquarium";
 import { Notiz } from "./notiz";
 import { Messung } from "./messung";
 import { Duengung } from "./duengung";

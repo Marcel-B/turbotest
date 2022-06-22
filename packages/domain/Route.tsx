@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export type Route = {
+export interface Route {
   element: React.FunctionComponent;
   path: string;
 }

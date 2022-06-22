@@ -1,11 +1,13 @@
 import * as React from "react";
-import { AppBar, Toolbar, Typography, Box, Link, Container, MenuItem, Grid } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box, Link, Container, Grid } from "@mui/material";
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { useStore } from "store";
 import { useEffect, useState } from "react";
-import NavLink from "shared-types/nav-link";
-import * as RouteType from "shared-types/Route";
+import NavLink from "domain/nav-link";
+import * as RouteType from "domain/Route";
 import Righthand from "righthand";
+import UserMenu from "user-menu";
+import AddMenu, { Neu } from "add-menu";
 
 interface Props {
   title: string;
@@ -14,7 +16,7 @@ interface Props {
 }
 
 export const AppShell = ({ title, routes, navLinks }: Props) => {
-  const { setRedirectUrl, redirectUrl, displayName, logout } = useStore();
+  const { setRedirectUrl, redirectUrl } = useStore();
   const [nav, setNav] = useState(false);
 
   useEffect(() => {
@@ -50,7 +52,8 @@ export const AppShell = ({ title, routes, navLinks }: Props) => {
                   mr: 2
                 }}
               >{navLink.label}</Link>)}
-              {displayName && <MenuItem onClick={logout}>{displayName}</MenuItem>}
+              <AddMenu />
+              <UserMenu />
             </Toolbar>
           </Container>
         </AppBar>
@@ -63,6 +66,7 @@ export const AppShell = ({ title, routes, navLinks }: Props) => {
             <Routes>
               {routes.map(route => <Route key={route.path} path={route.path} element={<route.element />} />)}
             </Routes>
+            <Neu />
           </Grid>
           <Grid item xs={4}><Righthand /></Grid>
         </Grid>

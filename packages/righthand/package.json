@@ -27,7 +27,6 @@
     "eslint-config-custom": "workspace:*",
     "info": "workspace:*",
     "react": "^18.1.0",
-    "shared-types": "workspace:*",
     "store": "workspace:*",
     "timer": "workspace:*",
     "tsconfig": "workspace:*",

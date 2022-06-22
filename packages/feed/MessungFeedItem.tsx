@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Typography } 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
 import React from "react";
-import { Messung } from "shared-types/messung";
+import { Messung } from "domain/messung";
 import { MessungColor } from "styles";
 
 interface Props {

@@ -1,6 +1,7 @@
-import * as React from "react";
+import React from "react";
 import { Box, Button, ButtonGroup, Divider, IconButton, Paper, TextField, Typography } from "@mui/material";
-import { TestTimer, TestType, Timer as TTimer } from "shared-types";
+import { TestTimer, Timer as TTimer } from "domain";
+import { TestType } from "domain/test-type";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -39,7 +40,7 @@ const Timer = () => {
     register
   } = useForm<{ timerName: string }>({ resolver: yupResolver(schema) });
 
-  const handleAddTypeTimer = (type: TestType, name?: string) => {
+  const handleAddTypeTimer = (type: string, name?: string) => {
     const timerType = testTimerTypes.find(ttt => ttt.type === type);
     if (timerType) {
       const timer: TTimer = {

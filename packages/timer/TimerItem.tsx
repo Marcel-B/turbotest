@@ -1,12 +1,12 @@
 import * as React from "react";
-import Timer from "shared-types/timer";
+import Timer from "domain/timer";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import StopIcon from "@mui/icons-material/Stop";
 import { Box, Divider, Grid, IconButton, Paper, TextField, Typography } from "@mui/material";
-import { TestType } from "shared-types";
+import TestType from "domain/test-type";
 import { testTimerTypes } from "./index";
 import { useStore } from "store";
 

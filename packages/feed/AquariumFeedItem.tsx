@@ -1,6 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Aquarium } from "shared-types";
+import Aquarium from "domain/aquarium";
 import React from "react";
 
 interface Props {

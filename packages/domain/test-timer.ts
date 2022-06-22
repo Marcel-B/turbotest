@@ -1,8 +1,8 @@
-import { TestType } from "./test-type";
+export type TimerType = string;
 
 export interface TestTimer {
   text: string;
-  type: TestType;
+  type: TimerType;
   description: string;
   seconds: number;
 }

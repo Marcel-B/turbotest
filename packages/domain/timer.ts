@@ -1,4 +1,4 @@
-import { TestType } from "./test-type";
+import { TimerType } from "./test-timer";
 
 export interface Timer {
   /**
@@ -29,7 +29,7 @@ export interface Timer {
   /**
    * Der Typ des Timers
    */
-  testType: TestType;
+  testType: TimerType;
 }
 
 export default Timer;

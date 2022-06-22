@@ -1,5 +1,5 @@
 {
-  "name": "store",
+  "name": "transport",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,9 +10,7 @@
     "lint": "eslint *.ts*"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "immer": "^9.0.14",
-    "zustand": "4.0.0-rc.1"
+    "axios": "^0.27.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.10",
@@ -21,7 +19,6 @@
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "react": "^18.1.0",
-    "transport": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2"
   }

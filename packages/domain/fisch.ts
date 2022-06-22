@@ -1,5 +1,5 @@
 import { Entity } from "./entity";
-import { Aquarium } from "./dist";
+import { Aquarium } from "./aquarium";
 import { Bereich } from "./bereich";
 
 export interface Fisch extends Entity {

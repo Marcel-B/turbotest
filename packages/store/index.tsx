@@ -1,10 +1,11 @@
 import create from "zustand";
-import agent from "./agent";
+import agent from "transport";
 import { devtools, persist } from "zustand/middleware";
-import { Aquarium, Timer } from "shared-types";
-import User from "shared-types/user";
 import produce from "immer";
-import Feed from "shared-types/feed";
+import Aquarium from "domain/aquarium";
+import Timer from "domain/timer";
+import User from "domain/user";
+import Feed from "domain/feed";
 
 export default agent;
 
@@ -20,6 +21,8 @@ const stateOptions = {
 };
 
 interface State {
+  feedItemType: string;
+  showModal: boolean;
   aquarien: Aquarium[],
   displayName: string | null,
   feed: Feed,
@@ -28,7 +31,9 @@ interface State {
   token: string | null,
   user: User | null,
   addAquarium: (aquarium: Aquarium) => void;
+  addFeedItem: (feedItemType: string) => void;
   addTimer: (timer: Timer) => void;
+  closeModal: () => void;
   fetchAquarien: () => Promise<void>;
   fetchFeed: (page: number, days: number) => Promise<void>;
   incrementSecond: (timer: Timer) => void;
@@ -43,6 +48,8 @@ interface State {
 }
 
 const initial = {
+  feedItemType: "",
+  showModal: false,
   aquarien: [],
   displayName: null,
   feed: { total: 0, groupedFeeds: [] },
@@ -58,6 +65,11 @@ export const useStore = create<State>()(devtools(persist((set) => ({
   addAquarium: (aquarium: Aquarium) => set(produce(state => {
     state.aquarien = [...state.aquarien, aquarium];
   }), false, "addAquarium"),
+  addFeedItem: (feedItemType: string) => set(produce(state => {
+    console.log("Hey Ja");
+    state.showModal = true;
+    state.feedItemType = feedItemType;
+  }), false, "addFeedItem"),
   addTimer: (timer: Timer) => set(produce((state: State) => {
     if (state.timers.find((t: Timer) => t.name === timer.name)) {
       alert(`Timer '${timer.name}' schon vorhanden`);
@@ -66,6 +78,11 @@ export const useStore = create<State>()(devtools(persist((set) => ({
     state.timers = [...state.timers, timer]
       .sort((a, b) => a.current > b.current ? 1 : a.current === b.current ? 0 : -1);
   }), false, "addTimer"),
+  closeModal: () => {
+    set(produce(state => {
+      state.showModal = false;
+    }), false, "closeModal");
+  },
   fetchAquarien: async () => {
     const aquarien = await agent.AquariumCall.list();
     set(produce(state => {

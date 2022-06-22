@@ -10,7 +10,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SetMealIcon from "@mui/icons-material/SetMeal";
 import React from "react";
-import { Fisch } from "shared-types/fisch";
+import { Fisch } from "domain/fisch";
 import { FischColor } from "styles";
 
 interface Props {

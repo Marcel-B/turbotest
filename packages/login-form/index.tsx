@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import agent, { useStore } from "store";
 import * as yup from "yup";
-import UserLogin from "shared-types/user-login";
+import { UserLogin } from "domain/user-login";
 
 interface Props {
   redirectUrl: string;

@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Typography } 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ScienceIcon from "@mui/icons-material/Science";
 import React from "react";
-import { Duengung } from "shared-types/duengung";
+import { Duengung } from "domain/duengung";
 import { DuengungColor } from "styles";
 
 interface Props {

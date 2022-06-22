@@ -16,7 +16,7 @@
     "eslint-config-custom": "workspace:*",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "shared-types": "workspace:*",
+    "domain": "workspace:*",
     "store": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2"

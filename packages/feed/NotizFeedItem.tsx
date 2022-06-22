@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Typography } 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import StickyNote2Icon from "@mui/icons-material/StickyNote2";
 import React from "react";
-import Notiz from "shared-types/notiz";
+import Notiz from "domain/notiz";
 import { NotizColor } from "styles";
 
 interface Props {

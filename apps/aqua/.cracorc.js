@@ -22,6 +22,9 @@ module.exports = () => ({
           },
           shared: {
             ...deps,
+            "add-menu": {
+              singleton: true
+            },
             feed: {
               singleton: true
             },
@@ -53,6 +56,12 @@ module.exports = () => ({
             "react-dom": {
               singleton: true,
               requiredVersion: deps["react-dom"]
+            },
+            "user-menu": {
+              singleton: true
+            },
+            "user-profile": {
+              singleton: true
             }
           }
         })

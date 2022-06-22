@@ -10,7 +10,7 @@ import NavLink from "./nav-link";
 import Notiz from "./notiz";
 import Route from "./Route";
 import TestTimer from "./test-timer";
-import { TestType } from "./test-type";
+import TestType from "./test-type";
 import Timer from "./timer";
 import User from "./user";
 import UserLogin from "./user-login";
@@ -30,6 +30,6 @@ export type {
   NavLink,
   Route,
   Timer,
-  TestTimer
+  TestTimer,
+  TestType
 };
-export { TestType };

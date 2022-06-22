@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from "axios";
-import { Aquarium } from "shared-types";
-import User from "shared-types/user";
-import UserLogin from "shared-types/user-login";
-import Feed from "shared-types/feed";
+import { Aquarium } from "../domain";
+import User from "domain/user";
+import UserLogin from "domain/user-login";
+import Feed from "domain/feed";
 
 //const token = useStore.getState().token;
 //const unsub1 = useStore.subscribe(console.log);

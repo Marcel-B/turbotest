@@ -1,5 +1,5 @@
 {
-  "name": "store",
+  "name": "add-menu",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -9,20 +9,24 @@
     "build": "tsc --outDir dist",
     "lint": "eslint *.ts*"
   },
-  "dependencies": {
-    "axios": "^0.27.2",
-    "immer": "^9.0.14",
-    "zustand": "4.0.0-rc.1"
-  },
   "devDependencies": {
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
-    "domain": "workspace:*",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
+    "forms": "workspace:*",
     "react": "^18.1.0",
-    "transport": "workspace:*",
+    "react-dom": "^18.1.0",
+    "store": "workspace:*",
+    "styles": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.8.3",
+    "@mui/styled-engine-sc": "^5.8.0",
+    "@mui/system": "^5.8.4"
   }
 }

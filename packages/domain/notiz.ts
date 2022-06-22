@@ -1,4 +1,4 @@
-import { Aquarium } from "./dist";
+import { Aquarium } from "./aquarium";
 import { Entity } from "./entity";
 
 export interface Notiz extends Entity {

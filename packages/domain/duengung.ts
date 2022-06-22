@@ -1,5 +1,5 @@
 import { Entity } from "./entity";
-import { Aquarium } from "./dist";
+import { Aquarium } from "./aquarium";
 
 export interface Duengung extends Entity {
   id: string;

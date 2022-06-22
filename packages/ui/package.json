@@ -23,14 +23,16 @@
   "devDependencies": {
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
+    "add-menu": "workspace:*",
+    "domain": "workspace:*",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "righthand": "workspace:*",
     "react": "^18.1.0",
-    "shared-types": "workspace:*",
     "store": "workspace:*",
     "timer": "workspace:*",
     "tsconfig": "workspace:*",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "user-menu": "workspace:*"
   }
 }
