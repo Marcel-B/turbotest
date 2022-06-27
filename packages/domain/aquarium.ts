@@ -8,6 +8,7 @@ export interface Aquarium extends Entity {
 }
 
 export interface AquariumFormValues {
+  id?: string;
   name: string;
   liter: number;
   datum?: Date;

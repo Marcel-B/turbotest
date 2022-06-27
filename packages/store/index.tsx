@@ -24,6 +24,8 @@ interface State {
   feedItemType: string;
   showModal: boolean;
   aquarien: Aquarium[],
+  currentPage: number;
+  pageSize: number;
   displayName: string | null,
   feed: Feed,
   redirectUrl: string | null,
@@ -35,7 +37,7 @@ interface State {
   addTimer: (timer: Timer) => void;
   closeModal: () => void;
   fetchAquarien: () => Promise<void>;
-  fetchFeed: (page: number, days: number) => Promise<void>;
+  fetchFeed: (page?: number, pageSize?: number) => Promise<void>;
   incrementSecond: (timer: Timer) => void;
   logout: () => void;
   pauseTimer: (timer: Timer) => void;
@@ -50,6 +52,8 @@ interface State {
 const initial = {
   feedItemType: "",
   showModal: false,
+  pageSize: 7,
+  currentPage: 1,
   aquarien: [],
   displayName: null,
   feed: { total: 0, groupedFeeds: [] },
@@ -60,13 +64,12 @@ const initial = {
 };
 
 let start = { ...initial };
-export const useStore = create<State>()(devtools(persist((set) => ({
+export const useStore = create<State>()(devtools(persist((set, get) => ({
   ...start,
   addAquarium: (aquarium: Aquarium) => set(produce(state => {
     state.aquarien = [...state.aquarien, aquarium];
   }), false, "addAquarium"),
   addFeedItem: (feedItemType: string) => set(produce(state => {
-    console.log("Hey Ja");
     state.showModal = true;
     state.feedItemType = feedItemType;
   }), false, "addFeedItem"),
@@ -89,10 +92,15 @@ export const useStore = create<State>()(devtools(persist((set) => ({
       state.aquarien = aquarien;
     }), false, "fetchAquarien");
   },
-  fetchFeed: async (page: number, days = 7) => {
-    const feed = await agent.FeedCall.list(page, days);
+  fetchFeed: async (page?: number, pageSize?: number) => {
+    const p = page ?? get().currentPage;
+    const s = pageSize ?? get().pageSize;
+
+    const feed = await agent.FeedCall.list(p, s);
     set(produce(state => {
       state.feed = feed;
+      state.currentPage = p;
+      state.pageSize = s;
     }), false, "fetchFeed");
   },
   incrementSecond: (timer: Timer) => {

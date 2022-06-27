@@ -1,16 +1,20 @@
 import { Box, Button, Divider, Grid, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { AquariumFormValues } from "domain/aquarium";
-import React, { useEffect } from "react";
+import React from "react";
 import { useStore } from "store";
+import agent from "transport";
 
 const AquariumForm = () => {
-  const { register, handleSubmit, resetField } = useForm<AquariumFormValues>();
+  const { register, handleSubmit } = useForm<AquariumFormValues>();
   const closeModal = useStore(state => state.closeModal);
+  const fetchFeed = useStore(state => state.fetchFeed);
 
   const onSubmit = (data: AquariumFormValues) => {
     console.log("Data", data);
     closeModal();
+    agent.AquariumCall.create(data);
+    fetchFeed().catch(err => console.error(err));
   };
 
   return (

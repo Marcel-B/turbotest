@@ -1,8 +1,11 @@
 import axios, { AxiosResponse } from "axios";
-import { Aquarium } from "../domain";
+import { Aquarium, Duengung } from "../domain";
 import User from "domain/user";
 import UserLogin from "domain/user-login";
 import Feed from "domain/feed";
+import { AquariumFormValues } from "domain/aquarium";
+import { Notiz, NotizFormValues } from "domain/notiz";
+import { DuengungFormValues } from "domain/duengung";
 
 //const token = useStore.getState().token;
 //const unsub1 = useStore.subscribe(console.log);
@@ -29,35 +32,35 @@ const requests = {
 };
 
 const AquariumCall = {
-  list: () => requests.get<Aquarium[]>("/api/aquarium")
+  list: () => requests.get<Aquarium[]>("/api/aquarium"),
   //details: (id: string) => requests.get<Activity>(`/activities/${id}`),
-  //create: (aquarium: AquariumFormValues) => requests.post<Aquarium>('/api/aquarium', aquarium),
+  create: (aquarium: AquariumFormValues) => requests.post<Aquarium>("/api/aquarium", aquarium)
   //update: (aquarium: AquariumFormValues) => requests.put<Aquarium>(`/api/aquarium/${aquarium.id}`, aquarium),
   //delete: (id: string) => requests.del<string>(`/api/aquarium/${id}`),
 };
-/*
 const NotizCall = {
-  list: () => requests.get<Notiz[]>('/api/notiz'),
+//  list: () => requests.get<Notiz[]>('/api/notiz'),
   //details: (id: string) => requests.get<Activity>(`/activities/${id}`),
-  create: (notiz: NotizFormValues) => requests.post<Notiz>('/api/notiz', notiz),
-  update: (notiz: NotizFormValues) => requests.put<Notiz>(`/api/notiz/${notiz.id}`, notiz),
-  delete: (id: string) => requests.del<string>(`/api/notiz/${id}`),
+  create: (notiz: NotizFormValues) => requests.post<Notiz>("/api/notiz", notiz)
+// update: (notiz: NotizFormValues) => requests.put<Notiz>(`/api/notiz/${notiz.id}`, notiz),
+//   delete: (id: string) => requests.del<string>(`/api/notiz/${id}`),
 };
 
+/*
 const FischCall = {
   list: () => requests.get<Fisch[]>('/api/fisch'),
   create: (fisch: FischFormValues) => requests.post<Fisch>('/api/fisch', fisch),
   update: (fisch: FischFormValues) => requests.put<Fisch>(`/api/fisch/${fisch.id}`, fisch),
   delete: (id: string) => requests.del<string>(`/api/fisch/${id}`),
 };
-
+*/
 const DuengungCall = {
-  list: () => requests.get<Duengung[]>('/api/duengung'),
-  create: (duengung: DuengungFormValues) => requests.post<Duengung>('/api/duengung', duengung),
-  update: (duengung: DuengungFormValues) => requests.put<Duengung>(`/api/duengung/${duengung.id}`, duengung),
-  delete: (id: string) => requests.del<string>(`/api/duengung/${id}`),
+  list: () => requests.get<Duengung[]>("/api/duengung"),
+  create: (duengung: DuengungFormValues) => requests.post<Duengung>("/api/duengung", duengung),
+  //update: (duengung: DuengungFormValues) => requests.put<Duengung>(`/api/duengung/${duengung.id}`, duengung),
+  delete: (id: string) => requests.del<string>(`/api/duengung/${id}`)
 };
-
+/*
 const MessungCall = {
   list: () => requests.get<Messung[]>('/api/messung'),
   create: (messung: MessungFormValues) => requests.post<Messung>('/api/messung', messung),
@@ -83,7 +86,9 @@ const AccountCall = {
 export const agent = {
   AquariumCall,
   AccountCall,
-  FeedCall
+  DuengungCall,
+  FeedCall,
+  NotizCall
 };
 
 export default agent;

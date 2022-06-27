@@ -9,6 +9,9 @@ import UserProfile from "user-profile";
 // @ts-ignore
 const LoginUser = React.lazy(() => import("identity/LoginUser"));
 
+// @ts-ignore
+const AdminPanel = React.lazy(() => import("admin/AdminPanel"));
+
 function App() {
   const user = useStore(state => state.displayName);
   const [navLinks, setNavLinks] = useState<NavLink[]>([]);
@@ -22,7 +25,7 @@ function App() {
         setRoutes([
           { path: "/", element: () => <Feed /> },
           { path: "/profile", element: () => <UserProfile /> },
-          { path: "/admin", element: () => <Typography variant="h3">Admin</Typography> }
+          { path: "/admin", element: () => <AdminPanel /> }
         ]);
       } else {
         setNavLinks([

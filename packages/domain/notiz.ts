@@ -9,4 +9,12 @@ export interface Notiz extends Entity {
   aquarium: Aquarium;
 }
 
+export interface NotizFormValues {
+  id?: string;
+  text?: string;
+  datum: Date;
+  tag?: string;
+  aquarium: string;
+}
+
 export default Notiz;

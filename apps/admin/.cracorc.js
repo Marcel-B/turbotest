@@ -12,33 +12,15 @@ module.exports = () => ({
     plugins: {
       add: [
         new ModuleFederationPlugin({
-          name: "aqua",
+          name: "admin",
           filename: "remoteEntry.js",
           exposes: {
-            "./InfoCard": "./src/InfoContent"
+            "./AdminPanel": "./src/App"
           },
-          remotes: {
-            identity: "identity@http://localhost:3001/remoteEntry.js",
-            admin: "admin@http://localhost:3066/remoteEntry.js"
-          },
+          remotes: {},
           shared: {
             ...deps,
-            "add-menu": {
-              singleton: true
-            },
-            feed: {
-              singleton: true
-            },
-            info: {
-              singleton: true
-            },
             ui: {
-              singleton: true
-            },
-            timer: {
-              singleton: true
-            },
-            righthand: {
               singleton: true
             },
             "shared-types": {
@@ -57,12 +39,6 @@ module.exports = () => ({
             "react-dom": {
               singleton: true,
               requiredVersion: deps["react-dom"]
-            },
-            "user-menu": {
-              singleton: true
-            },
-            "user-profile": {
-              singleton: true
             }
           }
         })

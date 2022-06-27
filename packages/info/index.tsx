@@ -62,6 +62,16 @@ const InfoCard = () => {
               0,05 - 0,1 mg/l
             </Typography>
           </Grid>
+          <Grid item xs={6}>
+            <Typography variant="body1">
+              CO₂
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="body1">
+              20 - 25 mg/l
+            </Typography>
+          </Grid>
         </Grid>
       </Paper>
     </>

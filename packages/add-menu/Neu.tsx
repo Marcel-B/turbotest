@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Box, Button, Divider, Fade, Grid, Modal, Typography } from "@mui/material";
+import { Box, Fade, Modal } from "@mui/material";
 import { useStore } from "store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { NotizColor } from "styles";
-import { AquariumForm } from "forms";
+import { AquariumForm, NotizForm, DuengungForm } from "forms";
 
 const Neu = () => {
   const showModal = useStore(state => state.showModal);
@@ -33,6 +33,7 @@ const Neu = () => {
     console.log("handleClose");
   };
 
+
   return (
     <Modal
       onClose={handleClose}
@@ -40,9 +41,14 @@ const Neu = () => {
       open={showModal}>
       <Fade in={showModal}>
         <Box sx={style}>
-
-          <AquariumForm />
-
+          {feedItemType === "Aquarium" ?
+            <AquariumForm />
+            : feedItemType === "Notiz" ?
+              <NotizForm />
+              : feedItemType === "Düngung" ?
+                <DuengungForm/>
+              : <h1>Nix hier</h1>
+          }
         </Box>
       </Fade>
     </Modal>);
