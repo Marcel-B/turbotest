@@ -18,10 +18,10 @@ import { AppTextInput, AppDatePicker } from "controlls";
 import { DuengungFormValues } from "domain/duengung";
 
 const werte = [
-  { value: 'Phosphat (PO)', key: 'Phosphat' },
-  { value: 'Eisen (FE)', key: 'Eisen' },
-  { value: 'Kalium (KA)', key: 'Kalium' },
-  { value: 'Nitrat (NO₃)', key: 'Nitrat' }
+  { value: "Phosphat (PO)", key: "Phosphat" },
+  { value: "Eisen (FE)", key: "Eisen" },
+  { value: "Kalium (KA)", key: "Kalium" },
+  { value: "Nitrat (NO₃)", key: "Nitrat" }
 ];
 
 const DuengungForm = () => {
@@ -29,7 +29,7 @@ const DuengungForm = () => {
     register,
     control,
     handleSubmit
-  } = useForm<NotizFormValues>();
+  } = useForm<DuengungFormValues>();
   const closeModal = useStore(state => state.closeModal);
   const fetchFeed = useStore(state => state.fetchFeed);
   const fetchAquarien = useStore(state => state.fetchAquarien);
@@ -41,19 +41,23 @@ const DuengungForm = () => {
     }
   }, [aquarien.length, fetchAquarien]);
 
-  const onSubmit = (data: DuengungFormValues) => {
+  const onSubmit = async (data: DuengungFormValues) => {
     console.log("Data", data);
     const aqua = aquarien.find(a => a.name === data.aquarium.toString());
     data.aquarium = aqua!;
     closeModal();
-    agent.DuengungCall.create(data).catch(err => console.error(err));
-    fetchFeed().catch(err => console.error(err));
+    try {
+      await agent.DuengungCall.create(data);
+      await fetchFeed();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Typography variant="h5">Neue Notiz</Typography>
+        <Typography variant="h5">Neue Düngung</Typography>
         <Divider orientation="horizontal" sx={{
           mb: 2
         }} />

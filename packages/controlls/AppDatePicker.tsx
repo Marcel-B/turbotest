@@ -13,7 +13,6 @@ const AppDatePicker = (props: Props) => {
   const { field, fieldState } = useController({ ...props, defaultValue: props.default ?? new Date() });
   return (
     <FormControl
-      margin="dense"
       fullWidth>
       <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
         <DatePicker

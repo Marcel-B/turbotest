@@ -9,7 +9,7 @@ import {
   Select, TextField,
   Typography
 } from "@mui/material";
-import { Controller, useController, UseControllerProps, useForm } from "react-hook-form";
+import { useController, UseControllerProps, useForm } from "react-hook-form";
 import React, { useEffect } from "react";
 import { useStore } from "store";
 import agent from "transport";
@@ -63,11 +63,17 @@ const NotizForm = () => {
     }
   }, [aquarien.length, fetchAquarien]);
 
-  const onSubmit = (data: NotizFormValues) => {
-    console.log("Data", data);
+  const onSubmit = async (data: NotizFormValues) => {
+    console.debug("Data", data);
+    const aqua = aquarien.find(a => a.name === data.aquarium.toString());
+    data.aquarium = aqua!;
     closeModal();
-    agent.NotizCall.create(data).catch(err => console.error(err));
-    fetchFeed().catch(err => console.error(err));
+    try {
+      await agent.NotizCall.create(data);
+      await fetchFeed();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (

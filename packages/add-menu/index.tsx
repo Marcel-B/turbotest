@@ -40,6 +40,8 @@ const AddMenu = () => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Notiz</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Düngung</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Fisch</MenuItem>
       <MenuItem onClick={handleMenuClose}>Aquarium</MenuItem>
     </Menu>
   );

@@ -14,7 +14,7 @@ export interface NotizFormValues {
   text?: string;
   datum: Date;
   tag?: string;
-  aquarium: string;
+  aquarium: Aquarium;
 }
 
 export default Notiz;

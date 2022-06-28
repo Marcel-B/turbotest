@@ -9,12 +9,18 @@ const AquariumForm = () => {
   const { register, handleSubmit } = useForm<AquariumFormValues>();
   const closeModal = useStore(state => state.closeModal);
   const fetchFeed = useStore(state => state.fetchFeed);
+  const addAquarium = useStore(state => state.addAquarium);
 
-  const onSubmit = (data: AquariumFormValues) => {
+  const onSubmit = async (data: AquariumFormValues) => {
     console.log("Data", data);
     closeModal();
-    agent.AquariumCall.create(data);
-    fetchFeed().catch(err => console.error(err));
+    try {
+      const aquarium = await agent.AquariumCall.create(data);
+      addAquarium(aquarium);
+      await fetchFeed();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (

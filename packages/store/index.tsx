@@ -171,4 +171,4 @@ export const useStore = create<State>()(devtools(persist((set, get) => ({
       t.ringActive = false;
     }), false, "startTimer");
   }
-}), stateOptions), devToolsOptions));
+})/*, stateOptions*/), devToolsOptions));
