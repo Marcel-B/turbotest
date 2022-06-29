@@ -10,6 +10,7 @@ export interface Duengung extends Entity {
 }
 
 export interface DuengungFormValues {
+  id?: string;
   menge: number;
   datum: Date;
   duenger: string;

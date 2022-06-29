@@ -1,12 +1,12 @@
-import { Box, Button, Card, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import { Box, Button, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import React, { useEffect } from "react";
 import * as yup from "yup";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FischFormValues } from "domain/fisch";
 import { useStore } from "store";
-import { AppDatePicker, AppTextInput } from "controlls";
+import { AppDatePicker, AppTextInput, AppRadioButton } from "controlls";
+import agent from "transport";
 
 const schema = yup.object({
   name: yup
@@ -29,10 +29,17 @@ const schema = yup.object({
     .required("benötigt")
 }).required();
 
+const geschlechtTypOptions: { text: string, value: string }[] = [
+  { text: "♂", value: "♂" },
+  { text: "♀", value: "♀" },
+  { text: "?", value: "?" }
+];
+
 const NeuerFischForm = () => {
   const { control, handleSubmit, reset, register } = useForm<FischFormValues>({ resolver: yupResolver(schema) });
   const aquarien = useStore(state => state.aquarien);
   const fetchAquarien = useStore(state => state.fetchAquarien);
+  const fetchFeed = useStore(state => state.fetchFeed);
   const closeModal = useStore(state => state.closeModal);
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
@@ -47,14 +54,21 @@ const NeuerFischForm = () => {
     }
   }, [aquarien.length, fetchAquarien]);
 
-  const onSubmit = (data: FischFormValues) => {
+  const onSubmit = async (data: FischFormValues) => {
     const aqua = aquarien.find(a => a.id === data.aquarium.toString());
     data.aquarium = aqua!;
     data.kh.einheit = "°dH";
     data.gh.einheit = "°dH";
     data.ph.einheit = "";
     data.temperatur.einheit = "°C";
-    // dispatch(createFischAsync(data));
+
+    try {
+      await agent.FischCall.create(data);
+      await fetchFeed();
+    } catch (err) {
+      console.error(err);
+    }
+
     reset({});
   };
 
@@ -109,8 +123,9 @@ const NeuerFischForm = () => {
                     {...register("aquarium")}
                     defaultValue=""
                     labelId="aquarium-id">
-                    {aquarien.map(aquarium => <MenuItem key={aquarium.id}
-                                                        value={aquarium.name}>{aquarium.name}</MenuItem>)}
+                    {aquarien.map(aquarium => <MenuItem
+                      key={aquarium.id}
+                      value={aquarium.name}>{aquarium.name}</MenuItem>)}
                   </Select>
                 </FormControl>
               </Grid>
@@ -119,13 +134,12 @@ const NeuerFischForm = () => {
                   control={control} label="Anzahl" name="anzahl" default="" type="number" />
               </Grid>
               <Grid item xs={6}>
-                <p>TODO Geschlechter</p>
-                {/*               <AppRadioButton
-                    name="geschlecht"
-                    defaultValue={null}
-                    control={control}
-                    label="Geschlecht"
-                    values={geschlechtTypOptions} />*/}
+                <AppRadioButton
+                  name="geschlecht"
+                  defaultValue={null}
+                  control={control}
+                  label="Geschlecht"
+                  values={geschlechtTypOptions} />
               </Grid>
             </Grid>
           </Grid>

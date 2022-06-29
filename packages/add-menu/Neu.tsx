@@ -3,7 +3,7 @@ import { Box, Fade, Modal } from "@mui/material";
 import { useStore } from "store";
 import { useEffect } from "react";
 import { NotizColor } from "styles";
-import { AquariumForm, NotizForm, DuengungForm, FischForm } from "forms";
+import { AquariumForm, MessungForm, NotizForm, DuengungForm, FischForm } from "forms";
 
 const Neu = () => {
   const showModal = useStore(state => state.showModal);
@@ -14,7 +14,7 @@ const Neu = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 600,
+    width: 640,
     bgcolor: "background.paper",
     border: "6px solid",
     borderColor: NotizColor,
@@ -46,10 +46,12 @@ const Neu = () => {
             : feedItemType === "Notiz" ?
               <NotizForm />
               : feedItemType === "Düngung" ?
-                <DuengungForm/>
-                : feedItemType === "Fisch" ?
-                  <FischForm/>
-              : <h1>Nix hier</h1>
+                <DuengungForm />
+                : feedItemType === "Messung" ?
+                  <MessungForm />
+                  : feedItemType === "Fisch" ?
+                    <FischForm />
+                    : <h1>Nix hier</h1>
           }
         </Box>
       </Fade>

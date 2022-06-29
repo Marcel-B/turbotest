@@ -1,11 +1,13 @@
 import axios, { AxiosResponse } from "axios";
-import { Aquarium, Duengung } from "../domain";
+import { Aquarium, Duengung, Fisch, Messung } from "../domain";
 import User from "domain/user";
 import UserLogin from "domain/user-login";
 import Feed from "domain/feed";
 import { AquariumFormValues } from "domain/aquarium";
 import { Notiz, NotizFormValues } from "domain/notiz";
 import { DuengungFormValues } from "domain/duengung";
+import { MessungFormValues } from "domain/messung";
+import { FischFormValues } from "domain/fisch";
 
 //const token = useStore.getState().token;
 //const unsub1 = useStore.subscribe(console.log);
@@ -33,41 +35,41 @@ const requests = {
 
 const AquariumCall = {
   list: () => requests.get<Aquarium[]>("/api/aquarium"),
-  //details: (id: string) => requests.get<Activity>(`/activities/${id}`),
-  create: (aquarium: AquariumFormValues) => requests.post<Aquarium>("/api/aquarium", aquarium)
-  //update: (aquarium: AquariumFormValues) => requests.put<Aquarium>(`/api/aquarium/${aquarium.id}`, aquarium),
-  //delete: (id: string) => requests.del<string>(`/api/aquarium/${id}`),
+  create: (aquarium: AquariumFormValues) => requests.post<Aquarium>("/api/aquarium", aquarium),
+  read: (id: string) => requests.get<Aquarium>(`/api/aquarium/${id}`),
+  update: (aquarium: AquariumFormValues) => requests.put<Aquarium>(`/api/aquarium/${aquarium.id}`, aquarium),
+  delete: (id: string) => requests.del<string>(`/api/aquarium/${id}`)
 };
 const NotizCall = {
-//  list: () => requests.get<Notiz[]>('/api/notiz'),
-  //details: (id: string) => requests.get<Activity>(`/activities/${id}`),
-  create: (notiz: NotizFormValues) => requests.post<Notiz>("/api/notiz", notiz)
-// update: (notiz: NotizFormValues) => requests.put<Notiz>(`/api/notiz/${notiz.id}`, notiz),
-//   delete: (id: string) => requests.del<string>(`/api/notiz/${id}`),
+  list: () => requests.get<Notiz[]>("/api/notiz"),
+  create: (notiz: NotizFormValues) => requests.post<Notiz>("/api/notiz", notiz),
+  read: (id: string) => requests.get<Notiz>(`/api/notiz/${id}`),
+  update: (notiz: NotizFormValues) => requests.put<Notiz>(`/api/notiz/${notiz.id}`, notiz),
+  delete: (id: string) => requests.del<string>(`/api/notiz/${id}`)
 };
 
-/*
 const FischCall = {
-  list: () => requests.get<Fisch[]>('/api/fisch'),
-  create: (fisch: FischFormValues) => requests.post<Fisch>('/api/fisch', fisch),
+  list: () => requests.get<Fisch[]>("/api/fisch"),
+  create: (fisch: FischFormValues) => requests.post<Fisch>("/api/fisch", fisch),
+  read: (id: string) => requests.get<Fisch>(`/api/fisch/${id}`),
   update: (fisch: FischFormValues) => requests.put<Fisch>(`/api/fisch/${fisch.id}`, fisch),
-  delete: (id: string) => requests.del<string>(`/api/fisch/${id}`),
+  delete: (id: string) => requests.del<string>(`/api/fisch/${id}`)
 };
-*/
+
 const DuengungCall = {
   list: () => requests.get<Duengung[]>("/api/duengung"),
   create: (duengung: DuengungFormValues) => requests.post<Duengung>("/api/duengung", duengung),
-  //update: (duengung: DuengungFormValues) => requests.put<Duengung>(`/api/duengung/${duengung.id}`, duengung),
+  update: (duengung: DuengungFormValues) => requests.put<Duengung>(`/api/duengung/${duengung.id}`, duengung),
   delete: (id: string) => requests.del<string>(`/api/duengung/${id}`)
 };
-/*
+
 const MessungCall = {
-  list: () => requests.get<Messung[]>('/api/messung'),
-  create: (messung: MessungFormValues) => requests.post<Messung>('/api/messung', messung),
+  list: () => requests.get<Messung[]>("/api/messung"),
+  create: (messung: MessungFormValues) => requests.post<Messung>("/api/messung", messung),
   update: (messung: MessungFormValues) => requests.put<Messung>(`/api/messung/${messung.id}`, messung),
-  delete: (id: string) => requests.del<string>(`/api/messung/${id}`),
+  delete: (id: string) => requests.del<string>(`/api/messung/${id}`)
 };
-*/
+
 const FeedCall = {
   list: (page: number, days: number) => requests.get<Feed>(`/api/feed/grouped?page=${page}&days=${days}`)
 };
@@ -88,6 +90,8 @@ export const agent = {
   AccountCall,
   DuengungCall,
   FeedCall,
+  FischCall,
+  MessungCall,
   NotizCall
 };
 
