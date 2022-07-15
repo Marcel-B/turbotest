@@ -35,7 +35,7 @@ const geschlechtTypOptions: { text: string, value: string }[] = [
   {text: "?", value: "?"}
 ];
 
-const NeuerFischForm = () => {
+const NeuePflanzeForm = () => {
   const {control, handleSubmit, reset, register} = useForm<FischFormValues>({resolver: yupResolver(schema)});
   const aquarien = useStore(state => state.aquarien);
   const fetchAquarien = useStore(state => state.fetchAquarien);
@@ -49,18 +49,18 @@ const NeuerFischForm = () => {
   };
 
   useEffect(() => {
-    // if (aquarien?.length <= 0) {
-    fetchAquarien().catch(err => console.error(err));
-    // }
+    if (aquarien?.length <= 0) {
+      fetchAquarien().catch(err => console.error(err));
+    }
   }, [aquarien.length, fetchAquarien]);
 
   const onSubmit = async (data: FischFormValues) => {
-    console.log('Fisch', data);
+    console.log('Plfanze', data);
     data.kh.einheit = "°dH";
     data.gh.einheit = "°dH";
     data.ph.einheit = "";
     data.temperatur.einheit = "°C";
-    closeModal();
+
     try {
       await agent.FischCall.create(data);
       await fetchFeed();
@@ -124,7 +124,7 @@ const NeuerFischForm = () => {
                     labelId="aquarium-id">
                     {aquarien.map(aquarium => <MenuItem
                       key={aquarium.id}
-                      value={aquarium.id}>{aquarium.name}</MenuItem>)}
+                      value={aquarium.name}>{aquarium.id}</MenuItem>)}
                   </Select>
                 </FormControl>
               </Grid>
@@ -216,4 +216,4 @@ const NeuerFischForm = () => {
     </>
   );
 };
-export default NeuerFischForm;
+export default NeuePflanzeForm;

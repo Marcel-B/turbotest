@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { AppShell } from "ui";
-import { Typography } from "@mui/material";
 import { useStore } from "store";
 import { NavLink } from "domain/nav-link";
 import { Route } from "domain/Route";

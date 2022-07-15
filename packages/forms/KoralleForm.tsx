@@ -3,10 +3,10 @@ import {useForm} from "react-hook-form";
 import React, {useEffect} from "react";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
+import {FischFormValues} from "domain/fisch";
 import {useStore} from "store";
 import {AppDatePicker, AppTextInput, AppRadioButton} from "controlls";
 import agent from "transport";
-import FischFormValues from "transport/formValues/fischFormValues";
 
 const schema = yup.object({
   name: yup
@@ -35,7 +35,7 @@ const geschlechtTypOptions: { text: string, value: string }[] = [
   {text: "?", value: "?"}
 ];
 
-const NeuerFischForm = () => {
+const NeueKoralleForm = () => {
   const {control, handleSubmit, reset, register} = useForm<FischFormValues>({resolver: yupResolver(schema)});
   const aquarien = useStore(state => state.aquarien);
   const fetchAquarien = useStore(state => state.fetchAquarien);
@@ -49,18 +49,20 @@ const NeuerFischForm = () => {
   };
 
   useEffect(() => {
-    // if (aquarien?.length <= 0) {
-    fetchAquarien().catch(err => console.error(err));
-    // }
+    if (aquarien?.length <= 0) {
+      fetchAquarien().catch(err => console.error(err));
+    }
   }, [aquarien.length, fetchAquarien]);
 
   const onSubmit = async (data: FischFormValues) => {
-    console.log('Fisch', data);
+    const aqua = aquarien.find(a => a.name === data.aquarium.toString());
+    console.log('__Aqua', aqua, aquarien, data.aquarium);
+    data.aquarium = aqua!.id;
     data.kh.einheit = "°dH";
     data.gh.einheit = "°dH";
     data.ph.einheit = "";
     data.temperatur.einheit = "°C";
-    closeModal();
+
     try {
       await agent.FischCall.create(data);
       await fetchFeed();
@@ -119,12 +121,12 @@ const NeuerFischForm = () => {
                   <InputLabel id="aquarium-id">Aquarium</InputLabel>
                   <Select
                     label="Aquarium"
-                    {...register("aquariumId")}
+                    {...register("aquarium")}
                     defaultValue=""
                     labelId="aquarium-id">
                     {aquarien.map(aquarium => <MenuItem
                       key={aquarium.id}
-                      value={aquarium.id}>{aquarium.name}</MenuItem>)}
+                      value={aquarium.name}>{aquarium.name}</MenuItem>)}
                   </Select>
                 </FormControl>
               </Grid>
@@ -216,4 +218,4 @@ const NeuerFischForm = () => {
     </>
   );
 };
-export default NeuerFischForm;
+export default NeueKoralleForm;

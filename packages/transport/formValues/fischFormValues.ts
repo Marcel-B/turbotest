@@ -1,9 +1,7 @@
-import { Entity } from "./entity";
-import { Aquarium } from "./aquarium";
-import { Bereich } from "./bereich";
+import {Bereich} from "domain/bereich";
 
-export interface Fisch extends Entity {
-  id: string;
+export interface FischFormValues {
+  id?: string;
   name: string;
   wissenschaftlich: string;
   herkunft: string;
@@ -15,5 +13,7 @@ export interface Fisch extends Entity {
   datum: Date;
   anzahl: number;
   geschlecht: string;
-  aquarium: Aquarium;
+  aquariumId: string;
 }
+
+export default FischFormValues;

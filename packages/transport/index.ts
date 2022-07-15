@@ -1,13 +1,15 @@
-import axios, { AxiosResponse } from "axios";
-import { Aquarium, Duengung, Fisch, Messung } from "../domain";
+import axios, {AxiosResponse} from "axios";
+import {Aquarium, Duengung, Fisch, Messung} from "../domain";
 import User from "domain/user";
 import UserLogin from "domain/user-login";
 import Feed from "domain/feed";
-import { AquariumFormValues } from "domain/aquarium";
-import { Notiz, NotizFormValues } from "domain/notiz";
-import { DuengungFormValues } from "domain/duengung";
-import { MessungFormValues } from "domain/messung";
-import { FischFormValues } from "domain/fisch";
+import {Notiz} from "domain/notiz";
+import UserFormValues from "./formValues/userFormValues";
+import NotizFormValues from "./formValues/notizFormValues";
+import AquariumFormValues from "./formValues/aquariumFormValues";
+import DuengungFormValues from "./formValues/duengungFormValues";
+import MessungFormValues from "./formValues/messungFormValues";
+import FischFormValues from "./formValues/fischFormValues";
 
 //const token = useStore.getState().token;
 //const unsub1 = useStore.subscribe(console.log);
@@ -40,6 +42,7 @@ const AquariumCall = {
   update: (aquarium: AquariumFormValues) => requests.put<Aquarium>(`/api/aquarium/${aquarium.id}`, aquarium),
   delete: (id: string) => requests.del<string>(`/api/aquarium/${id}`)
 };
+
 const NotizCall = {
   list: () => requests.get<Notiz[]>("/api/notiz"),
   create: (notiz: NotizFormValues) => requests.post<Notiz>("/api/notiz", notiz),
@@ -80,9 +83,9 @@ const TagCall = {
 
 */
 const AccountCall = {
-//current: () => requests.get<User>('/api/account'),
-  login: (user: UserLogin) => requests.post<User>("/api/account/login", user)
-  //register: (user: UserFormValues) => requests.post<User>('/api/account/register', user)
+  current: () => requests.get<User>('/api/account'),
+  login: (user: UserLogin) => requests.post<User>("/api/account/login", user),
+  register: (user: UserFormValues) => requests.post<User>('/api/account/register', user)
 };
 
 export const agent = {
@@ -96,3 +99,11 @@ export const agent = {
 };
 
 export default agent;
+export type {
+  UserFormValues,
+  DuengungFormValues,
+  AquariumFormValues,
+  NotizFormValues,
+  MessungFormValues,
+  FischFormValues
+};

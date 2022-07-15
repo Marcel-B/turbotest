@@ -31,6 +31,9 @@ module.exports = () => ({
             "login-form": {
               singleton: true
             },
+            "register-form": {
+              singleton: true
+            },
             react: {
               singleton: true,
               requiredVersion: deps.react

@@ -8,11 +8,3 @@ export interface Messung extends Entity {
   wert: string;
   aquarium: Aquarium;
 }
-
-export interface MessungFormValues {
-  id?: string;
-  menge: number;
-  datum: Date;
-  wert: string;
-  aquarium: Aquarium;
-}

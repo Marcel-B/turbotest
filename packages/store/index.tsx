@@ -17,7 +17,7 @@ const devToolsOptions = {
 
 const stateOptions = {
   name: "fishbook-storage", // unique name
-  getStorage: () => sessionStorage // (optional) by default, 'localStorage' is used
+  getStorage: () => localStorage // (optional) by default, 'localStorage' is used
 };
 
 interface State {
@@ -171,4 +171,4 @@ export const useStore = create<State>()(devtools(persist((set, get) => ({
       t.ringActive = false;
     }), false, "startTimer");
   }
-})/*, stateOptions*/), devToolsOptions));
+}), stateOptions), devToolsOptions));

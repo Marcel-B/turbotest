@@ -9,19 +9,18 @@ import {
   Select,
   Typography
 } from "@mui/material";
-import { useForm } from "react-hook-form";
-import React, { useEffect } from "react";
-import { useStore } from "store";
+import {useForm} from "react-hook-form";
+import React, {useEffect} from "react";
+import {useStore} from "store";
 import agent from "transport";
-import { NotizFormValues } from "domain/notiz";
-import { AppTextInput, AppDatePicker } from "controlls";
-import { DuengungFormValues } from "domain/duengung";
+import {AppTextInput, AppDatePicker} from "controlls";
+import MessungFormValues from "transport/formValues/messungFormValues";
 
 const werte = [
-  { value: "Phosphat (PO)", key: "Phosphat" },
-  { value: "Eisen (FE)", key: "Eisen" },
-  { value: "Kalium (KA)", key: "Kalium" },
-  { value: "Nitrat (NO₃)", key: "Nitrat" }
+  {value: "Phosphat (PO)", key: "Phosphat"},
+  {value: "Eisen (FE)", key: "Eisen"},
+  {value: "Kalium (KA)", key: "Kalium"},
+  {value: "Nitrat (NO₃)", key: "Nitrat"}
 ];
 
 const MessungForm = () => {
@@ -29,7 +28,7 @@ const MessungForm = () => {
     register,
     control,
     handleSubmit
-  } = useForm<DuengungFormValues>();
+  } = useForm<MessungFormValues>();
   const closeModal = useStore(state => state.closeModal);
   const fetchFeed = useStore(state => state.fetchFeed);
   const fetchAquarien = useStore(state => state.fetchAquarien);
@@ -41,10 +40,8 @@ const MessungForm = () => {
     }
   }, [aquarien.length, fetchAquarien]);
 
-  const onSubmit = async (data: DuengungFormValues) => {
+  const onSubmit = async (data: MessungFormValues) => {
     console.log("Data", data);
-    const aqua = aquarien.find(a => a.name === data.aquarium.toString());
-    data.aquarium = aqua!;
     closeModal();
     try {
       await agent.MessungCall.create(data);
@@ -60,20 +57,20 @@ const MessungForm = () => {
         <Typography variant="h5">Neue Messung</Typography>
         <Divider orientation="horizontal" sx={{
           mb: 2
-        }} />
+        }}/>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <AppDatePicker name="datum" control={control} default={new Date()} />
+            <AppDatePicker name="datum" control={control} default={new Date()}/>
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth>
               <InputLabel id="aquarium-id">Aquarium</InputLabel>
               <Select
                 label="Aquarium"
-                {...register("aquarium")}
+                {...register("aquariumId")}
                 defaultValue=""
                 labelId="aquarium-id">
-                {aquarien.map(aquarium => <MenuItem key={aquarium.id} value={aquarium.name}>{aquarium.name}</MenuItem>)}
+                {aquarien.map(aquarium => <MenuItem key={aquarium.id} value={aquarium.id}>{aquarium.name}</MenuItem>)}
               </Select>
             </FormControl>
           </Grid>
@@ -95,10 +92,10 @@ const MessungForm = () => {
               label="Ergebnis"
               type="number"
               default={""}
-              name="menge" />
+              name="menge"/>
           </Grid>
           <Grid item xs={12}>
-            <Divider orientation="horizontal" />
+            <Divider orientation="horizontal"/>
           </Grid>
           <Grid item xs={12}>
             <Box sx={{

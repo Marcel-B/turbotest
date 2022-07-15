@@ -9,10 +9,4 @@ export interface Duengung extends Entity {
   aquarium: Aquarium;
 }
 
-export interface DuengungFormValues {
-  id?: string;
-  menge: number;
-  datum: Date;
-  duenger: string;
-  aquarium: Aquarium;
-}
+export default Duengung;

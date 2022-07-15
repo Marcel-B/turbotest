@@ -9,22 +9,22 @@ import {
   Select, TextField,
   Typography
 } from "@mui/material";
-import { useController, UseControllerProps, useForm } from "react-hook-form";
-import React, { useEffect } from "react";
-import { useStore } from "store";
+import {useController, UseControllerProps, useForm} from "react-hook-form";
+import React, {useEffect} from "react";
+import {useStore} from "store";
 import agent from "transport";
-import { NotizFormValues } from "domain/notiz";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+import {DatePicker} from "@mui/x-date-pickers/DatePicker";
+import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import deLocale from "date-fns/locale/de";
+import NotizFormValues from "transport/formValues/notizFormValues";
 
 interface Props extends UseControllerProps<NotizFormValues, any> {
   default?: Date | null;
 }
 
 const AppDatePicker = (props: Props) => {
-  const { field, fieldState } = useController({ ...props, defaultValue: props.default ?? new Date() });
+  const {field, fieldState} = useController({...props, defaultValue: props.default ?? new Date()});
   return (
     <FormControl
       margin="dense"
@@ -39,7 +39,7 @@ const AppDatePicker = (props: Props) => {
             <TextField
               {...params}
               helperText={fieldState.error?.message}
-              error={!!fieldState.error} />}
+              error={!!fieldState.error}/>}
         />
       </LocalizationProvider>
     </FormControl>
@@ -65,8 +65,7 @@ const NotizForm = () => {
 
   const onSubmit = async (data: NotizFormValues) => {
     console.debug("Data", data);
-    const aqua = aquarien.find(a => a.name === data.aquarium.toString());
-    data.aquarium = aqua!;
+    // const aqua = aquarien.find(a => a.name === data.aquarium.toString());
     closeModal();
     try {
       await agent.NotizCall.create(data);
@@ -82,31 +81,31 @@ const NotizForm = () => {
         <Typography variant="h5">Neue Notiz</Typography>
         <Divider orientation="horizontal" sx={{
           mb: 2
-        }} />
+        }}/>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <AppDatePicker name="datum" control={control} default={new Date()} />
+            <AppDatePicker name="datum" control={control} default={new Date()}/>
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth>
               <InputLabel id="aquarium-id">Aquarium</InputLabel>
               <Select
                 label="Aquarium"
-                {...register("aquarium")}
+                {...register("aquariumId")}
                 defaultValue=""
                 labelId="aquarium-id">
-                {aquarien.map(aquarium => <MenuItem key={aquarium.id} value={aquarium.name}>{aquarium.name}</MenuItem>)}
+                {aquarien.map(aquarium => <MenuItem key={aquarium.id} value={aquarium.id}>{aquarium.name}</MenuItem>)}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <TextField {...register("text")} fullWidth label="Text" type="text" defaultValue="" name="text" />
+            <TextField {...register("text")} fullWidth label="Text" type="text" defaultValue="" name="text"/>
           </Grid>
           <Grid item xs={12}>
-            <TextField {...register("tag")} fullWidth label="Tag" type="text" defaultValue="" name="tag" />
+            <TextField {...register("tag")} fullWidth label="Tag" type="text" defaultValue="" name="tag"/>
           </Grid>
           <Grid item xs={12}>
-            <Divider orientation="horizontal" />
+            <Divider orientation="horizontal"/>
           </Grid>
           <Grid item xs={12}>
             <Box sx={{

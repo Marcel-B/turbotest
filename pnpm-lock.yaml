@@ -127,6 +127,7 @@ importers:
       react-dom: ^18.1.0
       react-hook-form: ^7.32.0
       react-scripts: 5.0.1
+      register-form: workspace:*
       tsconfig: workspace:*
       typescript: ^4.7.3
       web-vitals: ^2.1.4
@@ -148,6 +149,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.32.2_react@18.2.0
       react-scripts: 5.0.1_qtbnez4q7bzoc4eqybg3efzzxe
+      register-form: link:../../packages/register-form
       typescript: 4.7.4
       web-vitals: 2.1.4
       yup: 0.32.11
@@ -439,6 +441,47 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       store: link:../store
+      tsconfig: link:../tsconfig
+      typescript: 4.7.4
+
+  packages/register-form:
+    specifiers:
+      '@emotion/react': ^11.9.0
+      '@emotion/styled': ^11.8.1
+      '@hookform/resolvers': ^2.9.1
+      '@mui/material': ^5.8.3
+      '@mui/styled-engine-sc': ^5.8.0
+      '@types/react': ^18.0.10
+      '@types/react-dom': ^18.0.5
+      domain: workspace:*
+      eslint: ^7.32.0
+      eslint-config-custom: workspace:*
+      react: ^18.1.0
+      react-dom: ^18.1.0
+      react-hook-form: ^7.32.0
+      store: workspace:*
+      transport: workspace:*
+      tsconfig: workspace:*
+      typescript: ^4.5.2
+      yup: ^0.32.11
+    dependencies:
+      '@emotion/react': 11.9.3_luyos4mouogwq6z3wafb3re4ce
+      '@emotion/styled': 11.9.3_mtgmvqaicd2yfw2b4v4o2ssbiu
+      '@hookform/resolvers': 2.9.1_react-hook-form@7.32.2
+      '@mui/material': 5.8.5_h2u6a3oivtyocvjxeke7xcvlfa
+      '@mui/styled-engine-sc': 5.8.0
+      react-hook-form: 7.32.2_react@18.2.0
+      yup: 0.32.11
+    devDependencies:
+      '@types/react': 18.0.14
+      '@types/react-dom': 18.0.5
+      domain: link:../domain
+      eslint: 7.32.0
+      eslint-config-custom: link:../eslint-config-custom
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      store: link:../store
+      transport: link:../transport
       tsconfig: link:../tsconfig
       typescript: 4.7.4
 
