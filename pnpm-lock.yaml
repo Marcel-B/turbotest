@@ -61,7 +61,7 @@ importers:
       '@testing-library/react': ^13.3.0
       '@testing-library/user-event': ^13.5.0
       '@types/jest': ^27.5.2
-      '@types/node': ^16.11.38
+      '@types/node': ^16.11.41
       '@types/react': ^18.0.10
       '@types/react-dom': ^18.0.5
       domain: workspace:*
@@ -89,7 +89,6 @@ importers:
       '@testing-library/react': 13.3.0_biqbaboplfbrettd7655fr4n2y
       '@testing-library/user-event': 13.5.0
       '@types/jest': 27.5.2
-      '@types/node': 16.11.41
       '@types/react': 18.0.14
       '@types/react-dom': 18.0.5
       domain: link:../../packages/domain
@@ -106,6 +105,7 @@ importers:
       web-vitals: 2.1.4
     devDependencies:
       '@craco/craco': 6.4.3_f4mn2lxb4776j264eoyu36jjhe
+      '@types/node': 16.11.41
       tsconfig: link:../../packages/tsconfig
 
   apps/identity:
@@ -621,6 +621,7 @@ importers:
 
   packages/transport:
     specifiers:
+      '@types/node': ^16.11.41
       '@types/react': ^18.0.10
       '@types/react-dom': ^18.0.5
       axios: ^0.27.2
@@ -633,6 +634,7 @@ importers:
     dependencies:
       axios: 0.27.2
     devDependencies:
+      '@types/node': 16.11.41
       '@types/react': 18.0.14
       '@types/react-dom': 18.0.5
       domain: link:../domain

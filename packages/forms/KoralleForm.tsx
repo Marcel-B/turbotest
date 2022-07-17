@@ -3,10 +3,10 @@ import {useForm} from "react-hook-form";
 import React, {useEffect} from "react";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {FischFormValues} from "domain/fisch";
 import {useStore} from "store";
 import {AppDatePicker, AppTextInput, AppRadioButton} from "controlls";
 import agent from "transport";
+import KoralleFormValues from "transport/formValues/koralleFormValues";
 
 const schema = yup.object({
   name: yup
@@ -18,15 +18,9 @@ const schema = yup.object({
   herkunft: yup
     .string()
     .required("benötigt"),
-  schwimmzone: yup
+  stroemung: yup
     .string()
     .required("benötigt"),
-  anzahl: yup
-    .number()
-    .typeError("muss eine Zahl sein")
-    .positive("muss positiv sein")
-    .integer("muss eine natürliche Zahl sein")
-    .required("benötigt")
 }).required();
 
 const geschlechtTypOptions: { text: string, value: string }[] = [
@@ -36,7 +30,7 @@ const geschlechtTypOptions: { text: string, value: string }[] = [
 ];
 
 const NeueKoralleForm = () => {
-  const {control, handleSubmit, reset, register} = useForm<FischFormValues>({resolver: yupResolver(schema)});
+  const {control, handleSubmit, reset, register} = useForm<KoralleFormValues>({resolver: yupResolver(schema)});
   const aquarien = useStore(state => state.aquarien);
   const fetchAquarien = useStore(state => state.fetchAquarien);
   const fetchFeed = useStore(state => state.fetchFeed);
@@ -54,17 +48,15 @@ const NeueKoralleForm = () => {
     }
   }, [aquarien.length, fetchAquarien]);
 
-  const onSubmit = async (data: FischFormValues) => {
-    const aqua = aquarien.find(a => a.name === data.aquarium.toString());
-    console.log('__Aqua', aqua, aquarien, data.aquarium);
-    data.aquarium = aqua!.id;
+  const onSubmit = async (data: KoralleFormValues) => {
+    console.log('Koralle', data);
     data.kh.einheit = "°dH";
-    data.gh.einheit = "°dH";
-    data.ph.einheit = "";
+    //data.gh.einheit = "°dH";
+    //data.ph.einheit = "";
     data.temperatur.einheit = "°C";
 
     try {
-      await agent.FischCall.create(data);
+      await agent.KoralleCall.create(data);
       await fetchFeed();
     } catch (err) {
       console.error(err);
@@ -76,7 +68,7 @@ const NeueKoralleForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Typography variant="h5">Neuer Fisch</Typography>
+        <Typography variant="h5">Neue Koralle</Typography>
         <Divider orientation="horizontal" sx={{mb: 2}}/>
 
         <Grid container spacing={2}>
@@ -121,12 +113,12 @@ const NeueKoralleForm = () => {
                   <InputLabel id="aquarium-id">Aquarium</InputLabel>
                   <Select
                     label="Aquarium"
-                    {...register("aquarium")}
+                    {...register("aquariumId")}
                     defaultValue=""
                     labelId="aquarium-id">
                     {aquarien.map(aquarium => <MenuItem
                       key={aquarium.id}
-                      value={aquarium.name}>{aquarium.name}</MenuItem>)}
+                      value={aquarium.id}>{aquarium.name}</MenuItem>)}
                   </Select>
                 </FormControl>
               </Grid>

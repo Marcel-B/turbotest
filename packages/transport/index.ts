@@ -10,13 +10,16 @@ import AquariumFormValues from "./formValues/aquariumFormValues";
 import DuengungFormValues from "./formValues/duengungFormValues";
 import MessungFormValues from "./formValues/messungFormValues";
 import FischFormValues from "./formValues/fischFormValues";
+import KoralleFormValues from "./formValues/koralleFormValues";
+import koralleFormValues from "./formValues/koralleFormValues";
 
 //const token = useStore.getState().token;
 //const unsub1 = useStore.subscribe(console.log);
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
-//axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-axios.defaults.baseURL = "http://localhost:5046";
+console.log("__Process", process.env.REACT_APP_API_URL)
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+//axios.defaults.baseURL = "http://localhost:5046";
 //axios.defaults.baseURL = "http://192.168.2.103:3088";
 
 axios.interceptors.request.use(config => {
@@ -59,6 +62,14 @@ const FischCall = {
   delete: (id: string) => requests.del<string>(`/api/fisch/${id}`)
 };
 
+const KoralleCall = {
+  list: () => requests.get<Fisch[]>("/api/koralle"),
+  create: (koralle: KoralleFormValues) => requests.post<Fisch>("/api/koralle", koralle),
+  read: (id: string) => requests.get<Fisch>(`/api/koralle/${id}`),
+  update: (koralle: KoralleFormValues) => requests.put<Fisch>(`/api/koralle/${koralle.id}`, koralle),
+  delete: (id: string) => requests.del<string>(`/api/koralle/${id}`)
+};
+
 const DuengungCall = {
   list: () => requests.get<Duengung[]>("/api/duengung"),
   create: (duengung: DuengungFormValues) => requests.post<Duengung>("/api/duengung", duengung),
@@ -94,6 +105,7 @@ export const agent = {
   DuengungCall,
   FeedCall,
   FischCall,
+  KoralleCall,
   MessungCall,
   NotizCall
 };

@@ -14,7 +14,6 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.38",
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
     "domain": "workspace:*",
@@ -56,6 +55,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^6.4.3",
+    "@types/node": "^16.11.41",
     "tsconfig": "workspace:*"
   }
 }

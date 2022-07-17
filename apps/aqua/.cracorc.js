@@ -2,7 +2,9 @@ const { ModuleFederationPlugin } = require("webpack").container;
 
 const deps = require("./package.json").dependencies;
 
-module.exports = () => ({
+module.exports = ({...args}) => {
+  console.log("__Args", args);
+  return ({
   webpack: {
     configure: {
       output: {
@@ -18,7 +20,7 @@ module.exports = () => ({
             "./InfoCard": "./src/InfoContent"
           },
           remotes: {
-            identity: "identity@http://localhost:3001/remoteEntry.js",
+            identity: args.env === 'development' ?  "identity@http://localhost:3001/remoteEntry.js" : "identity@http://localhost:6060/remoteEntry.js",
             admin: "admin@http://localhost:3066/remoteEntry.js"
           },
           shared: {
@@ -69,4 +71,4 @@ module.exports = () => ({
       ]
     }
   }
-});
+})};

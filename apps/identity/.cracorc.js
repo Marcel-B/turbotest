@@ -2,7 +2,7 @@ const { ModuleFederationPlugin } = require("webpack").container;
 
 const deps = require("./package.json").dependencies;
 
-module.exports = () => ({
+module.exports = ({...args}) => {return ({
   webpack: {
     configure: {
       output: {
@@ -47,4 +47,4 @@ module.exports = () => ({
       ]
     }
   }
-});
+})};

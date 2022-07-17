@@ -17,6 +17,7 @@ function App() {
   const [routes, setRoutes] = useState<Route[]>([]);
 
   useEffect(() => {
+    console.log("__Env", process.env.REACT_APP_API_URL);
       if (user) {
         setNavLinks([
           { label: "Feed", path: "/" },
