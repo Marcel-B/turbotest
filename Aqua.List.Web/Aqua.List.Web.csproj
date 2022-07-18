@@ -9,4 +9,8 @@
         <RootNamespace>com.marcelbenders.Aqua.List.Web</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot" />
+    </ItemGroup>
+
 </Project>

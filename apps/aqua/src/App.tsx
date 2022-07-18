@@ -21,11 +21,11 @@ function App() {
       if (user) {
         setNavLinks([
           { label: "Feed", path: "/" },
-          { label: "Admin", path: "/admin" }]);
+          { label: "Übersicht", path: "/list" }]);
         setRoutes([
           { path: "/", element: () => <Feed /> },
           { path: "/profile", element: () => <UserProfile /> },
-          { path: "/admin", element: () => <AdminPanel /> }
+          { path: "/list", element: () => <AdminPanel /> }
         ]);
       } else {
         setNavLinks([

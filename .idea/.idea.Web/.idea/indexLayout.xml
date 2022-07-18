@@ -3,6 +3,8 @@
   <component name="UserContentModel">
     <attachedFolders>
       <Path>.</Path>
+      <Path>apps</Path>
+      <Path>packages</Path>
     </attachedFolders>
     <explicitIncludes />
     <explicitExcludes />

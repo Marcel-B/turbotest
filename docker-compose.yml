@@ -43,6 +43,30 @@ services:
       - ./apps/identity/build:/app/wwwroot
     networks:
       - sky
+  identity-server:
+    image: millegalb/identity.server:1.0.0
+    build:
+      context: .
+      dockerfile: IdentityServer/Dockerfile
+    environment:
+      - "ASPNETCORE_ENVIRONMENT=Compose"
+    ports:
+      - "6065:6065"
+    networks:
+      - sky
+  web-list:
+    image: millegalb/aqua.list:1.0.0
+    build:
+      context: .
+      dockerfile: Aqua.List.Web/Dockerfile
+    environment:
+      - "ASPNETCORE_ENVIRONMENT=Compose"
+    ports:
+      - "3033:3033"
+    volumes:
+      - ./apps/admin/build:/app/wwwroot
+    networks:
+      - sky
   sqlserver:
       image: mcr.microsoft.com/azure-sql-edge:latest
       ports:
