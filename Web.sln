@@ -3,34 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Identity", "Web.Identity\Web.Identity.csproj", "{06639214-000E-4652-A456-10949F8BF6D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Identity", "Backend\Web.Identity\Web.Identity.csproj", "{06639214-000E-4652-A456-10949F8BF6D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Persistence", "Aqua.Persistence\Aqua.Persistence.csproj", "{B5003189-C42A-4524-92B8-B711D988CA42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Persistence", "Backend\Aqua.Persistence\Aqua.Persistence.csproj", "{B5003189-C42A-4524-92B8-B711D988CA42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Domain.Sql", "Aqua.Domain.Sql\Aqua.Domain.Sql.csproj", "{1AF9853D-6894-47FA-89C3-9F603C242A1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Domain.Sql", "Backend\Aqua.Domain.Sql\Aqua.Domain.Sql.csproj", "{1AF9853D-6894-47FA-89C3-9F603C242A1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Domain", "Aqua.Domain\Aqua.Domain.csproj", "{6A978910-F7EC-4C41-A5E0-58382CAD0EAC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Domain", "Backend\Aqua.Domain\Aqua.Domain.csproj", "{6A978910-F7EC-4C41-A5E0-58382CAD0EAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Copy", "Aqua.Copy\Aqua.Copy.csproj", "{B0DE4ECA-7986-4AEC-9EE1-A70A0EF4CB23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Copy", "Backend\Aqua.Copy\Aqua.Copy.csproj", "{B0DE4ECA-7986-4AEC-9EE1-A70A0EF4CB23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Web", "Aqua.Web\Aqua.Web.csproj", "{9915839F-DC3C-4C4D-BB64-DA278EA6239A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Web", "Backend\Aqua.Web\Aqua.Web.csproj", "{9915839F-DC3C-4C4D-BB64-DA278EA6239A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Application", "Aqua.Application\Aqua.Application.csproj", "{77B5F0D6-A991-4BE8-B3BF-55CDFB171AE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Application", "Backend\Aqua.Application\Aqua.Application.csproj", "{77B5F0D6-A991-4BE8-B3BF-55CDFB171AE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.SqlServer", "Aqua.SqlServer\Aqua.SqlServer.csproj", "{E124F3A4-805B-4B98-BB32-ED0A8EE9032D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.SqlServer", "Backend\Aqua.SqlServer\Aqua.SqlServer.csproj", "{E124F3A4-805B-4B98-BB32-ED0A8EE9032D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Api", "Aqua.Api\Aqua.Api.csproj", "{CCCDC28F-2501-4220-A1A0-8733610F841E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Api", "Backend\Aqua.Api\Aqua.Api.csproj", "{CCCDC28F-2501-4220-A1A0-8733610F841E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E07572F0-4541-4152-93FC-0A1D6DF852EB}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.MongoDb", "Aqua.MongoDb\Aqua.MongoDb.csproj", "{8F4A5027-F40D-4486-B307-9D5CBBA6F0E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.MongoDb", "Backend\Aqua.MongoDb\Aqua.MongoDb.csproj", "{8F4A5027-F40D-4486-B307-9D5CBBA6F0E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.List.Web", "Aqua.List.Web\Aqua.List.Web.csproj", "{BEBD6BF7-2307-4401-87C1-587595BD70F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.List.Web", "Backend\Aqua.List.Web\Aqua.List.Web.csproj", "{BEBD6BF7-2307-4401-87C1-587595BD70F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{402DBD92-BEE9-4C0C-8836-708C018CF0D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "Backend\IdentityServer\IdentityServer.csproj", "{402DBD92-BEE9-4C0C-8836-708C018CF0D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

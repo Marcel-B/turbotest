@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+
 import { AppShell } from "ui";
-import { useStore } from "store";
+import Feed from "feed";
 import { NavLink } from "domain/nav-link";
 import { Route } from "domain/Route";
-import Feed from "feed";
 import UserProfile from "user-profile";
+import { useStore } from "store";
 // @ts-ignore
 const LoginUser = React.lazy(() => import("identity/LoginUser"));
 
@@ -17,7 +18,6 @@ function App() {
   const [routes, setRoutes] = useState<Route[]>([]);
 
   useEffect(() => {
-    console.log("__Env", process.env.REACT_APP_API_URL);
       if (user) {
         setNavLinks([
           { label: "Feed", path: "/" },

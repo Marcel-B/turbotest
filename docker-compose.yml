@@ -4,10 +4,9 @@ services:
     image: millegalb/aqua.api:1.0.0
     build:
       context: .
-      dockerfile: Aqua.Api/Dockerfile
+      dockerfile: Backend/Aqua.Api/Dockerfile
     environment:
         - "ASPNETCORE_ENVIRONMENT=Compose"
-      
     ports:
       - "5046:5046"
     networks:
@@ -18,13 +17,13 @@ services:
     image: millegalb/aqua.web:1.0.0
     build:
       context: .
-      dockerfile: Aqua.Web/Dockerfile
+      dockerfile: Backend/Aqua.Web/Dockerfile
     environment:
       - "ASPNETCORE_ENVIRONMENT=Compose"
     ports:
       - "9000:80"
     volumes:
-      - ./apps/aqua/build:/app/wwwroot
+      - ./UI/apps/aqua/build:/app/wwwroot
     networks:
       - sky
     links:
@@ -34,37 +33,40 @@ services:
     image: millegalb/identity:1.0.0
     build:
       context: .
-      dockerfile: Web.Identity/Dockerfile
+      dockerfile: Backend/Web.Identity/Dockerfile
     environment:
       - "ASPNETCORE_ENVIRONMENT=Compose"
     ports:
       - "6060:6060"
     volumes:
-      - ./apps/identity/build:/app/wwwroot
+      - ./UI/apps/identity/build:/app/wwwroot
     networks:
       - sky
   identity-server:
     image: millegalb/identity.server:1.0.0
     build:
       context: .
-      dockerfile: IdentityServer/Dockerfile
+      dockerfile: Backend/IdentityServer/Dockerfile
     environment:
       - "ASPNETCORE_ENVIRONMENT=Compose"
     ports:
       - "6065:6065"
+    restart: on-failure
     networks:
       - sky
+    links:
+      - sqlserver
   web-list:
     image: millegalb/aqua.list:1.0.0
     build:
       context: .
-      dockerfile: Aqua.List.Web/Dockerfile
+      dockerfile: Backend/Aqua.List.Web/Dockerfile
     environment:
       - "ASPNETCORE_ENVIRONMENT=Compose"
     ports:
       - "3033:3033"
     volumes:
-      - ./apps/admin/build:/app/wwwroot
+      - ./UI/apps/admin/build:/app/wwwroot
     networks:
       - sky
   sqlserver:
