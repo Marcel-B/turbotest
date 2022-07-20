@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "Backend\I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Manager", "Backend\IdentityServer.Manager\IdentityServer.Manager.csproj", "{E9F3D169-3F53-405E-904E-055E6EB7D63A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mqtt.ServR", "Backend\Mqtt.ServR\Mqtt.ServR.csproj", "{430AB71B-BF1F-4602-BD14-9A8EACA0CAE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,5 +97,9 @@ Global
 		{E9F3D169-3F53-405E-904E-055E6EB7D63A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9F3D169-3F53-405E-904E-055E6EB7D63A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9F3D169-3F53-405E-904E-055E6EB7D63A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430AB71B-BF1F-4602-BD14-9A8EACA0CAE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430AB71B-BF1F-4602-BD14-9A8EACA0CAE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430AB71B-BF1F-4602-BD14-9A8EACA0CAE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430AB71B-BF1F-4602-BD14-9A8EACA0CAE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

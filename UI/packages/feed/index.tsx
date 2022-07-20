@@ -1,16 +1,21 @@
-import { Box, Divider, List, ListItem, Pagination, Paper, Stack, Typography } from "@mui/material";
-import React, { SyntheticEvent, useEffect } from "react";
+import {Box, Divider, List, ListItem, Pagination, Paper, Stack, Typography} from "@mui/material";
+import React, {SyntheticEvent, useEffect, useState} from "react";
 import FeedItem from "./FeedItem";
-import { useStore } from "store";
+import {useStore} from "store";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
+import agent from "transport";
+import connection from "transport/signalRConnection";
 
 const Feed = () => {
   const feed = useStore(state => state.feed);
   const fetchFeed = useStore(state => state.fetchFeed);
   const user = useStore(state => state.user);
+  const [message, setMessage] = useState("initial value");
 
   useEffect(() => {
+    connection.on("Notify", (mess) => setMessage(mess));
+
     if (user && user.token) {
       fetchFeed(1, 7).catch(e => console.error(e));
     }
@@ -23,11 +28,13 @@ const Feed = () => {
   return (
     <Box>
       <Typography variant="h4">Feed</Typography>
-      <Divider orientation="horizontal" sx={{ mb: 2 }} />
+      <Divider orientation="horizontal" sx={{mb: 2}}/>
+      <p>{message}</p>
+      <button onClick={() => agent.AccountCall.login({email: "foo@bar.de", password: "123"})}>Login</button>
 
       <Stack
         direction="column"
-        divider={<Divider orientation="horizontal" />}
+        divider={<Divider orientation="horizontal"/>}
         spacing={2}
         sx={{
           height: "calc(100vh - 190px)"
@@ -50,23 +57,23 @@ const Feed = () => {
                 <Typography variant="h4">{formatValue(groupedFeed.datum)}</Typography>
                 <Divider orientation="horizontal" sx={{
                   mb: 2
-                }} />
+                }}/>
                 {groupedFeed.feedItems.map(feedItem => (
                   <FeedItem
                     key={feedItem.id}
                     aquaType={feedItem.aquaType}
                     item={feedItem.item}
                     datum={moment(new Date(feedItem.item.datum)).locale("de").format("LLLL")}
-                    id={feedItem.id} />
+                    id={feedItem.id}/>
                 ))}
               </Paper>
             </ListItem>
           ) : <Typography variant="h1">...</Typography>}
         </List>
         {feed && feed.total > 0 && <Pagination
-          count={Math.floor(feed.total / 7)}
-          onChange={(data: SyntheticEvent<unknown>, page: number) => fetchFeed(page, 7)}
-          color="primary" />}
+            count={Math.floor(feed.total / 7)}
+            onChange={(data: SyntheticEvent<unknown>, page: number) => fetchFeed(page, 7)}
+            color="primary"/>}
       </Stack>
     </Box>);
 };

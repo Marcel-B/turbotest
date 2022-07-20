@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
+using System.Text.Json;
 using com.marcelbenders.Aqua.Api.Dto;
 using com.marcelbenders.Aqua.Api.Services;
 using com.marcelbenders.Aqua.Domain.Sql;
@@ -7,6 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MQTTnet;
+using MQTTnet.Client;
+using MQTTnet.Protocol;
 
 namespace com.marcelbenders.Aqua.Api.Controllers;
 
@@ -33,6 +37,27 @@ public class AccountController : ControllerBase
     public async Task<ActionResult<User>> Login(
         [FromBody, Required] Login login)
     {
+        Console.WriteLine("Hallo Feed");
+        var mqttFactory = new MqttFactory();
+
+        using (var mqttClient = mqttFactory.CreateMqttClient())
+        {
+            var mqttClientOptions = new MqttClientOptionsBuilder()
+                .WithTcpServer("127.0.0.1", 1833)
+                .Build();
+
+            await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
+
+            var applicationMessage = new MqttApplicationMessageBuilder()
+                .WithTopic("foo/bar")
+                .WithPayload(JsonSerializer.Serialize(new {Name = "Hallo"}))
+                .Build();
+
+
+            await mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
+        }
+
+        return Ok();
         var user = await _userManager.FindByEmailAsync(login.Email);
         if (user == null)
         {

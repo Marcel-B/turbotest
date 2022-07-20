@@ -40,7 +40,6 @@ const LoginUserForm = ({ redirectUrl }: Props) => {
       post_logout_redirect_uri: "http://localhost:3000/",
     };
     const userManager = new UserManager(config);
-/*
     userManager.getUser().then((user) => {
       if (user) {
         console.log("User logged in", user.profile);
@@ -49,7 +48,6 @@ const LoginUserForm = ({ redirectUrl }: Props) => {
         userManager.signinRedirect();
       }
     });
-*/
   }, []);
 
   const submit = async (data: UserLogin) => {

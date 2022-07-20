@@ -11,7 +11,6 @@ import DuengungFormValues from "./formValues/duengungFormValues";
 import MessungFormValues from "./formValues/messungFormValues";
 import FischFormValues from "./formValues/fischFormValues";
 import KoralleFormValues from "./formValues/koralleFormValues";
-import koralleFormValues from "./formValues/koralleFormValues";
 
 //const token = useStore.getState().token;
 //const unsub1 = useStore.subscribe(console.log);
