@@ -1,0 +1,33 @@
+--select * from Duengungen order by Datum desc;
+select * from Aquarien;-- where name = 'Nano Cube';
+--delete from Aquarien where name = 'Proxima' and id != ''
+--select COUNT(*) As 'Duengungen' from duengungen where AquariumId = 'ae54cee4-3bfb-4478-b290-92bffe923b58';
+--SELECT COUNT(*) as 'Messung' from Messungen where AquariumId = 'ae54cee4-3bfb-4478-b290-92bffe923b58'; 
+--SELECT COUNT(*) AS 'Fische' from Fische where AquariumId = 'ae54cee4-3bfb-4478-b290-92bffe923b58'; 
+SELECT COUNT(*) AS 'Notizen' from Notizen where AquariumId = 'c726c9c7-a31c-44a7-9857-99087e13bbe7'; 
+SELECT COUNT(*) AS 'Notizen' from Fische where AquariumId = '21ec8db7-8ce1-4be4-8a0e-a0cfd0d6f9f7'; 
+SELECT COUNT(*) AS 'Notizen' from Messungen where AquariumId = '4b4ca138-ed86-4d71-a1e0-c7c015a0fc53'; 
+
+select count(*) from Notizen;
+--delete from aquarium where id = '394fad95-d457-4690-b098-b584a08d7d12',
+-- 4b63fecf-19a9-47eb-8572-2e226225764c
+
+delete from Duengungen where AquariumId = '394fad95-d457-4690-b098-b584a08d7d12'; 
+delete from Duengungen where AquariumId = '8079225c-4adf-4fda-afcf-f47e4ce90cd0'; 
+delete from Duengungen where AquariumId IN ('d8797036-8e84-416c-998f-a8e096112fd3','d99ad4e2-6e0d-48dd-b439-c47eb7caa4e0', '21ec8db7-8ce1-4be4-8a0e-a0cfd0d6f9f7', '4b4ca138-ed86-4d71-a1e0-c7c015a0fc53', 'b4bb6a3a-0215-47be-89a7-c04f96dc4a67', 'a54d3b49-d86b-47ed-8d71-e40ea0547084');
+
+delete from Messungen where AquariumId = '394fad95-d457-4690-b098-b584a08d7d12'; 
+delete from Messungen where AquariumId = '8079225c-4adf-4fda-afcf-f47e4ce90cd0'; 
+delete from Messungen where AquariumId IN ('d8797036-8e84-416c-998f-a8e096112fd3','d99ad4e2-6e0d-48dd-b439-c47eb7caa4e0', '21ec8db7-8ce1-4be4-8a0e-a0cfd0d6f9f7', '4b4ca138-ed86-4d71-a1e0-c7c015a0fc53', 'b4bb6a3a-0215-47be-89a7-c04f96dc4a67', 'a54d3b49-d86b-47ed-8d71-e40ea0547084');
+
+delete from Fische where AquariumId = '394fad95-d457-4690-b098-b584a08d7d12'; 
+delete from Fische where AquariumId = '8079225c-4adf-4fda-afcf-f47e4ce90cd0'; 
+delete from Fische where AquariumId IN ('d8797036-8e84-416c-998f-a8e096112fd3','d99ad4e2-6e0d-48dd-b439-c47eb7caa4e0', '21ec8db7-8ce1-4be4-8a0e-a0cfd0d6f9f7', '4b4ca138-ed86-4d71-a1e0-c7c015a0fc53', 'b4bb6a3a-0215-47be-89a7-c04f96dc4a67', 'a54d3b49-d86b-47ed-8d71-e40ea0547084');
+
+delete from Notizen where AquariumId = '394fad95-d457-4690-b098-b584a08d7d12'; 
+delete from Notizen where AquariumId = '8079225c-4adf-4fda-afcf-f47e4ce90cd0'; 
+delete from Notizen where AquariumId IN ('d8797036-8e84-416c-998f-a8e096112fd3','d99ad4e2-6e0d-48dd-b439-c47eb7caa4e0', '21ec8db7-8ce1-4be4-8a0e-a0cfd0d6f9f7', '4b4ca138-ed86-4d71-a1e0-c7c015a0fc53', 'b4bb6a3a-0215-47be-89a7-c04f96dc4a67', 'a54d3b49-d86b-47ed-8d71-e40ea0547084');
+
+delete from Aquarien where Id = '394fad95-d457-4690-b098-b584a08d7d12'; 
+delete from Aquarien where Id = '8079225c-4adf-4fda-afcf-f47e4ce90cd0'; 
+delete from Aquarien where Id IN ('d8797036-8e84-416c-998f-a8e096112fd3','d99ad4e2-6e0d-48dd-b439-c47eb7caa4e0', '21ec8db7-8ce1-4be4-8a0e-a0cfd0d6f9f7', '4b4ca138-ed86-4d71-a1e0-c7c015a0fc53', 'b4bb6a3a-0215-47be-89a7-c04f96dc4a67', 'a54d3b49-d86b-47ed-8d71-e40ea0547084');
