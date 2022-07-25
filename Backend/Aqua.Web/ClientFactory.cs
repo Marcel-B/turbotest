@@ -7,7 +7,7 @@ namespace Aqua.Web;
 
 public class Foo
 {
-    public string Name { get; set; }
+    public float Name { get; set; }
 }
 
 public interface IClientFactory
@@ -46,6 +46,7 @@ public class ClientFactory : IClientFactory
             if (result is not null)
             {
                 var json = Encoding.UTF8.GetString(result);
+                Console.WriteLine(json);
                 var res = JsonSerializer.Deserialize<T>(json);
                 messageReceived.Invoke(res);
             }

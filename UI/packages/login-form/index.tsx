@@ -1,14 +1,14 @@
 import * as React from "react";
 import * as yup from "yup";
 
-import { Box, Button, Divider, Grid, TextField, Typography } from "@mui/material";
-import { OidcClientSettings, UserManager } from "oidc-client";
-import agent, { useStore } from "store";
+import {Box, Button, Divider, Grid, TextField, Typography} from "@mui/material";
+import {OidcClientSettings, UserManager} from "oidc-client";
+import agent, {useStore} from "store";
 
-import { UserLogin } from "domain/user-login";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import {UserLogin} from "domain/user-login";
+import {useEffect} from "react";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
 
 interface Props {
   redirectUrl: string;
@@ -21,19 +21,18 @@ const schema = yup
   })
   .required();
 
-const LoginUserForm = ({ redirectUrl }: Props) => {
-  const { setRedirectUrl, setUser } = useStore();
+const LoginUserForm = ({redirectUrl}: Props) => {
+  const {setRedirectUrl, setUser} = useStore();
   const {
-    formState: { errors },
+    formState: {errors},
     handleSubmit,
     register,
-  } = useForm<UserLogin>({ resolver: yupResolver(schema) });
+  } = useForm<UserLogin>({resolver: yupResolver(schema)});
 
   useEffect(() => {
     const config: OidcClientSettings = {
       authority: "http://localhost:6065",
       client_id: "fishbook.js.client",
-      client_secret: "123-abc",
       redirect_uri: "http://localhost:3000/callback",
       response_type: "code",
       scope: "openid profile fishbook-feed",
@@ -45,7 +44,7 @@ const LoginUserForm = ({ redirectUrl }: Props) => {
         console.log("User logged in", user.profile);
       } else {
         console.log("User not logged in");
-        userManager.signinRedirect();
+        userManager.signinRedirect().catch(err => console.error(err));
       }
     });
   }, []);
@@ -61,9 +60,9 @@ const LoginUserForm = ({ redirectUrl }: Props) => {
   return (
     <Box>
       <Typography variant="h4">Anmelden</Typography>
-      <Divider orientation="horizontal" sx={{ mb: 2 }} />
+      <Divider orientation="horizontal" sx={{mb: 2}}/>
       <form onSubmit={handleSubmit(submit)}>
-        <Grid container spacing={2} sx={{ justifyContent: "flex-end" }}>
+        <Grid container spacing={2} sx={{justifyContent: "flex-end"}}>
           <Grid item md={6} xs={12}>
             <TextField
               label="Email"

@@ -11,7 +11,7 @@ export const Oidc = () => {
       redirect_uri: "http://localhost:3000/callback",
       response_type: "code",
       response_mode: "query",
-      scope: "openid profile fishbook",
+      scope: "openid profile fishbook-feed",
       post_logout_redirect_uri: "http://localhost:3000",
     };
     console.log("__Callback here", config);

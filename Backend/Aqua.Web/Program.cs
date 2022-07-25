@@ -26,10 +26,10 @@ app.MapFallbackToController("Index", "Fallback");
 var hub = app.Services.GetRequiredService<IHubContext<SignalrHub>>();
 var fac = app.Services.GetRequiredService<IClientFactory>();
 
-await fac.Subscribe("127.0.0.1", 1833, "foo/bar", (Foo? mess) =>
+await fac.Subscribe("192.168.2.103", 1883, "TEMP/DS18B20/hagen", (string mess) =>
 {
-    Console.WriteLine(mess.Name);
-    hub.Clients.All.SendAsync("Notify", mess.Name);
+    Console.WriteLine(mess);
+    hub.Clients.All.SendAsync("Notify", mess);
 });
 
 

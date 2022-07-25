@@ -11,7 +11,7 @@ const AquariumForm = () => {
   const addAquarium = useStore(state => state.addAquarium);
 
   const onSubmit = async (data: AquariumFormValues) => {
-    console.log("Data", data);
+    console.log("Aquarium", data);
     closeModal();
     try {
       const aquarium = await agent.AquariumCall.create(data);

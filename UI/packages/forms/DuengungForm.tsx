@@ -31,14 +31,14 @@ const DuengungForm = () => {
   } = useForm<DuengungFormValues>();
   const closeModal = useStore(state => state.closeModal);
   const fetchFeed = useStore(state => state.fetchFeed);
-  const fetchAquarien = useStore(state => state.fetchAquarien);
+  // const fetchAquarien = useStore(state => state.fetchAquarien);
   const aquarien = useStore(state => state.aquarien);
 
-  useEffect(() => {
-    // if (aquarien.length === 0) {
-    fetchAquarien().catch(err => console.error(err));
-    // }
-  }, [aquarien.length, fetchAquarien]);
+  //useEffect(() => {
+  // if (aquarien.length === 0) {
+  //fetchAquarien().catch(err => console.error(err));
+  // }
+  //}, [aquarien.length, fetchAquarien]);
 
   const onSubmit = async (data: DuengungFormValues) => {
     console.log("Data", data);
