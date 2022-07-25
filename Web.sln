@@ -32,8 +32,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.List.Web", "Backend\Aq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Server", "Backend\Identity.Server\Identity.Server.csproj", "{402DBD92-BEE9-4C0C-8836-708C018CF0D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Manager", "Backend\Identity.Manager\Identity.Manager.csproj", "{E9F3D169-3F53-405E-904E-055E6EB7D63A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mqtt.ServR", "Backend\Mqtt.ServR\Mqtt.ServR.csproj", "{430AB71B-BF1F-4602-BD14-9A8EACA0CAE3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueReceiver", "ValueReceiver\ValueReceiver.csproj", "{CDCA34B4-03E2-429A-AE1B-5A907D152C31}"
@@ -97,10 +95,6 @@ Global
 		{402DBD92-BEE9-4C0C-8836-708C018CF0D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{402DBD92-BEE9-4C0C-8836-708C018CF0D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{402DBD92-BEE9-4C0C-8836-708C018CF0D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9F3D169-3F53-405E-904E-055E6EB7D63A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9F3D169-3F53-405E-904E-055E6EB7D63A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9F3D169-3F53-405E-904E-055E6EB7D63A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9F3D169-3F53-405E-904E-055E6EB7D63A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{430AB71B-BF1F-4602-BD14-9A8EACA0CAE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{430AB71B-BF1F-4602-BD14-9A8EACA0CAE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{430AB71B-BF1F-4602-BD14-9A8EACA0CAE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
