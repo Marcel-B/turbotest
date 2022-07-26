@@ -17,10 +17,15 @@ import {AppTextInput, AppDatePicker} from "controlls";
 import MessungFormValues from "transport/formValues/messungFormValues";
 
 const werte = [
-  {value: "Phosphat (PO)", key: "Phosphat"},
-  {value: "Eisen (FE)", key: "Eisen"},
-  {value: "Kalium (KA)", key: "Kalium"},
-  {value: "Nitrat (NO₃)", key: "Nitrat"}
+  {text: 'NO₂ (Nitrit)', value: 'NO₂', unit: 'mg/l'},
+  {text: 'NH₄ (Ammonium)', value: 'NH₄', unit: 'mg/l'},
+  {text: 'NO₃ (Nitrat)', value: 'NO₃', unit: 'mg/l'},
+  {text: 'PO₄ (Phosphat)', value: 'PO₄', unit: 'mg/l'},
+  {text: 'FE (Eisen)', value: 'FE', unit: 'mg/l'},
+  {text: 'GH (Gesamthärte)', value: 'GH', unit: '°dH'},
+  {text: 'KH (Karbonathärte)', value: 'KH', unit: '°dH'},
+  {text: 'PH', value: 'PH', unit: ''},
+  {text: 'K (Kalium)', value: 'K', unit: 'mg/l'},
 ];
 
 const MessungForm = () => {
@@ -82,7 +87,7 @@ const MessungForm = () => {
                 {...register("wert")}
                 defaultValue=""
                 labelId="test-id">
-                {werte.map(wert => <MenuItem key={wert.key} value={wert.value}>{wert.value}</MenuItem>)}
+                {werte.map(wert => <MenuItem key={wert.value} value={wert.value}>{wert.text}</MenuItem>)}
               </Select>
             </FormControl>
           </Grid>

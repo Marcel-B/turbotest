@@ -18,7 +18,8 @@ import DuengungFormValues from "transport/formValues/duengungFormValues";
 
 const werte = [
   {value: "Phosphat (PO)", key: "Phosphat"},
-  {value: "Eisen (FE)", key: "Eisen"},
+  {value: "FE Spezial (FE)", key: "Eisen"},
+  {value: "Eisen (FE)", key: "Eisen_2"},
   {value: "Kalium (KA)", key: "Kalium"},
   {value: "Nitrat (NO₃)", key: "Nitrat"}
 ];
