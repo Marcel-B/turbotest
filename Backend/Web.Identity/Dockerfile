@@ -19,4 +19,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Web.Identity.dll"]
-#docker buildx build -f ./Web.Identity/Dockerfile --platform linux/amd64 --push -t  millegalb/web.identity:0.0.1 .
+#docker buildx build -f ./Web.Identity/Dockerfile --platform linux/amd64 --push -t  millegalb/web.identity:2.0.1 .

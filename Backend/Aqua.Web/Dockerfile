@@ -17,3 +17,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Aqua.Web.dll"]
+#docker buildx build -f ./Aqua.Web/Dockerfile --platform linux/amd64 --push -t  millegalb/aqua.web:2.0.2 .

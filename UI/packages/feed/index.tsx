@@ -4,18 +4,13 @@ import FeedItem from "./FeedItem";
 import {useStore} from "store";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
-import agent from "transport";
-import connection from "transport/signalRConnection";
 
 const Feed = () => {
   const feed = useStore(state => state.feed);
   const fetchFeed = useStore(state => state.fetchFeed);
   const user = useStore(state => state.user);
-  const [message, setMessage] = useState("initial value");
 
   useEffect(() => {
-    connection.on("Notify", (mess) => setMessage(mess));
-
     if (user && user.token) {
       fetchFeed(1, 7).catch(e => console.error(e));
     }
@@ -29,8 +24,6 @@ const Feed = () => {
     <Box>
       <Typography variant="h4">Feed</Typography>
       <Divider orientation="horizontal" sx={{mb: 2}}/>
-      <p>{message}</p>
-      <button onClick={() => agent.AccountCall.login({email: "foo@bar.de", password: "123"})}>Login</button>
 
       <Stack
         direction="column"

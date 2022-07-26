@@ -20,8 +20,8 @@ module.exports = ({...args}) => {
             "./InfoCard": "./src/InfoContent"
           },
           remotes: {
-            identity: args.env === 'development' ?  "identity@http://localhost:3001/remoteEntry.js" : "identity@http://localhost:6060/remoteEntry.js",
-            admin: "admin@http://localhost:3066/remoteEntry.js"
+            identity: args.env === 'development' ?  "identity@http://localhost:3001/remoteEntry.js" : "identity@http://192.168.2.103:6060/remoteEntry.js",
+            admin: args.env === 'development' ? "admin@http://localhost:3066/remoteEntry.js" : "admin@http://192.168.2.103:9066/remoteEntry.js"
           },
           shared: {
             ...deps,
