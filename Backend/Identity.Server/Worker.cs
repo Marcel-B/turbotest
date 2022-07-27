@@ -27,21 +27,21 @@ public class Worker : IHostedService
 
         var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
 
-        if (await manager.FindByClientIdAsync("balosar-blazor-client", cancellationToken) is null)
+        if (await manager.FindByClientIdAsync("fishbook.client", cancellationToken) is null)
         {
             await manager.CreateAsync(new OpenIddictApplicationDescriptor
             {
-                ClientId = "balosar-blazor-client",
+                ClientId = "fishbook.client",
                 ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
                 DisplayName = "Blazor client application",
                 Type = OpenIddictConstants.ClientTypes.Public,
                 PostLogoutRedirectUris =
                 {
-                    new Uri("https://localhost:44310/authentication/logout-callback")
+                    new Uri("http://localhost:3000/logout-callback")
                 },
                 RedirectUris =
                 {
-                    new Uri("https://localhost:44310/authentication/login-callback")
+                    new Uri("http://localhost:3000/callback")
                 },
                 Permissions =
                 {

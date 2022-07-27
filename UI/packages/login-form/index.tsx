@@ -1,14 +1,14 @@
 import * as React from "react";
 import * as yup from "yup";
 
-import {Box, Button, Divider, Grid, TextField, Typography} from "@mui/material";
-import {OidcClientSettings, UserManager} from "oidc-client";
-import agent, {useStore} from "store";
+import { Box, Button, Divider, Grid, TextField, Typography } from "@mui/material";
+import { OidcClientSettings, UserManager } from "oidc-client";
+import agent, { useStore } from "store";
 
-import {UserLogin} from "domain/user-login";
-import {useEffect} from "react";
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
+import { UserLogin } from "domain/user-login";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 interface Props {
   redirectUrl: string;
@@ -17,26 +17,26 @@ interface Props {
 const schema = yup
   .object({
     email: yup.string().email("email Format").required("benötigt"),
-    password: yup.string().required("benötigt"),
+    password: yup.string().required("benötigt")
   })
   .required();
 
-const LoginUserForm = ({redirectUrl}: Props) => {
-  const {setRedirectUrl, setUser} = useStore();
+const LoginUserForm = ({ redirectUrl }: Props) => {
+  const { setRedirectUrl, setUser } = useStore();
   const {
-    formState: {errors},
+    formState: { errors },
     handleSubmit,
-    register,
-  } = useForm<UserLogin>({resolver: yupResolver(schema)});
+    register
+  } = useForm<UserLogin>({ resolver: yupResolver(schema) });
 
   useEffect(() => {
     const config: OidcClientSettings = {
-      authority: "http://localhost:6065",
-      client_id: "fishbook.js.client",
+      authority: "https://localhost:6065",
+      client_id: "fishbook.client",
       redirect_uri: "http://localhost:3000/callback",
       response_type: "code",
-      scope: "openid profile fishbook-feed",
-      post_logout_redirect_uri: "http://localhost:3000/",
+      scope: "openid",
+      post_logout_redirect_uri: "http://localhost:3000/"
     };
     const userManager = new UserManager(config);
     userManager.getUser().then((user) => {
@@ -44,7 +44,9 @@ const LoginUserForm = ({redirectUrl}: Props) => {
         console.log("User logged in", user.profile);
       } else {
         console.log("User not logged in");
-        userManager.signinRedirect().catch(err => console.error(err));
+        userManager
+          .signinRedirect()
+          .catch(err => console.error(err));
       }
     });
   }, []);
@@ -60,9 +62,9 @@ const LoginUserForm = ({redirectUrl}: Props) => {
   return (
     <Box>
       <Typography variant="h4">Anmelden</Typography>
-      <Divider orientation="horizontal" sx={{mb: 2}}/>
+      <Divider orientation="horizontal" sx={{ mb: 2 }} />
       <form onSubmit={handleSubmit(submit)}>
-        <Grid container spacing={2} sx={{justifyContent: "flex-end"}}>
+        <Grid container spacing={2} sx={{ justifyContent: "flex-end" }}>
           <Grid item md={6} xs={12}>
             <TextField
               label="Email"

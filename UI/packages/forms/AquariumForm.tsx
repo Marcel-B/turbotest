@@ -1,11 +1,11 @@
-import {Box, Button, Divider, Grid, TextField, Typography} from "@mui/material";
-import {useForm} from "react-hook-form";
+import { Box, Button, Divider, Grid, TextField, Typography } from "@mui/material";
+import { useForm } from "react-hook-form";
 import React from "react";
-import {useStore} from "store";
-import agent, {AquariumFormValues} from "transport";
+import { useStore } from "store";
+import agent, { AquariumFormValues } from "transport";
 
 const AquariumForm = () => {
-  const {register, handleSubmit} = useForm<AquariumFormValues>();
+  const { register, handleSubmit } = useForm<AquariumFormValues>();
   const closeModal = useStore(state => state.closeModal);
   const fetchFeed = useStore(state => state.fetchFeed);
   const addAquarium = useStore(state => state.addAquarium);
@@ -28,16 +28,16 @@ const AquariumForm = () => {
         <Typography variant="h5">Neues Aquarium</Typography>
         <Divider orientation="horizontal" sx={{
           mb: 2
-        }}/>
+        }} />
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <TextField {...register("name")} fullWidth label="Name" type="text" defaultValue="" name="name"/>
+            <TextField {...register("name")} fullWidth label="Name" type="text" defaultValue="" name="name" />
           </Grid>
           <Grid item xs={12}>
-            <TextField {...register("liter")} fullWidth label="Liter" type="number" defaultValue="" name="liter"/>
+            <TextField {...register("liter")} fullWidth label="Liter" type="number" defaultValue="" name="liter" />
           </Grid>
           <Grid item xs={12}>
-            <Divider orientation="horizontal"/>
+            <Divider orientation="horizontal" />
           </Grid>
           <Grid item xs={12}>
             <Box sx={{

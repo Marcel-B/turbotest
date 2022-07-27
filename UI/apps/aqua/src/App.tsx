@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { AppShell } from "ui";
 import Feed from "feed";
 import { NavLink } from "domain/nav-link";
@@ -24,13 +23,13 @@ function App() {
     if (user) {
       setNavLinks([
         { label: "Feed", path: "/" },
-        { label: "Übersicht", path: "/list" },
+        { label: "Übersicht", path: "/list" }
       ]);
       setRoutes([
         { path: "/", element: () => <Feed /> },
         { path: "/profile", element: () => <UserProfile /> },
         { path: "/list", element: () => <AdminPanel /> },
-        { path: "/callback", element: () => <Oidc /> },
+        { path: "/callback", element: () => <Oidc /> }
       ]);
     } else {
       setNavLinks([{ label: "Feed", path: "/" }]);
@@ -38,7 +37,7 @@ function App() {
         { path: "/", element: () => <Feed /> },
         { path: "/login", element: () => <LoginUser /> },
         { path: "/profile", element: () => <UserProfile /> },
-        { path: "/callback", element: () => <Oidc /> },
+        { path: "/callback", element: () => <Oidc /> }
       ]);
     }
   }, [user]);

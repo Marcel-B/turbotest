@@ -29,6 +29,7 @@
     "@mui/material": "^5.8.3",
     "@mui/styled-engine-sc": "^5.8.0",
     "oidc-client": "^1.11.5",
+    "oidc-react": "^2.0.0",
     "react-hook-form": "^7.32.0",
     "yup": "^0.32.11"
   }
