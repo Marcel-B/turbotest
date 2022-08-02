@@ -1,3 +1,4 @@
+using Aqua.SqlServer.Extensions;
 using com.marcelbenders.Aqua.Domain.Sql;
 using com.marcelbenders.Aqua.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ public class NotizRepository : INotizRepository
 
     public async Task<Notiz> CreateAsync(Notiz entity, CancellationToken cancellationToken)
     {
+        _context.CreateAppUserIfNotExist(entity.UserId);
         var id = Guid.NewGuid();
         entity.Id = id;
         _context.Notizen.Add(entity);
