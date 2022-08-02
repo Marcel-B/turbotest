@@ -53,7 +53,8 @@ public class Worker : IHostedService
                     OpenIddictConstants.Permissions.ResponseTypes.Code,
                     OpenIddictConstants.Permissions.Scopes.Email,
                     OpenIddictConstants.Permissions.Scopes.Profile,
-                    OpenIddictConstants.Permissions.Scopes.Roles
+                    OpenIddictConstants.Permissions.Scopes.Roles,
+                    "fishbook.api"
                 },
                 Requirements =
                 {

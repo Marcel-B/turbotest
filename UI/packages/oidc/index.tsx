@@ -1,25 +1,31 @@
 import * as React from "react";
-
-import { UserManager } from "oidc-client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getUserManager } from "security";
+import { useStore } from "store";
+import { useNavigate } from "react-router-dom";
 
 export const Oidc = () => {
+  const setToken = useStore(state => state.setToken);
+  const token = useStore(state => state.token);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const config = {
-      authority: "https://localhost:6065",
-      client_id: "fishbook.client",
-      redirect_uri: "http://localhost:3000/callback",
-      response_type: "code",
-      response_mode: "query",
-      scope: "openid",
-      post_logout_redirect_uri: "http://localhost:3000/"
-    };
-    console.log("__Callback here", config);
-    const userManager = new UserManager(config);
-    userManager.signinRedirectCallback().then(data => console.log(data)).catch((e) => console.error(e));
+    const userManager = getUserManager();
+    userManager
+      .signinRedirectCallback()
+      .then(user => {
+        setToken(user.access_token);
+        navigate("/");
+      })
+      .catch((e) => console.error(e));
   }, []);
 
-  return <h1>Redirect</h1>;
+  return (
+    <>
+      <h1>Redirect</h1>
+      <p>{token}</p>
+    </>
+  );
 };
 
 export default Oidc;

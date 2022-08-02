@@ -1,3 +1,4 @@
+using Aqua.SqlServer.Extensions;
 using com.marcelbenders.Aqua.Domain.Sql;
 using com.marcelbenders.Aqua.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ public class PflanzeRepository : IPflanzeRepository
 
     public async Task<Pflanze> CreateAsync(Pflanze entity, CancellationToken cancellationToken)
     {
+        _context.CreateAppUserIfNotExist(entity.UserId);
         entity.Id = Guid.NewGuid();
         _context.Pflanzen.Add(entity);
         await _context.SaveChangesAsync(cancellationToken);

@@ -1,10 +1,11 @@
-using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace com.marcelbenders.Aqua.Domain.Sql;
 
-public class AppUser : IdentityUser
+public class AppUser 
 {
-    public string DisplayName { get; set; }
+    [Key]
+    public string UserId { get; set; }
     public virtual ICollection<Duengung> Duengungen { get; set; }
     public virtual ICollection<Messung> Messungen { get; set; }
     public virtual ICollection<Aquarium> Aquarien { get; set; }

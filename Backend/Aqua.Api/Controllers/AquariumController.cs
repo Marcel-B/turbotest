@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using com.marcelbenders.Aqua.Api.Extensions;
+using com.marcelbenders.Aqua.Application;
 using com.marcelbenders.Aqua.Application.Command;
 using com.marcelbenders.Aqua.Application.Query;
 using com.marcelbenders.Aqua.Domain.Sql;
@@ -33,8 +34,8 @@ public class AquariumController : ControllerBase
 
     [HttpPost]
     [ActionName("CreateOneAsync"), Produces("application/json")]
-    [ProducesResponseType(typeof(Aquarium), StatusCodes.Status201Created)]
-    public async Task<Aquarium> CreateOneAsync(
+    [ProducesResponseType(typeof(AquariumDto), StatusCodes.Status201Created)]
+    public async Task<AquariumDto> CreateOneAsync(
         [FromBody, Required] CreateAquariumCommand command,
         CancellationToken cancellationToken)
     {
@@ -45,8 +46,8 @@ public class AquariumController : ControllerBase
 
     [HttpPut("{id}")]
     [ActionName("updateOneAsync"), Produces("application/json")]
-    [ProducesResponseType(typeof(Aquarium), StatusCodes.Status201Created)]
-    public async Task<Aquarium> UpdateOneAsync(
+    [ProducesResponseType(typeof(AquariumDto), StatusCodes.Status201Created)]
+    public async Task<AquariumDto> UpdateOneAsync(
         [FromRoute, Required] string id,
         [FromBody, Required] UpdateAquariumCommand command,
         CancellationToken cancellationToken)

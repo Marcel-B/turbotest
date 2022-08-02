@@ -18,6 +18,7 @@
     "oidc": "workspace:*",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "security": "workspace:*",
     "store": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2"
@@ -31,6 +32,7 @@
     "oidc-client": "^1.11.5",
     "oidc-react": "^2.0.0",
     "react-hook-form": "^7.32.0",
+    "react-router-dom": "^6.3.0",
     "yup": "^0.32.11"
   }
 }

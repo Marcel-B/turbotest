@@ -1,3 +1,4 @@
+using Aqua.SqlServer.Extensions;
 using com.marcelbenders.Aqua.Domain.Sql;
 using com.marcelbenders.Aqua.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ public class AquariumRepository : IAquariumRepository
 
     public async Task<Aquarium> CreateAsync(Aquarium entity, CancellationToken cancellationToken)
     {
+        _context.CreateAppUserIfNotExist(entity.UserId);
         entity.Datum = DateTimeOffset.Now;
         entity.Id = Guid.NewGuid();
         _context.Aquarien.Add(entity);

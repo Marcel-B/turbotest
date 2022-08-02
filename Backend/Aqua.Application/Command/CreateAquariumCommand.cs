@@ -1,9 +1,8 @@
-using com.marcelbenders.Aqua.Domain.Sql;
 using MediatR;
 
 namespace com.marcelbenders.Aqua.Application.Command;
 
-public record CreateAquariumCommand : IRequest<Aquarium>
+public record CreateAquariumCommand : IRequest<AquariumDto>
 {
     public string Name { get; init; }
     public int Liter { get; init; }

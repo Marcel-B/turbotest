@@ -1,11 +1,11 @@
 ﻿using com.marcelbenders.Aqua.Domain.Sql;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace com.marcelbenders.Aqua.SqlServer;
 
-public class DataContext : IdentityDbContext<AppUser>
+public class DataContext : DbContext
 {
+    public DbSet<AppUser> AppUsers { get; set; }
     public DbSet<Aquarium> Aquarien { get; set; }
     public DbSet<Duengung> Duengungen { get; set; }
     public DbSet<Fisch> Fische { get; set; }

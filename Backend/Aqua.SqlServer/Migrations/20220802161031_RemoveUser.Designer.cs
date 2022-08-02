@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using com.marcelbenders.Aqua.SqlServer;
 
@@ -11,9 +12,10 @@ using com.marcelbenders.Aqua.SqlServer;
 namespace com.marcelbenders.Aqua.SqlServer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220802161031_RemoveUser")]
+    partial class RemoveUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,16 +23,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.AppUser", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("AppUsers");
-                });
 
             modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Aquarium", b =>
                 {
@@ -50,11 +42,9 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Aquarien");
                 });
@@ -80,13 +70,11 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AquariumId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Duengungen");
                 });
@@ -140,7 +128,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wissenschaftlich")
                         .IsRequired()
@@ -149,8 +137,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AquariumId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Fische");
                 });
@@ -213,7 +199,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wissenschaftlich")
                         .IsRequired()
@@ -222,8 +208,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AquariumId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Korallen");
                 });
@@ -245,7 +229,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wert")
                         .IsRequired()
@@ -254,8 +238,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AquariumId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Messungen");
                 });
@@ -282,13 +264,11 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AquariumId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Notizen");
                 });
@@ -342,7 +322,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Wachstum")
                         .IsRequired()
@@ -355,8 +335,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AquariumId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Pflanzen");
                 });
@@ -376,17 +354,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Aquarium", b =>
-                {
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
-                        .WithMany("Aquarien")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-                });
-
             modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Duengung", b =>
                 {
                     b.HasOne("com.marcelbenders.Aqua.Domain.Sql.Aquarium", "Aquarium")
@@ -394,14 +361,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                         .HasForeignKey("AquariumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
-                        .WithMany("Duengungen")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
 
                     b.Navigation("Aquarium");
                 });
@@ -414,14 +373,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
-                        .WithMany("Fische")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
                     b.Navigation("Aquarium");
                 });
 
@@ -432,14 +383,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                         .HasForeignKey("AquariumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
-                        .WithMany("Korallen")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
 
                     b.Navigation("Aquarium");
                 });
@@ -452,14 +395,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
-                        .WithMany("Messungen")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
                     b.Navigation("Aquarium");
                 });
 
@@ -470,14 +405,6 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                         .HasForeignKey("AquariumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
-                        .WithMany("Notizen")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
 
                     b.Navigation("Aquarium");
                 });
@@ -490,32 +417,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
-                        .WithMany("Pflanzen")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
                     b.Navigation("Aquarium");
-                });
-
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.AppUser", b =>
-                {
-                    b.Navigation("Aquarien");
-
-                    b.Navigation("Duengungen");
-
-                    b.Navigation("Fische");
-
-                    b.Navigation("Korallen");
-
-                    b.Navigation("Messungen");
-
-                    b.Navigation("Notizen");
-
-                    b.Navigation("Pflanzen");
                 });
 #pragma warning restore 612, 618
         }

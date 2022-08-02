@@ -5,7 +5,7 @@ using MediatR;
 
 namespace com.marcelbenders.Aqua.Application;
 
-public class UpdateAquariumCommandHandler : IRequestHandler<UpdateAquariumCommand, Aquarium>
+public class UpdateAquariumCommandHandler : IRequestHandler<UpdateAquariumCommand, AquariumDto>
 {
     private readonly IAquariumRepository _repository;
 
@@ -15,7 +15,7 @@ public class UpdateAquariumCommandHandler : IRequestHandler<UpdateAquariumComman
         _repository = repository;
     }
 
-    public async Task<Aquarium> Handle(
+    public async Task<AquariumDto> Handle(
         UpdateAquariumCommand request,
         CancellationToken cancellationToken)
     {
@@ -28,6 +28,6 @@ public class UpdateAquariumCommandHandler : IRequestHandler<UpdateAquariumComman
             Datum = DateTimeOffset.Now,
         };
         await _repository.UpdateAsync(aquarium, cancellationToken);
-        return aquarium;
+        return new AquariumDto(aquarium.Name, aquarium.Liter);
     }
 }

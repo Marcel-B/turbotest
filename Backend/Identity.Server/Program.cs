@@ -1,3 +1,4 @@
+using System;
 using Identity.Domain;
 using IdentityServer;
 using IdentityServer.Data;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using Quartz;
 
@@ -39,10 +41,8 @@ services.AddQuartz(options =>
     options.UseInMemoryStore();
 });
 
-
 // Register the Quartz.NET service and configure it to block shutdown until jobs are complete.
 services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
-
 
 services.AddOpenIddict()
     .AddCore(options =>
@@ -53,6 +53,8 @@ services.AddOpenIddict()
     })
     .AddServer(options =>
     {
+        options.DisableAccessTokenEncryption();
+
         options.SetAuthorizationEndpointUris("/connect/authorize")
             .SetLogoutEndpointUris("/connect/logout")
             .SetTokenEndpointUris("/connect/token")
@@ -61,19 +63,30 @@ services.AddOpenIddict()
         options.RegisterScopes(
             OpenIddictConstants.Permissions.Scopes.Email,
             OpenIddictConstants.Permissions.Scopes.Profile,
-            OpenIddictConstants.Permissions.Scopes.Roles);
+            OpenIddictConstants.Permissions.Scopes.Roles,
+            "fisbhbook.api");
 
         options.AllowAuthorizationCodeFlow()
             .AllowRefreshTokenFlow();
 
-        options.AddDevelopmentEncryptionCertificate()
+        options
+            .AddDevelopmentEncryptionCertificate()
             .AddDevelopmentSigningCertificate();
 
         options.UseAspNetCore()
             .EnableAuthorizationEndpointPassthrough()
             .EnableLogoutEndpointPassthrough()
             .EnableStatusCodePagesIntegration()
-            .EnableTokenEndpointPassthrough();
+            .EnableTokenEndpointPassthrough()
+            .DisableTransportSecurityRequirement();
+
+        options.Configure(opt =>
+        {
+            opt.TokenValidationParameters.ValidIssuers = new[]
+            {
+                "http://localhost:6065"
+            };
+        });
     })
     .AddValidation(options =>
     {
@@ -93,9 +106,6 @@ services.AddHostedService<Worker>();
 
 var app = builder.Build();
 
-var scope = app.Services.CreateScope();
-
-scope.Dispose();
 
 if (app.Environment.IsDevelopment())
 {
@@ -108,7 +118,9 @@ else
 }
 
 app.UseStaticFiles();
-app.UseCors(options => options.AllowCredentials().AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"));
+app.UseCors(
+    options => options.AllowCredentials().AllowAnyHeader().AllowAnyMethod()
+        .WithOrigins("http://localhost:3000"));
 app.UseRouting();
 
 app.UseAuthentication();
