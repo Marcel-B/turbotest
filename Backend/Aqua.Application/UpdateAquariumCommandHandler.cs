@@ -1,4 +1,5 @@
 using com.marcelbenders.Aqua.Application.Command;
+using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Domain.Sql;
 using com.marcelbenders.Aqua.Persistence;
 using MediatR;
@@ -28,6 +29,6 @@ public class UpdateAquariumCommandHandler : IRequestHandler<UpdateAquariumComman
             Datum = DateTimeOffset.Now,
         };
         await _repository.UpdateAsync(aquarium, cancellationToken);
-        return new AquariumDto(aquarium.Name, aquarium.Liter);
+        return new AquariumDto(aquarium.Id,aquarium.Name, aquarium.Liter, aquarium.Datum);
     }
 }

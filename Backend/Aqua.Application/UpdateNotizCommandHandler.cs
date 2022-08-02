@@ -1,11 +1,12 @@
 using com.marcelbenders.Aqua.Application.Command;
+using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Domain.Sql;
 using com.marcelbenders.Aqua.Persistence;
 using MediatR;
 
 namespace com.marcelbenders.Aqua.Application;
 
-public class UpdateNotizCommandHandler : IRequestHandler<UpdateNotizCommand, Notiz>
+public class UpdateNotizCommandHandler : IRequestHandler<UpdateNotizCommand, NotizDto>
 {
     private readonly INotizRepository _repository;
 
@@ -15,19 +16,20 @@ public class UpdateNotizCommandHandler : IRequestHandler<UpdateNotizCommand, Not
         _repository = repository;
     }
 
-    public async Task<Notiz> Handle(
+    public async Task<NotizDto> Handle(
         UpdateNotizCommand request,
         CancellationToken cancellationToken)
     {
         var notiz = new Notiz
         {
             Id = request.Id,
-            UserId = request.UserId,
+            UserId = request.UserId,// ?? throw new ArgumentNullException("UserId darf nicht null sein"),
             Text = request.Text,
             AquariumId = request.AquariumId,
             Tag = request.Tag,
             Datum = request.Datum,
         };
-        return await _repository.UpdateAsync(notiz, cancellationToken);
+        var result = await _repository.UpdateAsync(notiz, cancellationToken);
+        return new NotizDto(notiz.Id, result.Text, result.Tag, new AquariumDto(notiz.Aquarium.Id, notiz.Aquarium.Name, notiz.Aquarium.Liter, notiz.Aquarium.Datum), result.Datum);
     }
 }

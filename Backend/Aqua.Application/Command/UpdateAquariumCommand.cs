@@ -1,3 +1,4 @@
+using com.marcelbenders.Aqua.Application.Dto;
 using MediatR;
 
 namespace com.marcelbenders.Aqua.Application.Command;

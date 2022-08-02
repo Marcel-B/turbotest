@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using com.marcelbenders.Aqua.Api.Extensions;
 using com.marcelbenders.Aqua.Application;
 using com.marcelbenders.Aqua.Application.Command;
+using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
 using com.marcelbenders.Aqua.Domain.Sql;
 using MediatR;

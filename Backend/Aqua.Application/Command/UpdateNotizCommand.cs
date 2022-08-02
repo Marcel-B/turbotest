@@ -1,6 +1,6 @@
 namespace com.marcelbenders.Aqua.Application.Command;
 
-public record UpdateNotizCommand : CreateNotizCommand
+public class UpdateNotizCommand : CreateNotizCommand
 {
-    public Guid Id { get; init; }
+    public Guid Id { get; set; }
 }

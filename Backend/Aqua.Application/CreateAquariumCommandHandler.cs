@@ -1,11 +1,10 @@
 using com.marcelbenders.Aqua.Application.Command;
+using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Domain.Sql;
 using com.marcelbenders.Aqua.Persistence;
 using MediatR;
 
 namespace com.marcelbenders.Aqua.Application;
-
-public record AquariumDto(string Name, int Liter);
 
 public class CreateAquariumCommandHandler : IRequestHandler<CreateAquariumCommand, AquariumDto>
 {
@@ -24,11 +23,11 @@ public class CreateAquariumCommandHandler : IRequestHandler<CreateAquariumComman
         var aquarium = new Aquarium
         {
             Name = request.Name,
-            UserId = request.UserId,
+            UserId = request.UserId ?? throw new ArgumentNullException("UserId is null"),
             Liter = request.Liter,
             Datum = DateTimeOffset.Now,
         };
         await _repository.CreateAsync(aquarium, cancellationToken);
-        return new AquariumDto(aquarium.Name, aquarium.Liter);
+        return new AquariumDto(aquarium.Id, aquarium.Name, aquarium.Liter, aquarium.Datum);
     }
 }

@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using com.marcelbenders.Aqua.Api.Extensions;
 using com.marcelbenders.Aqua.Application.Command;
+using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
 using com.marcelbenders.Aqua.Domain.Sql;
 using MediatR;
@@ -31,8 +32,8 @@ public class NotizController : ControllerBase
 
     [HttpPost]
     [ActionName("CreateOneAsync"), Produces("application/json")]
-    [ProducesResponseType(typeof(Notiz), StatusCodes.Status201Created)]
-    public async Task<Notiz> CreateOneAsync(
+    [ProducesResponseType(typeof(NotizDto), StatusCodes.Status201Created)]
+    public async Task<NotizDto> CreateOneAsync(
         [FromBody, Required] CreateNotizCommand command,
         CancellationToken cancellationToken)
     {
@@ -42,13 +43,13 @@ public class NotizController : ControllerBase
 
     [HttpPut("{id}")]
     [ActionName("updateOneAsync"), Produces("application/json")]
-    [ProducesResponseType(typeof(Notiz), StatusCodes.Status201Created)]
-    public async Task<Notiz> UpdateOneAsync(
+    [ProducesResponseType(typeof(NotizDto), StatusCodes.Status201Created)]
+    public async Task<NotizDto> UpdateOneAsync(
         [FromRoute, Required] string id,
         [FromBody, Required] UpdateNotizCommand command,
         CancellationToken cancellationToken)
     {
-        command.UserId = HttpContext.GetUserIdentifier();
+        command.UserId = HttpContext.GetUserIdentifier() ?? throw new ArgumentNullException("UserId nicht gefunden");
         return await _mediator.Send(command, cancellationToken);
     }
 

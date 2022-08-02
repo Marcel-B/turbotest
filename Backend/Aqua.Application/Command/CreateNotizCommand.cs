@@ -1,9 +1,9 @@
-using com.marcelbenders.Aqua.Domain.Sql;
+using com.marcelbenders.Aqua.Application.Dto;
 using MediatR;
 
 namespace com.marcelbenders.Aqua.Application.Command;
 
-public record CreateNotizCommand : IRequest<Notiz>
+public class CreateNotizCommand : IRequest<NotizDto>
 {
     public string? UserId { get; set; }
     public string Text { get; init; }

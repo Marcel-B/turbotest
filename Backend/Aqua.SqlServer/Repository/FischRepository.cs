@@ -1,3 +1,4 @@
+using Aqua.SqlServer.Extensions;
 using com.marcelbenders.Aqua.Domain.Sql;
 using com.marcelbenders.Aqua.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ public class FischRepository : IFischRepository
 
     public async Task<Fisch> CreateAsync(Fisch entity, CancellationToken cancellationToken)
     {
+        _context.CreateAppUserIfNotExist(entity.UserId);
         entity.Id = Guid.NewGuid();
         _context.Fische.Add(entity);
         await _context.SaveChangesAsync(cancellationToken);

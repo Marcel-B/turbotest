@@ -41,6 +41,7 @@ public class AquariumRepository : IAquariumRepository
 
     public Task<Aquarium> UpdateAsync(Aquarium entity, CancellationToken cancellationToken)
     {
+        _context.CreateAppUserIfNotExist(entity.UserId);
         throw new NotImplementedException();
     }
 
