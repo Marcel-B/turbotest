@@ -3,4 +3,4 @@ using MediatR;
 
 namespace com.marcelbenders.Aqua.Application.Query;
 
-public record GetNotizenQuery(string UserId, long? Number = null) : IRequest<IEnumerable<NotizDto>>;
+public record GetPflanzenQuery(long? Number = null) : IRequest<IEnumerable<PflanzeDto>>;

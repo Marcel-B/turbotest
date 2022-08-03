@@ -6,20 +6,20 @@ using MediatR;
 
 namespace com.marcelbenders.Aqua.Application;
 
-public class GetFischeQueryHandler : IRequestHandler<GetFischeQuery, IEnumerable<FischDto>>
+public class GetPflanzenQueryHandler : IRequestHandler<GetPflanzenQuery, IEnumerable<PflanzeDto>>
 {
-    private readonly IFischRepository _repository;
+    private readonly IPflanzeRepository _repository;
 
-    public GetFischeQueryHandler(IFischRepository repository)
+    public GetPflanzenQueryHandler(IPflanzeRepository repository)
     {
         _repository = repository;
     }
 
-    public async Task<IEnumerable<FischDto>> Handle(
-        GetFischeQuery request,
+    public async Task<IEnumerable<PflanzeDto>> Handle(
+        GetPflanzenQuery request,
         CancellationToken cancellationToken)
     {
-        var result = await _repository.GetByUserIdAsync(request.UserId, cancellationToken);
+        var result = await _repository.GetAsync(cancellationToken);
         return result.Select(x => x.BuildDto());
     }
 }

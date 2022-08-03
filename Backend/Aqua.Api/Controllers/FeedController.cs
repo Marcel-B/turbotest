@@ -1,11 +1,8 @@
 using com.marcelbenders.Aqua.Api.Extensions;
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
-using com.marcelbenders.Aqua.Domain.Sql;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MQTTnet;
-using MQTTnet.Client;
 
 namespace com.marcelbenders.Aqua.Api.Controllers;
 

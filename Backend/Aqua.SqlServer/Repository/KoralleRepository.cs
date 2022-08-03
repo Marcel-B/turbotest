@@ -1,4 +1,3 @@
-using Aqua.SqlServer.Extensions;
 using com.marcelbenders.Aqua.Domain.Sql;
 using com.marcelbenders.Aqua.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +15,6 @@ public class KoralleRepository : IKoralleRepository
 
     public async Task<Koralle> CreateAsync(Koralle entity, CancellationToken cancellationToken)
     {
-        _context.CreateAppUserIfNotExist(entity.UserId);
         entity.Id = Guid.NewGuid();
         _context.Korallen.Add(entity);
         await _context.SaveChangesAsync(cancellationToken);
@@ -26,11 +24,6 @@ public class KoralleRepository : IKoralleRepository
     public async Task<Koralle?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _context.Korallen.FirstOrDefaultAsync(koralle => koralle.Id == id, cancellationToken);
-    }
-
-    public async Task<IEnumerable<Koralle>> GetByUserIdAsync(string userId, CancellationToken cancellationToken)
-    {
-        return await _context.Korallen.Where(koralle => koralle.UserId == userId).ToListAsync(cancellationToken);
     }
 
     public async Task<IEnumerable<Koralle>> GetAsync(CancellationToken cancellationToken)

@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using com.marcelbenders.Aqua.Api.Extensions;
 using com.marcelbenders.Aqua.Application.Command;
+using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
-using com.marcelbenders.Aqua.Domain.Sql;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,8 +22,8 @@ public class DuengungController : ControllerBase
 
     [HttpGet]
     [ActionName("GetAll"), Produces("application/json")]
-    [ProducesResponseType(typeof(IEnumerable<Duengung>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<Duengung>> GetAll(
+    [ProducesResponseType(typeof(IEnumerable<DuengungDto>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<DuengungDto>> GetAll(
         CancellationToken cancellationToken)
     {
         return await _mediator.Send(new GetDuengungenQuery(HttpContext.GetUserIdentifier()), cancellationToken);
@@ -31,8 +31,8 @@ public class DuengungController : ControllerBase
 
     [HttpPost]
     [ActionName("CreateOneAsync"), Produces("application/json")]
-    [ProducesResponseType(typeof(Duengung), StatusCodes.Status201Created)]
-    public async Task<Duengung> CreateOneAsync(
+    [ProducesResponseType(typeof(DuengungDto), StatusCodes.Status201Created)]
+    public async Task<DuengungDto> CreateOneAsync(
         [FromBody, Required] CreateDuengungCommand command,
         CancellationToken cancellationToken)
     {
@@ -42,8 +42,8 @@ public class DuengungController : ControllerBase
 
     [HttpPut("{id}")]
     [ActionName("updateOneAsync"), Produces("application/json")]
-    [ProducesResponseType(typeof(Duengung), StatusCodes.Status201Created)]
-    public async Task<Duengung> UpdateOneAsync(
+    [ProducesResponseType(typeof(DuengungDto), StatusCodes.Status201Created)]
+    public async Task<DuengungDto> UpdateOneAsync(
         [FromRoute, Required] string id,
         [FromBody, Required] UpdateDuengungCommand command,
         CancellationToken cancellationToken)
@@ -59,7 +59,7 @@ public class DuengungController : ControllerBase
         [FromRoute, Required] Guid id,
         CancellationToken cancellationToken)
     {
-        await _mediator.Send(new DeleteDuengungCommand {Id = id}, cancellationToken);
+        await _mediator.Send(new DeleteDuengungCommand { Id = id }, cancellationToken);
         return Ok(id);
     }
 }

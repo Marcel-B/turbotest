@@ -1,9 +1,9 @@
-using com.marcelbenders.Aqua.Domain.Sql;
+using com.marcelbenders.Aqua.Application.Dto;
 using MediatR;
 
 namespace com.marcelbenders.Aqua.Application.Command;
 
-public record CreateMessungCommand : IRequest<Messung>
+public record CreateMessungCommand : IRequest<MessungDto>
 {
     public string? UserId { get; set; }
     public Guid AquariumId { get; init; }

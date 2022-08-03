@@ -1,8 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using com.marcelbenders.Aqua.Api.Extensions;
 using com.marcelbenders.Aqua.Application.Command;
+using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
-using com.marcelbenders.Aqua.Domain.Sql;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,33 +21,31 @@ public class PflanzeController : ControllerBase
 
     [HttpGet]
     [ActionName("GetAll"), Produces("application/json")]
-    [ProducesResponseType(typeof(IEnumerable<Fisch>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<Fisch>> GetAll(
+    [ProducesResponseType(typeof(IEnumerable<PflanzeDto>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<PflanzeDto>> GetAll(
         CancellationToken cancellationToken)
     {
-        return await _mediator.Send(new GetFischeQuery(HttpContext.GetUserIdentifier()), cancellationToken);
+        return await _mediator.Send(new GetPflanzenQuery(), cancellationToken);
     }
 
     [HttpPost]
     [ActionName("CreateOneAsync"), Produces("application/json")]
-    [ProducesResponseType(typeof(Fisch), StatusCodes.Status201Created)]
-    public async Task<Fisch> CreateOneAsync(
-        [FromBody, Required] CreateFischCommand command,
+    [ProducesResponseType(typeof(PflanzeDto), StatusCodes.Status201Created)]
+    public async Task<PflanzeDto> CreateOneAsync(
+        [FromBody, Required] CreatePflanzeCommand command,
         CancellationToken cancellationToken)
     {
-        command.UserId = HttpContext.GetUserIdentifier();
         return await _mediator.Send(command, cancellationToken);
     }
 
     [HttpPut("{id}")]
     [ActionName("updateOneAsync"), Produces("application/json")]
-    [ProducesResponseType(typeof(Fisch), StatusCodes.Status201Created)]
-    public async Task<Fisch> UpdateOneAsync(
+    [ProducesResponseType(typeof(PflanzeDto), StatusCodes.Status201Created)]
+    public async Task<PflanzeDto> UpdateOneAsync(
         [FromRoute, Required] string id,
-        [FromBody, Required] UpdateFischCommand command,
+        [FromBody, Required] UpdatePflanzeCommand command,
         CancellationToken cancellationToken)
     {
-        command.UserId = HttpContext.GetUserIdentifier();
         return await _mediator.Send(command, cancellationToken);
     }
 
@@ -59,7 +56,7 @@ public class PflanzeController : ControllerBase
         [FromRoute, Required] Guid id,
         CancellationToken cancellationToken)
     {
-        await _mediator.Send(new DeleteFischCommand {Id = id}, cancellationToken);
+        await _mediator.Send(new DeletePflanzeCommand {Id = id}, cancellationToken);
         return Ok(id);
     }
 }

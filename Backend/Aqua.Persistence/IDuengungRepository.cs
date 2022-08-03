@@ -2,6 +2,6 @@ using com.marcelbenders.Aqua.Domain.Sql;
 
 namespace com.marcelbenders.Aqua.Persistence;
 
-public interface IDuengungRepository : IRepository<Duengung>
+public interface IDuengungRepository : IEntityRepository<Duengung>
 {
 }

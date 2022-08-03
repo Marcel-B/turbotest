@@ -16,7 +16,6 @@ public class PflanzeRepository : IPflanzeRepository
 
     public async Task<Pflanze> CreateAsync(Pflanze entity, CancellationToken cancellationToken)
     {
-        _context.CreateAppUserIfNotExist(entity.UserId);
         entity.Id = Guid.NewGuid();
         _context.Pflanzen.Add(entity);
         await _context.SaveChangesAsync(cancellationToken);
@@ -26,11 +25,6 @@ public class PflanzeRepository : IPflanzeRepository
     public async Task<Pflanze?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _context.Pflanzen.FirstOrDefaultAsync(pflanze => pflanze.Id == id, cancellationToken);
-    }
-
-    public async Task<IEnumerable<Pflanze>> GetByUserIdAsync(string userId, CancellationToken cancellationToken)
-    {
-        return await _context.Pflanzen.Where(pflanze => pflanze.UserId == userId).ToListAsync(cancellationToken);
     }
 
     public async Task<IEnumerable<Pflanze>> GetAsync(CancellationToken cancellationToken)

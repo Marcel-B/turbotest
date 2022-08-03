@@ -9,4 +9,10 @@ public record CreateAquariumCommand : IRequest<AquariumDto>
     public int Liter { get; init; }
     public string? UserId { get; set; }
     public DateTimeOffset Datum { get; init; }
+    
+    private CreateAquariumCommand(string name, int liter)
+    {
+        Name = name;
+        Liter = liter;
+    }
 }

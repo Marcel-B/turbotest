@@ -1,3 +1,4 @@
+using Aqua.Application.Extensions;
 using com.marcelbenders.Aqua.Application.Command;
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Domain.Sql;
@@ -23,13 +24,13 @@ public class UpdateNotizCommandHandler : IRequestHandler<UpdateNotizCommand, Not
         var notiz = new Notiz
         {
             Id = request.Id,
-            UserId = request.UserId,// ?? throw new ArgumentNullException("UserId darf nicht null sein"),
+            UserId = request.UserId ?? throw new NullReferenceException("Missing UserId"),
             Text = request.Text,
             AquariumId = request.AquariumId,
             Tag = request.Tag,
             Datum = request.Datum,
         };
         var result = await _repository.UpdateAsync(notiz, cancellationToken);
-        return new NotizDto(notiz.Id, result.Text, result.Tag, new AquariumDto(notiz.Aquarium.Id, notiz.Aquarium.Name, notiz.Aquarium.Liter, notiz.Aquarium.Datum), result.Datum);
+        return result.BuildDto();
     }
 }

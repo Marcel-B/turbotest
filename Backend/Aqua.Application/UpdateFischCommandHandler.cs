@@ -1,11 +1,13 @@
+using Aqua.Application.Extensions;
 using com.marcelbenders.Aqua.Application.Command;
+using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Domain.Sql;
 using com.marcelbenders.Aqua.Persistence;
 using MediatR;
 
 namespace com.marcelbenders.Aqua.Application;
 
-public class UpdateFischCommandHandler : IRequestHandler<UpdateFischCommand, Fisch>
+public class UpdateFischCommandHandler : IRequestHandler<UpdateFischCommand, FischDto>
 {
     private readonly IFischRepository _repository;
 
@@ -15,13 +17,13 @@ public class UpdateFischCommandHandler : IRequestHandler<UpdateFischCommand, Fis
         _repository = repository;
     }
 
-    public async Task<Fisch> Handle(
+    public async Task<FischDto> Handle(
         UpdateFischCommand request,
         CancellationToken cancellationToken)
     {
         var fisch = new Fisch
         {
-            UserId = request.UserId,
+            UserId = request.UserId ?? throw new NullReferenceException("Missing UserId"),
             Id = request.Id,
             Name = request.Name,
             Wissenschaftlich = request.Wissenschaftlich,
@@ -36,6 +38,7 @@ public class UpdateFischCommandHandler : IRequestHandler<UpdateFischCommand, Fis
             Geschlecht = request.Geschlecht,
             AquariumId = request.AquariumId
         };
-        return await _repository.UpdateAsync(fisch, cancellationToken);
+        var result = await _repository.UpdateAsync(fisch, cancellationToken);
+        return result.BuildDto();
     }
 }

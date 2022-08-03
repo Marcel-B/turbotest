@@ -1,3 +1,4 @@
+using Aqua.Application.Extensions;
 using com.marcelbenders.Aqua.Application.Command;
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Domain.Sql;
@@ -23,11 +24,11 @@ public class CreateAquariumCommandHandler : IRequestHandler<CreateAquariumComman
         var aquarium = new Aquarium
         {
             Name = request.Name,
-            UserId = request.UserId ?? throw new ArgumentNullException("UserId is null"),
+            UserId = request.UserId ?? throw new NullReferenceException("Missing UserId"),
             Liter = request.Liter,
             Datum = DateTimeOffset.Now,
         };
-        await _repository.CreateAsync(aquarium, cancellationToken);
-        return new AquariumDto(aquarium.Id, aquarium.Name, aquarium.Liter, aquarium.Datum);
+        var result = await _repository.CreateAsync(aquarium, cancellationToken);
+        return result.BuildDto();
     }
 }

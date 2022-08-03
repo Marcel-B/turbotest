@@ -7,23 +7,22 @@ using MediatR;
 
 namespace com.marcelbenders.Aqua.Application;
 
-public class CreateFischCommandHandler : IRequestHandler<CreateFischCommand, FischDto>
+public class CreatePflanzeCommandHandler : IRequestHandler<CreatePflanzeCommand, PflanzeDto>
 {
-    private readonly IFischRepository _repository;
+    private readonly IPflanzeRepository _repository;
 
-    public CreateFischCommandHandler(
-        IFischRepository repository)
+    public CreatePflanzeCommandHandler(
+        IPflanzeRepository repository)
     {
         _repository = repository;
     }
 
-    public async Task<FischDto> Handle(
-        CreateFischCommand request,
+    public async Task<PflanzeDto> Handle(
+        CreatePflanzeCommand request,
         CancellationToken cancellationToken)
     {
-        var fisch = new Fisch
+        var pflanze = new Pflanze
         {
-            UserId = request.UserId ?? throw new NullReferenceException("Missing UserId"),
             Name = request.Name,
             Wissenschaftlich = request.Wissenschaftlich,
             Herkunft = request.Herkunft,
@@ -31,13 +30,13 @@ public class CreateFischCommandHandler : IRequestHandler<CreateFischCommand, Fis
             Gh = request.Gh,
             Kh = request.Kh,
             Temperatur = request.Temperatur,
-            Schwimmzone = request.Schwimmzone,
-            Datum = request.Datum,
-            Anzahl = request.Anzahl,
-            Geschlecht = request.Geschlecht,
-            AquariumId = request.AquariumId
+            Bereich = request.Bereich,
+            Wachstum = request.Wachstum,
+            Emers = request.Emers,
+            Schwierigkeitsgrad = request.Schwierigkeitsgrad,
+            Datum = request.Datum
         };
-        var result = await _repository.CreateAsync(fisch, cancellationToken);
+        var result = await _repository.CreateAsync(pflanze, cancellationToken);
         return result.BuildDto();
     }
 }

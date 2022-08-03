@@ -1,11 +1,12 @@
+using Aqua.Application.Extensions;
+using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
-using com.marcelbenders.Aqua.Domain.Sql;
 using com.marcelbenders.Aqua.Persistence;
 using MediatR;
 
 namespace com.marcelbenders.Aqua.Application;
 
-public class GetAquarienQueryHandler : IRequestHandler<GetAquarienQuery, IEnumerable<Aquarium>>
+public class GetAquarienQueryHandler : IRequestHandler<GetAquarienQuery, IEnumerable<AquariumDto>>
 {
     private readonly IAquariumRepository _repository;
 
@@ -14,10 +15,11 @@ public class GetAquarienQueryHandler : IRequestHandler<GetAquarienQuery, IEnumer
         _repository = repository;
     }
 
-    public async Task<IEnumerable<Aquarium>> Handle(
+    public async Task<IEnumerable<AquariumDto>> Handle(
         GetAquarienQuery request,
         CancellationToken cancellationToken)
     {
-        return await _repository.GetByUserIdAsync(request.UserId, cancellationToken);
+        var result = await _repository.GetByUserIdAsync(request.UserId, cancellationToken);
+        return result.Select(x => x.BuildDto());
     }
 }

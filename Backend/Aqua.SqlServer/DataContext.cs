@@ -158,17 +158,5 @@ public class DataContext : DbContext
             .HasOne(e => e.AppUser)
             .WithMany(e => e.Fische)
             .OnDelete(DeleteBehavior.NoAction);
-
-        builder
-            .Entity<Pflanze>()
-            .HasOne(e => e.AppUser)
-            .WithMany(e => e.Pflanzen)
-            .OnDelete(DeleteBehavior.NoAction);
-
-        builder
-            .Entity<Koralle>()
-            .HasOne(e => e.AppUser)
-            .WithMany(e => e.Korallen)
-            .OnDelete(DeleteBehavior.NoAction);
     }
 }

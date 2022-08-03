@@ -1,8 +1,6 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace com.marcelbenders.Aqua.Domain.Sql;
 
-public class Pflanze : IEntity
+public class Pflanze
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
@@ -17,12 +15,4 @@ public class Pflanze : IEntity
     public bool Emers { get; set; }
     public string Schwierigkeitsgrad { get; set; }
     public DateTimeOffset Datum { get; set; }
-
-    [ForeignKey(("UserId"))]
-    public virtual AppUser AppUser { get; set; }
-    public string UserId { get; set; }
-
-    public Guid AquariumId { get; set; }
-    [ForeignKey("AquariumId")]
-    public virtual Aquarium Aquarium { get; set; }
 }

@@ -1,10 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using com.marcelbenders.Aqua.Api.Extensions;
-using com.marcelbenders.Aqua.Application;
 using com.marcelbenders.Aqua.Application.Command;
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
-using com.marcelbenders.Aqua.Domain.Sql;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,11 +24,11 @@ public class AquariumController : ControllerBase
 
     [HttpGet]
     [ActionName("GetAll"), Produces("application/json")]
-    [ProducesResponseType(typeof(IEnumerable<Aquarium>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<Aquarium>> GetAll(
+    [ProducesResponseType(typeof(IEnumerable<AquariumDto>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<AquariumDto>> GetAll(
         CancellationToken cancellationToken)
     {
-        return await _mediator.Send(new GetAquarienQuery(HttpContext.GetUserIdentifier() ?? "foo"), cancellationToken);
+        return await _mediator.Send(new GetAquarienQuery(HttpContext.GetUserIdentifier()), cancellationToken);
     }
 
     [HttpPost]

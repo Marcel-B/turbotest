@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using com.marcelbenders.Aqua.Api.Extensions;
 using com.marcelbenders.Aqua.Application.Command;
+using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
-using com.marcelbenders.Aqua.Domain.Sql;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,8 +22,8 @@ public class FischController : ControllerBase
 
     [HttpGet]
     [ActionName("GetAll"), Produces("application/json")]
-    [ProducesResponseType(typeof(IEnumerable<Fisch>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<Fisch>> GetAll(
+    [ProducesResponseType(typeof(IEnumerable<FischDto>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<FischDto>> GetAll(
         CancellationToken cancellationToken)
     {
         return await _mediator.Send(new GetFischeQuery(HttpContext.GetUserIdentifier()), cancellationToken);
@@ -31,8 +31,8 @@ public class FischController : ControllerBase
 
     [HttpPost]
     [ActionName("CreateOneAsync"), Produces("application/json")]
-    [ProducesResponseType(typeof(Fisch), StatusCodes.Status201Created)]
-    public async Task<Fisch> CreateOneAsync(
+    [ProducesResponseType(typeof(FischDto), StatusCodes.Status201Created)]
+    public async Task<FischDto> CreateOneAsync(
         [FromBody, Required] CreateFischCommand command,
         CancellationToken cancellationToken)
     {
@@ -42,8 +42,8 @@ public class FischController : ControllerBase
 
     [HttpPut("{id}")]
     [ActionName("updateOneAsync"), Produces("application/json")]
-    [ProducesResponseType(typeof(Fisch), StatusCodes.Status201Created)]
-    public async Task<Fisch> UpdateOneAsync(
+    [ProducesResponseType(typeof(FischDto), StatusCodes.Status201Created)]
+    public async Task<FischDto> UpdateOneAsync(
         [FromRoute, Required] string id,
         [FromBody, Required] UpdateFischCommand command,
         CancellationToken cancellationToken)

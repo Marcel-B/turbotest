@@ -3,7 +3,6 @@ using com.marcelbenders.Aqua.Api.Extensions;
 using com.marcelbenders.Aqua.Application.Command;
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
-using com.marcelbenders.Aqua.Domain.Sql;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,8 +22,8 @@ public class NotizController : ControllerBase
 
     [HttpGet]
     [ActionName("GetAll"), Produces("application/json")]
-    [ProducesResponseType(typeof(IEnumerable<Notiz>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<Notiz>> GetAll(
+    [ProducesResponseType(typeof(IEnumerable<NotizDto>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<NotizDto>> GetAll(
         CancellationToken cancellationToken)
     {
         return await _mediator.Send(new GetNotizenQuery(HttpContext.GetUserIdentifier()), cancellationToken);
