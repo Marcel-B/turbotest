@@ -23,7 +23,8 @@ const werte = [
   {value: "Kalium (KA)", key: "Kalium"},
   {value: "Calcium (CA)", key: "Calcium"},
   {value: "Nitrat/Phosphat/Kalium (NPK)", key: "NPK"},
-  {value: "Nitrat (NO₃)", key: "Nitrat"}
+  {value: "Nitrat (NO₃)", key: "Nitrat"},
+  {value: "Liquid Humin+ (Huminstoffe)", key: "Huminstoffe"}
 ];
 
 const DuengungForm = () => {
