@@ -19,6 +19,7 @@
     "domain": "workspace:*",
     "feed": "workspace:*",
     "info": "workspace:*",
+    "logout": "workspace:*",
     "oidc": "workspace:*",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",

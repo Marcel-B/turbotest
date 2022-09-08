@@ -3,7 +3,6 @@ using com.marcelbenders.Aqua.Domain.Sql;
 using MediatR;
 
 namespace com.marcelbenders.Aqua.Application.Command;
-
 public record CreatePflanzeCommand : IRequest<PflanzeDto>
 {
     public string Name { get; init; }
@@ -20,9 +19,17 @@ public record CreatePflanzeCommand : IRequest<PflanzeDto>
     public DateTimeOffset Datum { get; init; }
 
     private CreatePflanzeCommand(
-        string name, string wissenschaftlich, string herkunft, string bereich,
-         Bereich ph, Bereich kh, Bereich gh, Bereich temperatur,
-         string wachstum, bool emers, string schwierigkeitsgrad)
+        string name,
+        string wissenschaftlich,
+        string herkunft,
+        string bereich,
+        Bereich ph,
+        Bereich kh,
+        Bereich gh,
+        Bereich temperatur,
+        string wachstum,
+        bool emers,
+        string schwierigkeitsgrad)
     {
         Name = name;
         Wissenschaftlich = wissenschaftlich;

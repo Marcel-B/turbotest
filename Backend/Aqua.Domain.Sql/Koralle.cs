@@ -15,5 +15,6 @@ public class Koralle
     public Bereich Temperatur { get; set; }
     public string Stroemung { get; set; }
     public string Schwierigkeitsgrad { get; set; }
+    public Korallenart Art{ get; set; }
     public DateTimeOffset Datum { get; set; }
 }

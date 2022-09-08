@@ -11,9 +11,11 @@ public class Messung : IEntity
 
     [ForeignKey(("UserId"))]
     public virtual AppUser AppUser { get; set; }
+
     public string UserId { get; set; }
 
     public Guid AquariumId { get; set; }
+    
     [ForeignKey(("AquariumId"))]
     public virtual Aquarium Aquarium { get; set; }
 }

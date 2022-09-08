@@ -20,6 +20,7 @@ interface Props {
 export const AppShell = ({ title, routes, navLinks }: Props) => {
   const { setRedirectUrl, redirectUrl } = useStore();
   const [nav, setNav] = useState(false);
+  const displayName = useStore(state => state.displayName);
 
   useEffect(() => {
     if (nav) {
@@ -54,7 +55,9 @@ export const AppShell = ({ title, routes, navLinks }: Props) => {
                   mr: 2
                 }}
               >{navLink.label}</Link>)}
-              <AddMenu />
+              {displayName ?
+                <AddMenu /> : <></>
+              }
               <UserMenu />
             </Toolbar>
           </Container>

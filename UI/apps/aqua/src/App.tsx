@@ -3,6 +3,7 @@ import { AppShell } from "ui";
 import Feed from "feed";
 import { NavLink } from "domain/nav-link";
 import Oidc from "oidc";
+import Logout from "logout";
 import { Route } from "domain/Route";
 import UserProfile from "user-profile";
 import { useStore } from "store";
@@ -29,7 +30,8 @@ function App() {
         { path: "/", element: () => <Feed /> },
         { path: "/profile", element: () => <UserProfile /> },
         { path: "/list", element: () => <AdminPanel /> },
-        { path: "/callback", element: () => <Oidc /> }
+        { path: "/callback", element: () => <Oidc /> },
+        { path: "/logout", element: () => <Logout /> }
       ]);
     } else {
       setNavLinks([{ label: "Feed", path: "/" }]);
@@ -37,7 +39,8 @@ function App() {
         { path: "/", element: () => <Feed /> },
         { path: "/login", element: () => <LoginUser /> },
         { path: "/profile", element: () => <UserProfile /> },
-        { path: "/callback", element: () => <Oidc /> }
+        { path: "/callback", element: () => <Oidc /> },
+        { path: "/logout", element: () => <Logout /> }
       ]);
     }
   }, [user]);

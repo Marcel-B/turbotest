@@ -37,7 +37,7 @@ public class Worker : IHostedService
                 Type = OpenIddictConstants.ClientTypes.Public,
                 PostLogoutRedirectUris =
                 {
-                    new Uri("http://localhost:3000/logout-callback")
+                    new Uri("http://localhost:3000/logout")
                 },
                 RedirectUris =
                 {

@@ -6,6 +6,7 @@ import Aquarium from "domain/aquarium";
 import Timer from "domain/timer";
 import User from "domain/user";
 import Feed from "domain/feed";
+import {getUserManager} from "security";
 
 export default agent;
 
@@ -114,9 +115,11 @@ export const useStore = create<State>()(devtools(persist((set, get) => ({
       }
     }), false, "incrementSecond");
   },
-  logout: () => {
+  logout: async () => {
     window.localStorage.removeItem("token");
     window.sessionStorage.removeItem("fishbook-storage");
+    const userManager = getUserManager();
+    await userManager.signoutRedirect();
     set(produce(state => {
       state.aquarien = initial.aquarien;
       state.token = initial.token;

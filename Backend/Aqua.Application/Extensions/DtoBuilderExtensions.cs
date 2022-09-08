@@ -22,4 +22,29 @@ public static class DtoBuilderExtensions
 
     public static PflanzeDto BuildDto(this Pflanze source)
         => new PflanzeDto(source.Id, source.Name, source.Wissenschaftlich, source.Herkunft, source.Ph, source.Gh, source.Kh, source.Temperatur, source.Bereich, source.Wachstum, source.Emers, source.Schwierigkeitsgrad, source.Datum);
+
+    private static string Parse(this Korallenart art)
+        => art switch
+        {
+            Korallenart.Gorgonie => "Gorgonie",
+            Korallenart.Leder => "Lederkoralle",
+            Korallenart.Lps => "LPS",
+            Korallenart.Sps => "SPS",
+            Korallenart.Weich => "Weichkoralle",
+            _ => throw new NotImplementedException("Unbekannte Korallenart")
+        };
+
+    public static Korallenart ToKorallenart(this string art)
+     => art switch
+     {
+         "Gorgonie" => Korallenart.Gorgonie,
+         "Lederkoralle" => Korallenart.Leder,
+         "LPS" => Korallenart.Lps,
+         "SPS" => Korallenart.Sps,
+         "Weichkoralle" => Korallenart.Weich,
+         _ => throw new NotImplementedException($"Art {art} ist nicht bekannt")
+     };
+
+    public static KoralleDto BuildDto(this Koralle source)
+        => new KoralleDto(source.Id, source.Name, source.Wissenschaftlich, source.Herkunft, source.Salinitaet, source.Nitrat, source.Phosphat, source.Calcium, source.Magnesium, source.Kh, source.Temperatur, source.Stroemung, source.Schwierigkeitsgrad, source.Art.Parse(), source.Datum);
 }

@@ -34,6 +34,9 @@ module.exports = ({...args}) => {
             info: {
               singleton: true
             },
+            logout: {
+              singleton: true
+            },
             oidc: {
               singleton: true
             },

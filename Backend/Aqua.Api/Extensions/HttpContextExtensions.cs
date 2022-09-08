@@ -7,6 +7,6 @@ public static class HttpContextExtensions
     public static string GetUserIdentifier(this HttpContext context)
     {
         var sid = context.User?.Identities.FirstOrDefault()?.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier);
-        return sid?.Value ?? null;
+        return sid?.Value ?? throw new NullReferenceException("Kein User gefunden");
     } 
 }

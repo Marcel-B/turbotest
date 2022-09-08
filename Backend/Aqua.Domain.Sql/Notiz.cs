@@ -10,10 +10,12 @@ public class Notiz : IEntity
     public string Tag { get; set; }
     
     public Guid AquariumId { get; set; }
+
     [ForeignKey("AquariumId")] 
     public virtual Aquarium Aquarium { get; set; }
     
     public string UserId { get; set; }
+
     [ForeignKey("UserId")] 
     public virtual AppUser AppUser { get; set; }
     

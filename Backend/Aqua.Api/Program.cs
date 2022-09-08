@@ -1,5 +1,4 @@
 using com.marcelbenders.Aqua.Api.ErrorHandler;
-using com.marcelbenders.Aqua.Api.Extensions;
 using com.marcelbenders.Aqua.Application;
 using com.marcelbenders.Aqua.Persistence;
 using com.marcelbenders.Aqua.SqlServer;
@@ -28,11 +27,6 @@ builder.Services.AddAquaApplication();
 var configuration = builder.Configuration.GetConnectionString("SqlServer");
 
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(configuration));
-builder.Services.AddScoped<IAquariumRepository, AquariumRepository>();
-builder.Services.AddScoped<INotizRepository, NotizRepository>();
-builder.Services.AddScoped<IFischRepository, FischRepository>();
-builder.Services.AddScoped<IMessungRepository, MessungRepository>();
-builder.Services.AddScoped<IDuengungRepository, DuengungRepository>();
 
 builder.Configuration.AddEnvironmentVariables();
 
@@ -76,9 +70,11 @@ logger.LogInformation(origins);
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseErrorHandler();
-app.UseCors(o =>
+app.UseCors(options =>
 {
-    o.AllowAnyHeader().AllowAnyMethod()
+    options
+        .AllowAnyHeader()
+        .AllowAnyMethod()
         .WithOrigins(origins);
     //"http://localhost:9000",
     //"http://localhost:3000",

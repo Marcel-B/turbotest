@@ -1,4 +1,4 @@
-using Aqua.Application.Extensions;
+﻿using Aqua.Application.Extensions;
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
 using com.marcelbenders.Aqua.Persistence;
@@ -6,17 +6,17 @@ using MediatR;
 
 namespace com.marcelbenders.Aqua.Application;
 
-public class GetPflanzenQueryHandler : IRequestHandler<GetPflanzenQuery, IEnumerable<PflanzeDto>>
+public class GetKorallenQueryHandler : IRequestHandler<GetKorallenQuery, IEnumerable<KoralleDto>>
 {
-    private readonly IPflanzeRepository _repository;
+    private readonly IKoralleRepository _repository;
 
-    public GetPflanzenQueryHandler(IPflanzeRepository repository)
+    public GetKorallenQueryHandler(IKoralleRepository repository)
     {
         _repository = repository;
     }
 
-    public async Task<IEnumerable<PflanzeDto>> Handle(
-        GetPflanzenQuery request,
+    public async Task<IEnumerable<KoralleDto>> Handle(
+        GetKorallenQuery request,
         CancellationToken cancellationToken)
     {
         var result = await _repository.GetAsync(cancellationToken);

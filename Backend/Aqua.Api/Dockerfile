@@ -24,3 +24,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Aqua.Api.dll"]
+# docker buildx build -f ./Aqua.Api/Dockerfile --platform linux/amd64 --push -t  millegalb/aqua.api:2.0.4 .

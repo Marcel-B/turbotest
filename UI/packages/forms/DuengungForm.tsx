@@ -21,6 +21,7 @@ const werte = [
   {value: "FE Spezial (FE)", key: "Eisen"},
   {value: "Eisen (FE)", key: "Eisen_2"},
   {value: "Kalium (KA)", key: "Kalium"},
+  {value: "Calcium (CA)", key: "Calcium"},
   {value: "Nitrat/Phosphat/Kalium (NPK)", key: "NPK"},
   {value: "Nitrat (NO₃)", key: "Nitrat"}
 ];

@@ -10,4 +10,10 @@ public record CreateMessungCommand : IRequest<MessungDto>
     public DateTimeOffset Datum { get; init; }
     public double Menge { get; init; }
     public string Wert { get; init; }
+
+    private CreateMessungCommand(
+        string wert)
+    {
+        Wert = wert;
+    }
 }

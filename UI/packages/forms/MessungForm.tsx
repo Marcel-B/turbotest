@@ -26,6 +26,8 @@ const werte = [
   {text: 'KH (Karbonathärte)', value: 'KH', unit: '°dH'},
   {text: 'PH', value: 'PH', unit: ''},
   {text: 'K (Kalium)', value: 'K', unit: 'mg/l'},
+  {text: 'CA (Calcium)', value: 'CA', unit: 'ppt'},
+  {text: 'Salinität (Salinität)', value: 'Sal', unit: 'PSU'},
 ];
 
 const MessungForm = () => {
