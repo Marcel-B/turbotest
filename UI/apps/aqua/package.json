@@ -33,7 +33,7 @@
   },
   "scripts": {
     "dev": "craco start",
-    "build": "rm -R ../../../Backend/Aqua.Web/wwwroot && craco build && mv ./build ../../../Backend/Aqua.Web/wwwroot",
+    "build": "rm -fr ../../../Backend/Aqua.Web/wwwroot && craco build && mv ./build ../../../Backend/Aqua.Web/wwwroot",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
