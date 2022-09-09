@@ -200,11 +200,12 @@ importers:
 
   packages/admin-panel:
     specifiers:
-      '@emotion/react': ^11.9.0
-      '@emotion/styled': ^11.8.1
+      '@emotion/react': ^11.9.3
+      '@emotion/styled': ^11.9.3
       '@hookform/resolvers': ^2.9.1
-      '@mui/material': ^5.8.2
+      '@mui/material': ^5.8.5
       '@mui/styled-engine-sc': ^5.8.0
+      '@mui/x-data-grid': ^5.9.0
       '@types/react': ^18.0.10
       '@types/react-dom': ^18.0.5
       domain: workspace:*
@@ -220,6 +221,7 @@ importers:
       '@hookform/resolvers': 2.9.1
       '@mui/material': 5.8.5_2n63gx4a5hafw7crejwh35wbou
       '@mui/styled-engine-sc': 5.8.0
+      '@mui/x-data-grid': 5.12.3_5pdpk7r7fbjf54tb4zovlljvxi
     devDependencies:
       '@types/react': 18.0.14
       '@types/react-dom': 18.0.5
