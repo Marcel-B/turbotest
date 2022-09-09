@@ -2,6 +2,7 @@ using com.marcelbenders.Aqua.Api.Extensions;
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace com.marcelbenders.Aqua.Api.Controllers;
