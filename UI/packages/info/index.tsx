@@ -72,6 +72,48 @@ const InfoCard = () => {
               20 - 25 mg/l
             </Typography>
           </Grid>
+          
+          <Grid item xs={6}>
+            <Typography variant="body1">
+              KH
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="body1">
+              6 - 10 °dH
+            </Typography>
+          </Grid>
+
+          <Grid item xs={6}>
+            <Typography variant="body1">
+              Calcium
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="body1">
+              380 - 420 mg/l
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="body1">
+              Magnesium
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="body1">
+              1.300 - 1.350 mg/l
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="body1">
+              Nitrat
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="body1">
+              0,5 - 2 mg/l
+            </Typography>
+          </Grid>
         </Grid>
       </Paper>
     </>

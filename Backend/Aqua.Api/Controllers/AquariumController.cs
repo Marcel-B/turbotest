@@ -4,13 +4,11 @@ using com.marcelbenders.Aqua.Application.Command;
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Application.Query;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace com.marcelbenders.Aqua.Api.Controllers;
 
 [ApiController]
-[AllowAnonymous]
 [Route("api/[controller]")]
 public class AquariumController : ControllerBase
 {
@@ -43,11 +41,11 @@ public class AquariumController : ControllerBase
         return await _mediator.Send(command, cancellationToken);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id:guid}")]
     [ActionName("updateOneAsync"), Produces("application/json")]
     [ProducesResponseType(typeof(AquariumDto), StatusCodes.Status201Created)]
     public async Task<AquariumDto> UpdateOneAsync(
-        [FromRoute, Required] string id,
+        [FromRoute, Required] Guid id,
         [FromBody, Required] UpdateAquariumCommand command,
         CancellationToken cancellationToken)
     {
@@ -55,7 +53,7 @@ public class AquariumController : ControllerBase
         return await _mediator.Send(command, cancellationToken);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:guid}")]
     [ActionName("DeleteOneAsync"), Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> DeleteOneAsync(

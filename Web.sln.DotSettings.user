@@ -1,4 +1,19 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/Users/marcel/.nuget/packages/openiddict.abstractions/3.1.1/lib/netstandard2.1/OpenIddict.Abstractions.dll" /&gt;
-&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>
+&lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/marcel/Library/Caches/JetBrains/Rider2022.2/resharper-host/temp/Rider/vAny/CoverageData/_Web.-843703951/Snapshot/snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2c317285_002Da5dc_002D4fa8_002D8408_002Dac90230e7bab/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AquariumControllerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::D346DB13-E0C8-4729-A84A-9A8A57A1F565::net6.0::Aqua.Api.IntegrationTest.Controllers.AquariumControllerTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D346DB13-E0C8-4729-A84A-9A8A57A1F565::net6.0::Aqua.Api.IntegrationTest.Controllers.AquariumControllerTests1.Abfrage_eines_Aquariums&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D346DB13-E0C8-4729-A84A-9A8A57A1F565::net6.0::Aqua.Api.IntegrationTest.Controllers.AquariumControllerTestsGet&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D346DB13-E0C8-4729-A84A-9A8A57A1F565::net6.0::Aqua.Api.IntegrationTest.Controllers.AquariumControllerTestsOpp&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::D346DB13-E0C8-4729-A84A-9A8A57A1F565::net6.0::Aqua.Api.IntegrationTest.Controllers.AquariumControllerTestsDelete&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=df588787_002D4e85_002D4079_002D810b_002Df50245115964/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AquariumControllerTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::D346DB13-E0C8-4729-A84A-9A8A57A1F565::net6.0::Aqua.Api.IntegrationTest.Controllers.AquariumControllerTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

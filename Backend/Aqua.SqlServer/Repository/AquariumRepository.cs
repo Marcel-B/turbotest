@@ -39,13 +39,21 @@ public class AquariumRepository : IAquariumRepository
         return await _context.Aquarien.ToListAsync(cancellationToken);
     }
 
-    public Task<Aquarium> UpdateAsync(Aquarium entity, CancellationToken cancellationToken)
+    public async Task<Aquarium> UpdateAsync(
+        Aquarium entity,
+        CancellationToken cancellationToken)
     {
         _context.CreateAppUserIfNotExist(entity.UserId);
-        throw new NotImplementedException();
+        var aquariumDb = await _context.Aquarien.FirstOrDefaultAsync(x => x.Id == entity.Id, cancellationToken);
+        aquariumDb.Liter = entity.Liter;
+        aquariumDb.Name = entity.Name;
+        await _context.SaveChangesAsync(cancellationToken);
+        return aquariumDb;
     }
 
-    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+    public async Task DeleteAsync(
+        Guid id,
+        CancellationToken cancellationToken)
     {
         var aquarium = await GetByIdAsync(id, cancellationToken);
         if (aquarium is not null)

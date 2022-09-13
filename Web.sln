@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueReceiver", "ValueRecei
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Domain", "Backend\Identity.Domain\Identity.Domain.csproj", "{DE11BB53-9F5F-42B9-8A51-D1234EE9EA97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Api.IntegrationTest", "Backend\Aqua.Api.IntegrationTest\Aqua.Api.IntegrationTest.csproj", "{D346DB13-E0C8-4729-A84A-9A8A57A1F565}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,5 +109,9 @@ Global
 		{DE11BB53-9F5F-42B9-8A51-D1234EE9EA97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE11BB53-9F5F-42B9-8A51-D1234EE9EA97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE11BB53-9F5F-42B9-8A51-D1234EE9EA97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D346DB13-E0C8-4729-A84A-9A8A57A1F565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D346DB13-E0C8-4729-A84A-9A8A57A1F565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D346DB13-E0C8-4729-A84A-9A8A57A1F565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D346DB13-E0C8-4729-A84A-9A8A57A1F565}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -29,5 +29,7 @@
     <ItemGroup>
       <None Remove=".dockerignore" />
     </ItemGroup>
-
+    <ItemGroup>
+        <InternalsVisibleTo Include="Aqua.Api.IntegrationTest" />
+    </ItemGroup>
 </Project>
