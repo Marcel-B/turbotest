@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace com.marcelbenders.Aqua.Domain.Sql;
+namespace com.marcelbenders.Aqua.Domain;
 
 public class Bereich
 {

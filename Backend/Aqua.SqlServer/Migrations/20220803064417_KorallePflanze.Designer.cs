@@ -24,7 +24,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.AppUser", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.AppUser", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -34,7 +34,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.ToTable("AppUsers");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Aquarium", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Aquarium", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +61,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.ToTable("Aquarien");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Duengung", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Duengung", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -93,7 +93,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.ToTable("Duengungen");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Fisch", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Fisch", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -157,7 +157,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.ToTable("Fische");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Koralle", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Koralle", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -224,7 +224,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.ToTable("Korallen");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Messung", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Messung", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -256,7 +256,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.ToTable("Messungen");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Notiz", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Notiz", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -289,7 +289,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.ToTable("Notizen");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Pflanze", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Pflanze", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -351,7 +351,7 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.ToTable("Pflanzen");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Tag", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Tag", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -366,9 +366,9 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Aquarium", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Aquarium", b =>
                 {
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
+                    b.HasOne("com.marcelbenders.Aqua.Domain.AppUser", "AppUser")
                         .WithMany("Aquarien")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -377,15 +377,15 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Duengung", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Duengung", b =>
                 {
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.Aquarium", "Aquarium")
+                    b.HasOne("com.marcelbenders.Aqua.Domain.Aquarium", "Aquarium")
                         .WithMany()
                         .HasForeignKey("AquariumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
+                    b.HasOne("com.marcelbenders.Aqua.Domain.AppUser", "AppUser")
                         .WithMany("Duengungen")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -396,15 +396,15 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.Navigation("Aquarium");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Fisch", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Fisch", b =>
                 {
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.Aquarium", "Aquarium")
+                    b.HasOne("com.marcelbenders.Aqua.Domain.Aquarium", "Aquarium")
                         .WithMany()
                         .HasForeignKey("AquariumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
+                    b.HasOne("com.marcelbenders.Aqua.Domain.AppUser", "AppUser")
                         .WithMany("Fische")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -415,22 +415,22 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.Navigation("Aquarium");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Koralle", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Koralle", b =>
                 {
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", null)
+                    b.HasOne("com.marcelbenders.Aqua.Domain.AppUser", null)
                         .WithMany("Korallen")
                         .HasForeignKey("AppUserUserId");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Messung", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Messung", b =>
                 {
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.Aquarium", "Aquarium")
+                    b.HasOne("com.marcelbenders.Aqua.Domain.Aquarium", "Aquarium")
                         .WithMany()
                         .HasForeignKey("AquariumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
+                    b.HasOne("com.marcelbenders.Aqua.Domain.AppUser", "AppUser")
                         .WithMany("Messungen")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -441,15 +441,15 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.Navigation("Aquarium");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Notiz", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Notiz", b =>
                 {
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.Aquarium", "Aquarium")
+                    b.HasOne("com.marcelbenders.Aqua.Domain.Aquarium", "Aquarium")
                         .WithMany()
                         .HasForeignKey("AquariumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", "AppUser")
+                    b.HasOne("com.marcelbenders.Aqua.Domain.AppUser", "AppUser")
                         .WithMany("Notizen")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -460,14 +460,14 @@ namespace com.marcelbenders.Aqua.SqlServer.Migrations
                     b.Navigation("Aquarium");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.Pflanze", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Pflanze", b =>
                 {
-                    b.HasOne("com.marcelbenders.Aqua.Domain.Sql.AppUser", null)
+                    b.HasOne("com.marcelbenders.Aqua.Domain.AppUser", null)
                         .WithMany("Pflanzen")
                         .HasForeignKey("AppUserUserId");
                 });
 
-            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.Sql.AppUser", b =>
+            modelBuilder.Entity("com.marcelbenders.Aqua.Domain.AppUser", b =>
                 {
                     b.Navigation("Aquarien");
 

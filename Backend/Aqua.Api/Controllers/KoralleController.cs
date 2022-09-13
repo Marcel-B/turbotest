@@ -2,7 +2,7 @@
 // using com.marcelbenders.Aqua.Api.Extensions;
 // using com.marcelbenders.Aqua.Application.Command;
 // using com.marcelbenders.Aqua.Application.Query;
-// using com.marcelbenders.Aqua.Domain.Sql;
+// using com.marcelbenders.Aqua.Domain;
 // using MediatR;
 // using Microsoft.AspNetCore.Mvc;
 

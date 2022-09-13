@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace com.marcelbenders.Aqua.Domain.Sql;
+namespace com.marcelbenders.Aqua.Domain;
 
 public class AppUser 
 {

@@ -1,4 +1,4 @@
-using com.marcelbenders.Aqua.Domain.Sql;
+using com.marcelbenders.Aqua.Domain;
 
 namespace com.marcelbenders.Aqua.Application.Dto;
 

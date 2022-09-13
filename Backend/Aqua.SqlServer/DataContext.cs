@@ -1,4 +1,4 @@
-﻿using com.marcelbenders.Aqua.Domain.Sql;
+﻿using com.marcelbenders.Aqua.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace com.marcelbenders.Aqua.SqlServer;

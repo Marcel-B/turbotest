@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace com.marcelbenders.Aqua.Domain.Sql;
+namespace com.marcelbenders.Aqua.Domain;
 
 public class Messung : IEntity
 {

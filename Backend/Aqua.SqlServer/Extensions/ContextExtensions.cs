@@ -1,4 +1,4 @@
-using com.marcelbenders.Aqua.Domain.Sql;
+using com.marcelbenders.Aqua.Domain;
 using com.marcelbenders.Aqua.SqlServer;
 
 namespace Aqua.SqlServer.Extensions;

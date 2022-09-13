@@ -1,5 +1,5 @@
 using com.marcelbenders.Aqua.Application.Dto;
-using com.marcelbenders.Aqua.Domain.Sql;
+using com.marcelbenders.Aqua.Domain;
 
 namespace Aqua.Application.Extensions;
 
