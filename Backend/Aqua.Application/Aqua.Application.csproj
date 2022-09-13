@@ -13,7 +13,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Aqua.MongoDb\Aqua.MongoDb.csproj" />
       <ProjectReference Include="..\Aqua.SqlServer\Aqua.SqlServer.csproj" />
     </ItemGroup>
 

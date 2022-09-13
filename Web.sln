@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Persistence", "Backend
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Domain.Sql", "Backend\Aqua.Domain.Sql\Aqua.Domain.Sql.csproj", "{1AF9853D-6894-47FA-89C3-9F603C242A1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Domain", "Backend\Aqua.Domain\Aqua.Domain.csproj", "{6A978910-F7EC-4C41-A5E0-58382CAD0EAC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Copy", "Backend\Aqua.Copy\Aqua.Copy.csproj", "{B0DE4ECA-7986-4AEC-9EE1-A70A0EF4CB23}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Web", "Backend\Aqua.Web\Aqua.Web.csproj", "{9915839F-DC3C-4C4D-BB64-DA278EA6239A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.Application", "Backend\Aqua.Application\Aqua.Application.csproj", "{77B5F0D6-A991-4BE8-B3BF-55CDFB171AE5}"
@@ -25,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.MongoDb", "Backend\Aqua.MongoDb\Aqua.MongoDb.csproj", "{8F4A5027-F40D-4486-B307-9D5CBBA6F0E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aqua.List.Web", "Backend\Aqua.List.Web\Aqua.List.Web.csproj", "{BEBD6BF7-2307-4401-87C1-587595BD70F1}"
 EndProject
@@ -61,14 +55,6 @@ Global
 		{1AF9853D-6894-47FA-89C3-9F603C242A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AF9853D-6894-47FA-89C3-9F603C242A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AF9853D-6894-47FA-89C3-9F603C242A1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A978910-F7EC-4C41-A5E0-58382CAD0EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A978910-F7EC-4C41-A5E0-58382CAD0EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A978910-F7EC-4C41-A5E0-58382CAD0EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A978910-F7EC-4C41-A5E0-58382CAD0EAC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0DE4ECA-7986-4AEC-9EE1-A70A0EF4CB23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0DE4ECA-7986-4AEC-9EE1-A70A0EF4CB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0DE4ECA-7986-4AEC-9EE1-A70A0EF4CB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0DE4ECA-7986-4AEC-9EE1-A70A0EF4CB23}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9915839F-DC3C-4C4D-BB64-DA278EA6239A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9915839F-DC3C-4C4D-BB64-DA278EA6239A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9915839F-DC3C-4C4D-BB64-DA278EA6239A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -85,10 +71,6 @@ Global
 		{CCCDC28F-2501-4220-A1A0-8733610F841E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCCDC28F-2501-4220-A1A0-8733610F841E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCCDC28F-2501-4220-A1A0-8733610F841E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F4A5027-F40D-4486-B307-9D5CBBA6F0E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F4A5027-F40D-4486-B307-9D5CBBA6F0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F4A5027-F40D-4486-B307-9D5CBBA6F0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F4A5027-F40D-4486-B307-9D5CBBA6F0E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BEBD6BF7-2307-4401-87C1-587595BD70F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BEBD6BF7-2307-4401-87C1-587595BD70F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEBD6BF7-2307-4401-87C1-587595BD70F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
