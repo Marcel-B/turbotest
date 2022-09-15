@@ -1,9 +1,11 @@
+using System.Net;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Domain;
 using com.marcelbenders.Aqua.SqlServer;
+using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aqua.Api.IntegrationTest.Controllers;
@@ -41,5 +43,7 @@ public class MessungControllerTests_Get_Messungen
             { Wert = "Foo", Menge = 2, appUser = "Test user", AquariumId = aquariumDto.Id, Datum = DateTimeOffset.Now};
         var stringContent = new StringContent(JsonSerializer.Serialize(messung), Encoding.UTF8, "application/json");
         var messungResponse = await client.PostAsync("api/Messung", stringContent);
+        messungResponse.Should().NotBeNull();
+        messungResponse.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 }

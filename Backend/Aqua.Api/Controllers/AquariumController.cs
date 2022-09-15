@@ -63,4 +63,15 @@ public class AquariumController : ControllerBase
         await _mediator.Send(new DeleteAquariumCommand {Id = id}, cancellationToken);
         return Ok(id);
     }
+
+    [HttpGet("{id:guid}/Messungen")]
+    [ActionName("GetMessungenByAquariumIdAsync"), Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetMessungenByAquariumIdAsync(
+        [FromRoute, Required] Guid id,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetMessungenByAquariumIdQuery(id), cancellationToken);
+        return Ok(result);
+    }
 }

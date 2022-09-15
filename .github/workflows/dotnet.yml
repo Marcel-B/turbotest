@@ -19,8 +19,8 @@ jobs:
         dotnet-version: 6.0.x
     - uses: 280780363/sqlserver-action@v1.0
       with:
-        accept eula: Y #Required, ACCEPT_EULA confirms your acceptance of the End-User Licensing Agreement.
-        sa password: MyPass@word # Optional, default value is SqlSever123123.
+        accept eula: Y 
+        sa password: MyPass@word 
     - name: Restore dependencies
       run: dotnet restore
     - name: Build

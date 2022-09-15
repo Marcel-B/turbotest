@@ -50,4 +50,11 @@ public class MessungRepository : IMessungRepository
         _context.Entry<Messung>(entity).State = EntityState.Deleted;
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task<IEnumerable<Messung>> GetByAquariumId(Guid aquariumId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.Messungen.Include(s => s.Aquarium).Where(x => x.AquariumId == aquariumId).OrderBy(x => x.Datum)
+            .ToListAsync(cancellationToken);
+    }
 }

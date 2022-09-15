@@ -6,10 +6,7 @@ using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Domain;
 using com.marcelbenders.Aqua.SqlServer;
 using FluentAssertions;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aqua.Api.IntegrationTest.Controllers;
@@ -18,7 +15,7 @@ namespace Aqua.Api.IntegrationTest.Controllers;
 public class AquariumControllerTestsGet
 {
     [Fact]
-    public async Task Abfrage_eines_Aquariums()
+    public async Task Get_Aquarium_By_Id()
     {
         var application = WebApplicationFactoryExctensions.CreateWebApplication();
         var client = application.CreateTestClient()!;
@@ -59,35 +56,14 @@ public class AquariumControllerTestsGet
 }
 
 [Collection(StringValues.DatabaseTests)]
-public class AquariumControllerTests
+public class AquariumControllerTestsCreate
 {
     [Fact]
-    public async Task Anlegung_eines_Aquariums()
+    public async Task Create_Aquarium()
     {
-        var application = new WebApplicationFactory<Program>()
-            .WithWebHostBuilder(builder =>
-            {
-                builder.UseEnvironment("IntegrationTests");
-                builder.ConfigureServices(services =>
-                {
-                    services.AddAuthentication("Test")
-                        .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(
-                            "Test", options => { });
+        var application = WebApplicationFactoryExctensions.CreateWebApplication();
+        var client = application.CreateTestClient();
 
-                    var provider = services.BuildServiceProvider();
-                    using var scope = provider.CreateScope();
-                    var scopedServices = scope.ServiceProvider;
-                    var context = scopedServices.GetRequiredService<DataContext>();
-                    context.Database.EnsureDeleted();
-                    context.Database.Migrate();
-                });
-            });
-
-        var client = application.CreateClient(new WebApplicationFactoryClientOptions
-        {
-            BaseAddress = new Uri("http://localhost"),
-            AllowAutoRedirect = false
-        });
         var dto = new AquariumDto(Guid.Empty, "Kurt", 1, DateTimeOffset.MinValue);
         var content = new StringContent(JsonSerializer.Serialize(dto), Encoding.UTF8, "application/json");
 
@@ -107,27 +83,9 @@ public class AquariumControllerTests
 public class AquariumControllerTestsDelete
 {
     [Fact]
-    public async Task Loeschung_eines_Aquariums()
+    public async Task Delete_Aquarium()
     {
-        var application = new WebApplicationFactory<Program>()
-            .WithWebHostBuilder(builder =>
-            {
-                builder.UseEnvironment(StringValues.StageIntegrationTests);
-                builder.ConfigureServices(services =>
-                {
-                    services.AddAuthentication("Test")
-                        .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(
-                            "Test", options => { });
-
-                    var provider = services.BuildServiceProvider();
-                    using var scope = provider.CreateScope();
-                    var scopedServices = scope.ServiceProvider;
-                    var context = scopedServices.GetRequiredService<DataContext>();
-                    context.Database.EnsureDeleted();
-                    context.Database.Migrate();
-                });
-            });
-
+        var application = WebApplicationFactoryExctensions.CreateWebApplication();
         var client = application.CreateClient(new WebApplicationFactoryClientOptions
         {
             BaseAddress = new Uri("http://localhost"),
@@ -148,27 +106,76 @@ public class AquariumControllerTestsDelete
 }
 
 [Collection(StringValues.DatabaseTests)]
-public class AquariumController_Get_Aquarium_Values_Tests
+public class AquariumControllerTestsGetValues
 {
     [Fact]
-    public async Task Anlegung_eines_Aquariums()
+    public async Task Anlegung_eines_Aquarium()
     {
-
         var application = WebApplicationFactoryExctensions.CreateWebApplication();
         var client = application.CreateTestClient();
         var context = application.Services.GetRequiredService<DataContext>();
         context.AppUsers.Add(new AppUser {UserId = "Test user"});
         var aquariumId = Guid.NewGuid();
+        var aquariumIdElisabeth = Guid.NewGuid();
+        context.Aquarien.AddRange(
+            new Aquarium
+            {
+                Datum = DateTimeOffset.Now,
+                Liter = 55,
+                Name = "Kurt",
+                UserId = "Test user",
+                Id = aquariumId
+            },
+            new Aquarium
+            {
+                Datum = DateTimeOffset.Now,
+                Liter = 15,
+                Name = "Elisabeth",
+                UserId = "Test user",
+                Id = aquariumIdElisabeth
+            }
+        );
+        context.Messungen.AddRange(
+            new Messung
+            {
+                Id = Guid.NewGuid(),
+                AquariumId = aquariumId,
+                UserId = "Test user",
+                Datum = new DateTimeOffset(2022, 4, 1, 12, 10, 10, TimeSpan.FromHours(2)),
+                Wert = "KH",
+                Menge = 47.2
+            },
+            new Messung
+            {
+                Id = Guid.NewGuid(),
+                AquariumId = aquariumIdElisabeth,
+                UserId = "Test user",
+                Datum = new DateTimeOffset(2022, 5, 1, 12, 10, 10, TimeSpan.FromHours(2)),
+                Wert = "KH",
+                Menge = 41.2
+            },
+            new Messung
+            {
+                Id = Guid.NewGuid(),
+                AquariumId = aquariumId,
+                UserId = "Test user",
+                Datum = new DateTimeOffset(2022, 5, 1, 12, 10, 10, TimeSpan.FromHours(2)),
+                Wert = "KH",
+                Menge = 41.2
+            },
+            new Messung
+            {
+                Id = Guid.NewGuid(),
+                AquariumId = aquariumId,
+                UserId = "Test user",
+                Datum = new DateTimeOffset(2022, 4, 1, 11, 10, 10, TimeSpan.FromHours(2)),
+                Wert = "GH",
+                Menge = 4.2
+            });
         await context.SaveChangesAsync();
-        context.Aquarien.Add(new Aquarium
-        {
-            Datum = DateTimeOffset.Now,
-            Liter = 55,
-            Name = "Kurt",
-            UserId = "Test user",
-            Id = aquariumId
-        });
-        await context.SaveChangesAsync();
-        var aquarien = await client.GetFromJsonAsync<List<AquariumDto>>("api/Aquarium");
+        var messungen =
+            await client.GetFromJsonAsync<AquariumMessungenDto>($"api/Aquarium/{aquariumId}/Messungen");
+        messungen.Should().NotBeNull();
+        messungen.Messungen.Should().HaveCount(2);
     }
 }
