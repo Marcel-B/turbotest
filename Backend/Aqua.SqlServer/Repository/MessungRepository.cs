@@ -18,9 +18,10 @@ public class MessungRepository : IMessungRepository
     {
         _context.CreateAppUserIfNotExist(entity.UserId);
         entity.Id = Guid.NewGuid();
-        _context.Messungen.Add(entity);
+        var result = _context.Messungen.Add(entity);
         await _context.SaveChangesAsync(cancellationToken);
-        return entity;
+        await result.Reference(r => r.Aquarium).LoadAsync(cancellationToken);
+        return result.Entity;
     }
 
     public async Task<Messung?> GetByIdAsync(Guid id, CancellationToken cancellationToken)

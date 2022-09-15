@@ -28,6 +28,7 @@ const werte = [
   {text: 'K (Kalium)', value: 'K', unit: 'mg/l'},
   {text: 'CA (Calcium)', value: 'CA', unit: 'ppt'},
   {text: 'Salinität (Salinität)', value: 'Sal', unit: 'PSU'},
+  {text: 'MG (Magnesium)', value: 'MG', unit: 'mg/l'},
 ];
 
 const MessungForm = () => {

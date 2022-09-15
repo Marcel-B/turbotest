@@ -11,6 +11,10 @@ public record CreateMessungCommand : IRequest<MessungDto>
     public double Menge { get; init; }
     public string Wert { get; init; }
 
+    public CreateMessungCommand()
+    {
+        
+    }
     private CreateMessungCommand(
         string wert)
     {

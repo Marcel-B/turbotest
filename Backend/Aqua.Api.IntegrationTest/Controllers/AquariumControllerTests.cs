@@ -3,6 +3,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using com.marcelbenders.Aqua.Application.Dto;
+using com.marcelbenders.Aqua.Domain;
 using com.marcelbenders.Aqua.SqlServer;
 using FluentAssertions;
 using Microsoft.AspNetCore.Authentication;
@@ -165,5 +166,31 @@ public class AquariumControllerTestsDelete
         resp.StatusCode.Should().Be(HttpStatusCode.OK);
         var content = await resp.Content.ReadAsStringAsync();
         Guid.Parse(content.Replace("\"", "")).Should().Be(postContent.Id.ToString());
+    }
+}
+
+[Collection(StringValues.DatabaseTests)]
+public class AquariumController_Get_Aquarium_Values_Tests
+{
+    [Fact]
+    public async Task Anlegung_eines_Aquariums()
+    {
+
+        var application = WebApplicationFactoryExctensions.CreateWebApplication();
+        var client = application.CreateTestClient();
+        var context = application.Services.GetRequiredService<DataContext>();
+        context.AppUsers.Add(new AppUser {UserId = "Test user"});
+        var aquariumId = Guid.NewGuid();
+        await context.SaveChangesAsync();
+        context.Aquarien.Add(new Aquarium
+        {
+            Datum = DateTimeOffset.Now,
+            Liter = 55,
+            Name = "Kurt",
+            UserId = "Test user",
+            Id = aquariumId
+        });
+        await context.SaveChangesAsync();
+        var aquarien = await client.GetFromJsonAsync<List<AquariumDto>>("api/Aquarium");
     }
 }
