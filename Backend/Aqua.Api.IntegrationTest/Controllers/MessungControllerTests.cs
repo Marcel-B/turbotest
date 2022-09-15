@@ -1,11 +1,9 @@
-using System.Net;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Domain;
 using com.marcelbenders.Aqua.SqlServer;
-using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aqua.Api.IntegrationTest.Controllers;

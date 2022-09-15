@@ -20,30 +20,8 @@ public class AquariumControllerTestsGet
     [Fact]
     public async Task Abfrage_eines_Aquariums()
     {
-        var application = new WebApplicationFactory<Program>()
-            .WithWebHostBuilder(builder =>
-            {
-                builder.UseEnvironment("IntegrationTests");
-                builder.ConfigureServices(services =>
-                {
-                    services.AddAuthentication("Test")
-                        .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(
-                            "Test", options => { });
-
-                    var provider = services.BuildServiceProvider();
-                    using var scope = provider.CreateScope();
-                    var scopedServices = scope.ServiceProvider;
-                    var context = scopedServices.GetRequiredService<DataContext>();
-                    context.Database.EnsureDeleted();
-                    context.Database.Migrate();
-                });
-            });
-
-        var client = application.CreateClient(new WebApplicationFactoryClientOptions
-        {
-            BaseAddress = new Uri("http://localhost"),
-            AllowAutoRedirect = false
-        });
+        var application = WebApplicationFactoryExctensions.CreateWebApplication();
+        var client = application.CreateTestClient()!;
 
         var kurt = new AquariumDto(Guid.Empty, "Kurt", 1, DateTimeOffset.MinValue);
         var kurtContent = new StringContent(JsonSerializer.Serialize(kurt), Encoding.UTF8, "application/json");

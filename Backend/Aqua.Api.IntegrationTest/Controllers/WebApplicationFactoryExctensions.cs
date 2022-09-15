@@ -9,7 +9,7 @@ namespace Aqua.Api.IntegrationTest.Controllers;
 
 public static class WebApplicationFactoryExctensions
 {
-    internal static WebApplicationFactory<Program> CreateWebApplication()
+    internal static WebApplicationFactory<Program> CreateWebApplication(bool memoryDb = false)
         => new WebApplicationFactory<Program>()
             .WithWebHostBuilder(builder =>
             {
@@ -19,6 +19,13 @@ public static class WebApplicationFactoryExctensions
                     services.AddAuthentication("Test")
                         .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(
                             "Test", options => { });
+                    if (memoryDb)
+                    {
+                        var descriptor = services.SingleOrDefault(
+                            d => d.ServiceType == typeof(DbContextOptions<DataContext>));
+                        services.Remove(descriptor);
+                        services.AddDbContext<DataContext>(options => options.UseSqlite("Data Source=test.db"));
+                    }
 
                     var provider = services.BuildServiceProvider();
                     using var scope = provider.CreateScope();
