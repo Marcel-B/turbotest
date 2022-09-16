@@ -13,21 +13,17 @@ const AdminPanel = () => {
   }, []);
 
   const rows: GridRowsProp = messungen!.timestamps.map(messung => {
-    return {
-      id: messung.datum, col1: messung.datum, col2: messung.datum
-    };
+    const foo = messung.messungen.reduce((fi, x) => {
+      return { ...fi, [x.wert]: x.menge };
+    }, {});
+    return { id: messung.datum, datum: messung.datum, ...foo };
   });
-  /*
-    [
-      { id: 1, col1: "Hello", col2: "World" },
-      { id: 2, col1: "DataGridPro", col2: "is Awesome" },
-      { id: 3, col1: "MUI", col2: "is Amazing" }
-    ];
-  */
-  const columns: GridColDef[] = [
-    { field: "col1", headerName: "Column 1", width: 150 },
-    { field: "col2", headerName: "Column 2", width: 150 }
-  ];
+ 
+  const columns: GridColDef[] = [{ field: "datum", headerName: "Datum" }, ...messungen!.header.map(s => {
+    return {
+      field: s, headerName: s, width: 150
+    };
+  })];
 
   return (
     <>
