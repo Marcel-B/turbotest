@@ -1,5 +1,11 @@
 namespace com.marcelbenders.Aqua.Application.Dto;
 
 public record AquariumMessungDto(string Wert, double Menge);
-public record AquariumMessungenDto(Guid Id, string Name, double Liter,
-    Dictionary<DateTimeOffset, IEnumerable<AquariumMessungDto>> Messungen);
+
+public record TimestampDto<T>(DateTimeOffset Datum, IEnumerable<T> Messungen);
+
+public record AquariumMessungenDto(
+    Guid Id,
+    string Name,
+    double Liter,
+    IEnumerable<TimestampDto<AquariumMessungDto>> Timestamps);

@@ -24,6 +24,7 @@ public class GetMessungenByAquariumIdQueryHandler : IRequestHandler<GetMessungen
         {
             return null;
         }
+
         var aquarium = messungen.FirstOrDefault()?.Aquarium;
         var groupedMessungen = messungen.Select(m => new
         {
@@ -33,11 +34,12 @@ public class GetMessungenByAquariumIdQueryHandler : IRequestHandler<GetMessungen
             Name = m.Aquarium.Name
         }).GroupBy(x => x.Datum);
 
-        var dictionary = new Dictionary<DateTimeOffset, IEnumerable<AquariumMessungDto>>();
+        var dictionary = new List<TimestampDto<AquariumMessungDto>>();
 
         foreach (var messung in groupedMessungen)
         {
-            dictionary[messung.Key] = messung.ToList().Select(x => new AquariumMessungDto(x.Wert, x.Menge));
+            dictionary.Add(new TimestampDto<AquariumMessungDto>(messung.Key,
+                messung.ToList().Select(x => new AquariumMessungDto(x.Wert, x.Menge))));
         }
 
         return new AquariumMessungenDto(aquarium.Id, aquarium.Name, aquarium.Liter, dictionary);

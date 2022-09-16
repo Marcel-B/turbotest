@@ -1,9 +1,9 @@
-import axios, {AxiosResponse} from "axios";
-import {Aquarium, Duengung, Fisch, Messung} from "../domain";
+import axios, { AxiosResponse } from "axios";
+import { Aquarium, Duengung, Fisch, Messung } from "../domain";
 import User from "domain/user";
 import UserLogin from "domain/user-login";
 import Feed from "domain/feed";
-import {Notiz} from "domain/notiz";
+import { Notiz } from "domain/notiz";
 import UserFormValues from "./formValues/userFormValues";
 import NotizFormValues from "./formValues/notizFormValues";
 import AquariumFormValues from "./formValues/aquariumFormValues";
@@ -11,14 +11,15 @@ import DuengungFormValues from "./formValues/duengungFormValues";
 import MessungFormValues from "./formValues/messungFormValues";
 import FischFormValues from "./formValues/fischFormValues";
 import KoralleFormValues from "./formValues/koralleFormValues";
+import { AquariumMessungen } from "./dtos/aquariumMessungen";
 
 //const token = useStore.getState().token;
 //const unsub1 = useStore.subscribe(console.log);
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
-console.log("__Process", process.env.REACT_APP_API_URL)
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-//axios.defaults.baseURL = "http://localhost:5046";
+console.log("__Agent URL", process.env.REACT_APP_API_URL);
+//axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.baseURL = "http://localhost:5046";
 //axios.defaults.baseURL = "http://192.168.2.103:3088";
 
 axios.interceptors.request.use(config => {
@@ -42,7 +43,8 @@ const AquariumCall = {
   create: (aquarium: AquariumFormValues) => requests.post<Aquarium>("/api/aquarium", aquarium),
   read: (id: string) => requests.get<Aquarium>(`/api/aquarium/${id}`),
   update: (aquarium: AquariumFormValues) => requests.put<Aquarium>(`/api/aquarium/${aquarium.id}`, aquarium),
-  delete: (id: string) => requests.del<string>(`/api/aquarium/${id}`)
+  delete: (id: string) => requests.del<string>(`/api/aquarium/${id}`),
+  messungenById: (id: string) => requests.get<AquariumMessungen>(`/api/Aquarium/${id}/Messungen`)
 };
 
 const NotizCall = {
@@ -93,9 +95,9 @@ const TagCall = {
 
 */
 const AccountCall = {
-  current: () => requests.get<User>('/api/account'),
+  current: () => requests.get<User>("/api/account"),
   login: (user: UserLogin) => requests.post<User>("/api/account/login", user),
-  register: (user: UserFormValues) => requests.post<User>('/api/account/register', user)
+  register: (user: UserFormValues) => requests.post<User>("/api/account/register", user)
 };
 
 export const agent = {

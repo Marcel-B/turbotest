@@ -176,6 +176,6 @@ public class AquariumControllerTestsGetValues
         var messungen =
             await client.GetFromJsonAsync<AquariumMessungenDto>($"api/Aquarium/{aquariumId}/Messungen");
         messungen.Should().NotBeNull();
-        messungen.Messungen.Should().HaveCount(2);
+        messungen.Timestamps.Should().HaveCount(2);
     }
 }

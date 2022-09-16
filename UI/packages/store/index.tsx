@@ -6,7 +6,8 @@ import Aquarium from "domain/aquarium";
 import Timer from "domain/timer";
 import User from "domain/user";
 import Feed from "domain/feed";
-import {getUserManager} from "security";
+import { getUserManager } from "security";
+import { AquariumMessungen } from "transport/dtos/aquariumMessungen";
 
 export default agent;
 
@@ -22,6 +23,7 @@ const stateOptions = {
 };
 
 interface State {
+  aquariumMessungen: AquariumMessungen | null;
   feedItemType: string;
   showModal: boolean;
   aquarien: Aquarium[],
@@ -39,6 +41,7 @@ interface State {
   closeModal: () => void;
   fetchAquarien: () => Promise<void>;
   fetchFeed: (page?: number, pageSize?: number) => Promise<void>;
+  fetchAquariumMessungen: (id: string) => Promise<void>;
   incrementSecond: (timer: Timer) => void;
   logout: () => void;
   pauseTimer: (timer: Timer) => void;
@@ -51,6 +54,7 @@ interface State {
 }
 
 const initial = {
+  aquariumMessungen: null,
   feedItemType: "",
   showModal: false,
   pageSize: 7,
@@ -92,6 +96,12 @@ export const useStore = create<State>()(devtools(persist((set, get) => ({
     set(produce(state => {
       state.aquarien = aquarien;
     }), false, "fetchAquarien");
+  },
+  fetchAquariumMessungen: async (id: string) => {
+    const messungen = await agent.AquariumCall.messungenById(id);
+    set(produce(state => {
+      state.aquariumMessungen = messungen;
+    }), false, "fetchAquariumMessungen");
   },
   fetchFeed: async (page?: number, pageSize?: number) => {
     const p = page ?? get().currentPage;
