@@ -8,7 +8,7 @@ export const getUserManager = () => {
     response_type: "code",
     response_mode: "query",
     scope: "openid",
-    post_logout_redirect_uri: "http://localhost:3000/"
+    post_logout_redirect_uri: "http://localhost:3000/logout"
   };
   return new UserManager(config);
 };

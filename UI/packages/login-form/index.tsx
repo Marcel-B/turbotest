@@ -2,37 +2,38 @@ import * as React from "react";
 import { Box, Divider, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { getUserManager } from "security";
-import { useNavigate } from "react-router-dom";
 import { useStore } from "store";
 
-// Only 4 compatibility
 interface Props {
   redirectUrl?: string;
 }
 
 const LoginUserForm = (props: Props) => {
-  // const navigate = useNavigate();
   const setUser = useStore(state => state.setUser);
 
   useEffect(() => {
+    console.log("__useEffect - LoginUserForm");
     const userManager = getUserManager();
-    userManager.getUser().then((user) => {
-      if (user) {
-        console.log("User logged in", user.profile);
-        setUser({
-          username: user.scope,
-          displayName: user.scopes.join(":"),
-          email: "foo",
-          token: user.access_token,
-          image: "null"
-        });
-      } else {
-        console.log("User not logged in");
-        userManager
-          .signinRedirect()
-          .catch(err => console.error(err));
-      }
-    });
+    userManager
+      .getUser()
+      .then((user) => {
+        if (user) {
+          console.info("__Login erfolgreich", user.profile);
+          setUser({
+            username: user?.profile?.name ?? "keine Angaben",
+            displayName: user.scopes.join(":"),
+            email: user?.profile?.email ?? "keine Angaben",
+            token: user.access_token,
+            image: "null"
+          });
+        } else {
+          console.info("__Login erforderlich");
+          userManager
+            .signinRedirect()
+            .catch(err => console.error(err));
+        }
+      })
+      .catch(reason => console.error("__Login fehlgeschlagen", reason));
   }, []);
 
   return (

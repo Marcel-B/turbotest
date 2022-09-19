@@ -7,12 +7,13 @@ export const Logout = () => {
 
   useEffect(() => {
     const userManager = getUserManager();
-    console.log("__Signout Redirect Callback")
-    userManager.signoutRedirectCallback().then(nix => console.log("__Fertig", nix)).catch(reason => console.error(reason));
+    userManager.signoutRedirectCallback()
+      .then(cb => console.log("__Logout erfolgreich", cb))
+      .catch(reason => console.error(reason));
   }, []);
 
   return (
-    <>Logout</>
+    <>Logout erfolgreich</>
   );
 };
 

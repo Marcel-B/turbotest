@@ -174,7 +174,7 @@ export const useStore = create<State>()(devtools(persist((set, get) => ({
     set(produce(state => {
       state.user = user;
       state.token = user.token;
-      state.displayName = user.displayName;
+      state.displayName = user.email;
     }), false, "setUser");
   },
   startTimer: (timer: Timer) => {

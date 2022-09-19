@@ -10,6 +10,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useStore } from "store";
 import TimerItem from "./TimerItem";
 
+
 export const testTimerTypes: TestTimer[] = [
   { text: "", type: TestType.Common, description: "", seconds: 0 },
   { text: "NO₂", type: TestType.NO2, description: "5ml Wasser, 5 Tropfen 1, 5 Tropfen 2", seconds: 300 },
@@ -40,6 +41,7 @@ const Timer = () => {
     register
   } = useForm<{ timerName: string }>({ resolver: yupResolver(schema) });
 
+
   const handleAddTypeTimer = (type: string, name?: string) => {
     const timerType = testTimerTypes.find(ttt => ttt.type === type);
     if (timerType) {
@@ -55,7 +57,6 @@ const Timer = () => {
     }
     resetField("timerName");
   };
-
 
   const onSubmit = (data: { timerName: string }) => {
     handleAddTypeTimer(TestType.Common, data.timerName);

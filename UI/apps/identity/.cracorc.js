@@ -31,6 +31,9 @@ module.exports = ({...args}) => {return ({
             "login-form": {
               singleton: true
             },
+            "oidc": {
+              singleton: true
+            },
             "register-form": {
               singleton: true
             },

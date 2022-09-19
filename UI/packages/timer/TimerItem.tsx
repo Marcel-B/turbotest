@@ -9,6 +9,7 @@ import { Box, Divider, Grid, IconButton, Paper, TextField, Typography } from "@m
 import TestType from "domain/test-type";
 import { testTimerTypes } from "./index";
 import { useStore } from "store";
+import * as Tone from "tone";
 
 interface Props {
   timer: Timer;
@@ -31,13 +32,21 @@ export const TimerItem = ({ timer }: Props) => {
       });
     }
 
+    const playSound = () => {
+      const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+      const now = Tone.now();
+      synth.triggerAttack("D4", now);
+      synth.triggerAttack("F4", now + 0.2);
+      synth.triggerAttack("A4", now + 0.4);
+      synth.triggerAttack("C5", now + 0.6);
+      synth.triggerAttack("E5", now + 0.8);
+      synth.triggerRelease(["D4", "F4", "A4", "C5", "E5"], now + 1.2);
+    };
+
     // @ts-ignore
     let interval: NodeJS.Timer | null = null;
-    console.log("Intervall", interval);
-    console.log("Timer", timer);
     if (timer.active) {
       interval = setInterval(() => {
-        console.log("Increment Timer", timer);
         incrementSecond(timer);
       }, 1000);
     } else if (!timer.active && timer.seconds === 0) {
@@ -60,19 +69,6 @@ export const TimerItem = ({ timer }: Props) => {
     pauseTimer(timer);
   };
 
-  const playSound = () => {
-    /*
-    const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-     const now = Tone.now()
-     synth.triggerAttack("D4", now);
-     synth.triggerAttack("F4", now + 0.2);
-     synth.triggerAttack("A4", now + 0.4);
-     synth.triggerAttack("C5", now + 0.6);
-     synth.triggerAttack("E5", now + 0.8);
-     synth.triggerRelease(["D4", "F4", "A4", "C5", "E5"], now + 1.2);
-     */
-  };
-
   const handleDeleteTimer = () => {
     removeTimer(timer);
   };
@@ -85,7 +81,6 @@ export const TimerItem = ({ timer }: Props) => {
 
     setTime({ seconds: gesamt, timer: timer });
     startTimer(timer);
-    console.log("Start Timer");
   };
 
   return (<Paper sx={{

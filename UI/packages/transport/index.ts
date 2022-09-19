@@ -12,9 +12,7 @@ import MessungFormValues from "./formValues/messungFormValues";
 import FischFormValues from "./formValues/fischFormValues";
 import KoralleFormValues from "./formValues/koralleFormValues";
 import { AquariumMessungen } from "./dtos/aquariumMessungen";
-
-//const token = useStore.getState().token;
-//const unsub1 = useStore.subscribe(console.log);
+import { getUserManager } from "security";
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 console.log("__Agent URL", process.env.REACT_APP_API_URL);
@@ -22,14 +20,30 @@ console.log("__Agent URL", process.env.REACT_APP_API_URL);
 axios.defaults.baseURL = "http://localhost:5046";
 //axios.defaults.baseURL = "http://192.168.2.103:3088";
 
-axios.interceptors.request.use(config => {
-  const token = window.localStorage.getItem("token");
-  if (token) {
-    if (config.headers)
-      config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+axios
+  .interceptors
+  .request
+  .use(config => {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      if (config.headers)
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  });
+
+axios
+  .interceptors
+  .response
+  .use(config => {
+    return config;
+  }, error => {
+    if (error.request.status === 401) {
+      const userManager = getUserManager();
+      userManager.signinRedirect().catch(e => console.error(e));
+    }
+    return Promise.reject(error);
+  });
 
 const requests = {
   get: <T>(url: string) => axios.get<T>(url).then(responseBody),
@@ -88,12 +102,7 @@ const MessungCall = {
 const FeedCall = {
   list: (page: number, days: number) => requests.get<Feed>(`/api/feed/grouped?page=${page}&days=${days}`)
 };
-/*
-const TagCall = {
-  list: () => requests.get<string[]>('/api/tag')
-};
 
-*/
 const AccountCall = {
   current: () => requests.get<User>("/api/account"),
   login: (user: UserLogin) => requests.post<User>("/api/account/login", user),

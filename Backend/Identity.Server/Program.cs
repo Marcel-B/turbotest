@@ -1,4 +1,3 @@
-using System;
 using Identity.Domain;
 using IdentityServer;
 using IdentityServer.Data;
@@ -8,7 +7,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using Quartz;
 
@@ -22,10 +20,6 @@ var configuration = builder.Configuration;
 services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(configuration.GetConnectionString("SqlServer"));
-
-    // Register the entity sets needed by OpenIddict.
-    // Note: use the generic overload if you need
-    // to replace the default OpenIddict entities.
     options.UseOpenIddict();
 });
 
@@ -41,7 +35,6 @@ services.AddQuartz(options =>
     options.UseInMemoryStore();
 });
 
-// Register the Quartz.NET service and configure it to block shutdown until jobs are complete.
 services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
 
 services.AddOpenIddict()
@@ -55,7 +48,8 @@ services.AddOpenIddict()
     {
         options.DisableAccessTokenEncryption();
 
-        options.SetAuthorizationEndpointUris("/connect/authorize")
+        options
+            .SetAuthorizationEndpointUris("/connect/authorize")
             .SetLogoutEndpointUris("/connect/logout")
             .SetTokenEndpointUris("/connect/token")
             .SetUserinfoEndpointUris("/connect/userinfo");
@@ -106,11 +100,9 @@ services.AddHostedService<Worker>();
 
 var app = builder.Build();
 
-
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    //app.UseDatabaseErrorPage();
 }
 else
 {
@@ -119,8 +111,12 @@ else
 
 app.UseStaticFiles();
 app.UseCors(
-    options => options.AllowCredentials().AllowAnyHeader().AllowAnyMethod()
+    options => options
+        .AllowCredentials()
+        .AllowAnyHeader()
+        .AllowAnyMethod()
         .WithOrigins("http://localhost:3000"));
+
 app.UseRouting();
 
 app.UseAuthentication();
