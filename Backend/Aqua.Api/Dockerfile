@@ -10,7 +10,7 @@ WORKDIR /src
 COPY ["Aqua.Api/Aqua.Api.csproj", "Aqua.Api/"]
 COPY ["Aqua.Application/Aqua.Application.csproj", "Aqua.Application/"]
 COPY ["Aqua.SqlServer/Aqua.SqlServer.csproj", "Aqua.SqlServer/"]
-COPY ["Aqua.Domain.Sql/Aqua.Domain.Sql.csproj", "Aqua.Domain.Sql/"]
+COPY ["Aqua.Domain/Aqua.Domain.csproj", "Aqua.Domain/"]
 COPY ["Aqua.Persistence/Aqua.Persistence.csproj", "Aqua.Persistence/"]
 RUN dotnet restore "Aqua.Api/Aqua.Api.csproj"
 COPY . .
@@ -24,4 +24,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Aqua.Api.dll"]
-# docker buildx build -f ./Aqua.Api/Dockerfile --platform linux/amd64 --push -t  millegalb/aqua.api:2.0.4 .
+# docker buildx build -f ./Aqua.Api/Dockerfile --platform linux/amd64 --push -t  millegalb/aqua.api:2.0.7 .

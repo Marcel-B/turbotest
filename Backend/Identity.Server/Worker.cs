@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using IdentityServer.Data;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenIddict.Abstractions;
@@ -37,11 +36,13 @@ public class Worker : IHostedService
                 Type = OpenIddictConstants.ClientTypes.Public,
                 PostLogoutRedirectUris =
                 {
-                    new Uri("http://localhost:3000/logout")
+                    new Uri("http://192.168.2.103:9500/logout")
+                    // new Uri("http://localhost:3000/logout")
                 },
                 RedirectUris =
                 {
-                    new Uri("http://localhost:3000/callback")
+                    new Uri("http://192.168.2.103:9500/callback")
+                    // new Uri("http://localhost:3000/callback")
                 },
                 Permissions =
                 {

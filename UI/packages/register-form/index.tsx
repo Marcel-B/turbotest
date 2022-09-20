@@ -31,7 +31,8 @@ const RegisterUserForm = ({redirectUrl}: Props) => {
   const submit = async (data: UserFormValues) => {
     if (data) {
       //const user = await agent.AccountCall.register(data);
-      fetch("http://localhost:6065/api/register/register", {
+      // fetch("http://localhost:6065/api/register/register", {
+        fetch("http://192.168.2.103:6065/api/register/register", {
         method: 'POST',
         headers: {
           'Accept': 'application/json, text/plain',

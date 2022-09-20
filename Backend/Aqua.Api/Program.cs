@@ -1,8 +1,6 @@
 using com.marcelbenders.Aqua.Api.ErrorHandler;
 using com.marcelbenders.Aqua.Application;
-using com.marcelbenders.Aqua.Persistence;
 using com.marcelbenders.Aqua.SqlServer;
-using com.marcelbenders.Aqua.SqlServer.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +32,8 @@ builder.Services
 .AddAuthentication("Bearer")
 .AddJwtBearer("Bearer", options =>
 {
-    options.Authority = "http://localhost:6065";
+    // options.Authority = "http://localhost:6065";
+    options.Authority = "http://192.168.2.103:6065";
     options.RequireHttpsMetadata = false;
     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
@@ -44,7 +43,8 @@ builder.Services
 builder.Services.AddOpenIddict()
     .AddValidation(options =>
     {
-        options.SetIssuer(new Uri("http://localhost:6065"));
+        //options.SetIssuer(new Uri("http://localhost:6065"));
+        options.SetIssuer("http://192.168.2.103:6065");
         options.UseAspNetCore();
         options.UseSystemNetHttp();
     });

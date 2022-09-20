@@ -7,4 +7,85 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\static\css\460.8f12be2d.chunk.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\css\460.8f12be2d.chunk.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\128.4ce93b52.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\128.4ce93b52.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\209.e7323ef9.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\209.e7323ef9.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\289.58073556.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\289.58073556.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\289.58073556.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\294.6b15ab96.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\294.6b15ab96.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\294.6b15ab96.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\403.82ccda69.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\403.82ccda69.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\408.7fdd363c.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\408.7fdd363c.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\408.7fdd363c.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\460.85b0947d.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\460.85b0947d.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\460.85b0947d.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\461.34cb817a.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\461.34cb817a.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\461.34cb817a.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\471.5db3c390.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\471.5db3c390.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\477.aba784e4.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\477.aba784e4.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\477.aba784e4.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\484.2068681d.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\484.2068681d.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\51.ba7563b8.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\51.ba7563b8.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\51.ba7563b8.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\52.b9c020ed.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\52.b9c020ed.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\532.6cbf4d46.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\532.6cbf4d46.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\532.6cbf4d46.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\572.a5554293.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\572.a5554293.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\574.44d11a58.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\574.44d11a58.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\610.1bb673e5.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\610.1bb673e5.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\610.1bb673e5.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\640.98be9336.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\640.98be9336.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\640.98be9336.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\65.fe74745c.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\65.fe74745c.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\65.fe74745c.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\664.36c56bea.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\664.36c56bea.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\664.36c56bea.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\689.8b4dd4cb.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\689.8b4dd4cb.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\689.8b4dd4cb.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\700.4f5562dc.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\700.4f5562dc.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\742.bd8a1093.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\742.bd8a1093.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\742.bd8a1093.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\809.545d51fc.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\809.545d51fc.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\809.545d51fc.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\899.279b0027.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\899.279b0027.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\945.b8f3a4ad.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\945.b8f3a4ad.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\946.675a867f.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\946.675a867f.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\946.675a867f.chunk.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\main.c0b08c0a.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\main.c0b08c0a.js.map" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot" />
+    </ItemGroup>
+
 </Project>

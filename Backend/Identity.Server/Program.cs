@@ -78,7 +78,8 @@ services.AddOpenIddict()
         {
             opt.TokenValidationParameters.ValidIssuers = new[]
             {
-                "http://localhost:6065"
+                // "http://localhost:6065",
+                "http://192.168.2.103:6065"
             };
         });
     })
@@ -115,7 +116,7 @@ app.UseCors(
         .AllowCredentials()
         .AllowAnyHeader()
         .AllowAnyMethod()
-        .WithOrigins("http://localhost:3000"));
+        .WithOrigins("http://localhost:3000", "http://192.168.2.103:9500"));
 
 app.UseRouting();
 
