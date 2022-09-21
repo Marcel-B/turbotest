@@ -11,6 +11,7 @@ public record CreateDuengungCommand : IRequest<DuengungDto>
     public string Duenger { get; init; }
     public Guid AquariumId { get; init; }
 
+    public CreateDuengungCommand(){}
     private CreateDuengungCommand(
         string duenger,
         double menge)

@@ -4,8 +4,7 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useStore} from "store";
 import * as yup from "yup";
-import {UserLogin} from "domain/user-login";
-import agent, {UserFormValues} from "transport";
+import { UserFormValues } from "transport";
 
 
 interface Props {

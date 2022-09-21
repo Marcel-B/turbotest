@@ -1,7 +1,7 @@
 using com.marcelbenders.Aqua.Application.Dto;
 using com.marcelbenders.Aqua.Domain;
 
-namespace Aqua.Application.Extensions;
+namespace com.marcelbenders.Aqua.Application.Extensions;
 
 public static class DtoBuilderExtensions
 {
@@ -18,10 +18,14 @@ public static class DtoBuilderExtensions
         => new MessungDto(source.Id, source.Wert, source.Menge, source.Aquarium.BuildDto(), source.Datum);
 
     public static FischDto BuildDto(this Fisch source)
-        => new FischDto(source.Id, source.Name, source.Wissenschaftlich, source.Herkunft, source.Ph, source.Gh, source.Kh, source.Temperatur, source.Schwimmzone, source.Geschlecht, source.Anzahl, source.Aquarium.BuildDto(), source.Datum);
+        => new FischDto(source.Id, source.Name, source.Wissenschaftlich, source.Herkunft, source.Ph, source.Gh,
+            source.Kh, source.Temperatur, source.Schwimmzone, source.Geschlecht, source.Anzahl,
+            source.Aquarium.BuildDto(), source.Datum);
 
     public static PflanzeDto BuildDto(this Pflanze source)
-        => new PflanzeDto(source.Id, source.Name, source.Wissenschaftlich, source.Herkunft, source.Ph, source.Gh, source.Kh, source.Temperatur, source.Bereich, source.Wachstum, source.Emers, source.Schwierigkeitsgrad, source.Datum);
+        => new PflanzeDto(source.Id, source.Name, source.Wissenschaftlich, source.Herkunft, source.Ph, source.Gh,
+            source.Kh, source.Temperatur, source.Bereich, source.Wachstum, source.Emers, source.Schwierigkeitsgrad,
+            source.Datum);
 
     private static string Parse(this Korallenart art)
         => art switch
@@ -35,16 +39,18 @@ public static class DtoBuilderExtensions
         };
 
     public static Korallenart ToKorallenart(this string art)
-     => art switch
-     {
-         "Gorgonie" => Korallenart.Gorgonie,
-         "Lederkoralle" => Korallenart.Leder,
-         "LPS" => Korallenart.Lps,
-         "SPS" => Korallenart.Sps,
-         "Weichkoralle" => Korallenart.Weich,
-         _ => throw new NotImplementedException($"Art {art} ist nicht bekannt")
-     };
+        => art switch
+        {
+            "Gorgonie" => Korallenart.Gorgonie,
+            "Lederkoralle" => Korallenart.Leder,
+            "LPS" => Korallenart.Lps,
+            "SPS" => Korallenart.Sps,
+            "Weichkoralle" => Korallenart.Weich,
+            _ => throw new NotImplementedException($"Art {art} ist nicht bekannt")
+        };
 
     public static KoralleDto BuildDto(this Koralle source)
-        => new KoralleDto(source.Id, source.Name, source.Wissenschaftlich, source.Herkunft, source.Salinitaet, source.Nitrat, source.Phosphat, source.Calcium, source.Magnesium, source.Kh, source.Temperatur, source.Stroemung, source.Schwierigkeitsgrad, source.Art.Parse(), source.Datum);
+        => new KoralleDto(source.Id, source.Name, source.Wissenschaftlich, source.Herkunft, source.Salinitaet,
+            source.Nitrat, source.Phosphat, source.Calcium, source.Magnesium, source.Kh, source.Temperatur,
+            source.Stroemung, source.Schwierigkeitsgrad, source.Art.Parse(), source.Datum);
 }

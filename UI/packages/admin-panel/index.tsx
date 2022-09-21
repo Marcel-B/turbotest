@@ -3,17 +3,20 @@ import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import { useStore } from "store";
 import { format } from "date-fns";
 import { Box, Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
+import Chart from "chart";
 
 const AdminPanel = () => {
   const messungen = useStore(state => state.aquariumMessungen);
   const fetchMessungen = useStore(state => state.fetchAquariumMessungen);
   const fetchAquarien = useStore(state => state.fetchAquarien);
   const aquarien = useStore(state => state.aquarien);
-
-  const [aquarium, setAquarium] = React.useState("");
+  const aquarium = useStore(state => state.aquarium);
+  const setAquarium = useStore(state => state.setAquarium);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAquarium(event.target.value as string);
+    const aquar = aquarien.find(x => x.id === event.target.value as string);
+    if (aquar)
+      setAquarium(aquar);
   };
 
   useEffect(() => {
@@ -23,7 +26,7 @@ const AdminPanel = () => {
       .catch(e => console.error(e));
 
     if (aquarium) {
-      fetchMessungen(aquarium)
+      fetchMessungen(aquarium.id)
         .catch(e => console.error(e));
     }
   }, [fetchAquarien, aquarium]);
@@ -53,7 +56,7 @@ const AdminPanel = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={aquarium}
+            value={aquarium!.id}
             label="Aquarium"
             onChange={handleChange}
           >
@@ -68,6 +71,7 @@ const AdminPanel = () => {
           <DataGrid rows={rows} columns={columns} />
         </div> : <></>
       }
+      <Chart />
     </>);
 };
 export default AdminPanel;

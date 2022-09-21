@@ -18,9 +18,10 @@ public class DuengungRepository : IDuengungRepository
     {
         _context.CreateAppUserIfNotExist(entity.UserId);
         entity.Id = Guid.NewGuid();
-        _context.Duengungen.Add(entity);
+        var result = _context.Duengungen.Add(entity);
         await _context.SaveChangesAsync(cancellationToken);
-        return entity;
+        await result.Reference(r => r.Aquarium).LoadAsync(cancellationToken);
+        return result.Entity;
     }
 
     public async Task<Duengung?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
@@ -30,12 +31,15 @@ public class DuengungRepository : IDuengungRepository
 
     public async Task<IEnumerable<Duengung>> GetByUserIdAsync(string userId, CancellationToken cancellationToken)
     {
-        return await _context.Duengungen.Where(duengung => duengung.UserId == userId).ToListAsync(cancellationToken);
+        return await _context.Duengungen
+            .Where(duengung => duengung.UserId == userId)
+            .Include(x => x.Aquarium)
+            .ToListAsync(cancellationToken);
     }
 
     public async Task<IEnumerable<Duengung>> GetAsync(CancellationToken cancellationToken)
     {
-        return await _context.Duengungen.ToListAsync(cancellationToken);
+        return await _context.Duengungen.Include(x => x.Aquarium).ToListAsync(cancellationToken);
     }
 
     public Task<Duengung> UpdateAsync(Duengung entity, CancellationToken cancellationToken)

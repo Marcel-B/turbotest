@@ -1,5 +1,5 @@
 {
-  "name": "admin-panel",
+  "name": "chart",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -12,12 +12,12 @@
   "devDependencies": {
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
-    "chart": "workspace:*",
     "domain": "workspace:*",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "react": "^18.1.0",
     "store": "workspace:*",
+    "transport": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2"
   },
@@ -27,7 +27,7 @@
     "@hookform/resolvers": "^2.9.1",
     "@mui/material": "^5.8.5",
     "@mui/styled-engine-sc": "^5.8.0",
-    "@mui/x-data-grid": "^5.9.0",
+    "react-charts": "^3.0.0-beta.50",
     "date-fns": "^2.29.3"
   }
 }

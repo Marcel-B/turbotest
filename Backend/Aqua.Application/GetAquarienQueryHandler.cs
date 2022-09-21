@@ -1,5 +1,5 @@
-using Aqua.Application.Extensions;
 using com.marcelbenders.Aqua.Application.Dto;
+using com.marcelbenders.Aqua.Application.Extensions;
 using com.marcelbenders.Aqua.Application.Query;
 using com.marcelbenders.Aqua.Persistence;
 using MediatR;

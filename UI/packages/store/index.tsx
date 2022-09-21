@@ -23,6 +23,7 @@ const stateOptions = {
 };
 
 interface State {
+  aquarium: Aquarium | null;
   aquariumMessungen: AquariumMessungen | null;
   feedItemType: string;
   showModal: boolean;
@@ -46,6 +47,7 @@ interface State {
   logout: () => void;
   pauseTimer: (timer: Timer) => void;
   removeTimer: (timer: Timer) => void;
+  setAquarium: (aquarium: Aquarium) => void;
   setRedirectUrl: (redirectUrl?: string | null) => void;
   setTime: (time: { timer: Timer, seconds: number }) => void;
   setToken: (token: string) => void;
@@ -54,6 +56,7 @@ interface State {
 }
 
 const initial = {
+  aquarium: null,
   aquariumMessungen: null,
   feedItemType: "",
   showModal: false,
@@ -150,6 +153,11 @@ export const useStore = create<State>()(devtools(persist((set, get) => ({
     set(produce(state => {
       state.timers = [...state.timers.filter((t: Timer) => t.name !== timer.name)];
     }), false, "removeTimer");
+  },
+  setAquarium: (aquarium: Aquarium) => {
+    set(produce(state => {
+      state.aquarium = aquarium;
+    }), false, "setAquarium");
   },
   setRedirectUrl: (redirectUrl: string | null = null) => {
     set(produce(state => {
