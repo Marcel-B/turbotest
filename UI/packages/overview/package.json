@@ -1,5 +1,5 @@
 {
-  "name": "oidc",
+  "name": "overview",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -12,20 +12,22 @@
   "devDependencies": {
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
+    "chart": "workspace:*",
+    "domain": "workspace:*",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "security": "workspace:*",
     "store": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "jwt-decode": "^3.1.2",
-    "oidc-client": "^1.11.5",
-    "react-router-dom": "^6.3.0"
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@hookform/resolvers": "^2.9.1",
+    "@mui/material": "^5.8.5",
+    "@mui/styled-engine-sc": "^5.8.0",
+    "@mui/x-data-grid": "^5.9.0",
+    "date-fns": "^2.29.3"
   }
 }

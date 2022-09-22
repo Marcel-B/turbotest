@@ -1,5 +1,5 @@
 {
-  "name": "login-form",
+  "name": "signin-oidc",
   "version": "0.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -12,10 +12,8 @@
   "devDependencies": {
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
-    "domain": "workspace:*",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
-    "signin-oidc": "workspace:*",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "security": "workspace:*",
@@ -26,13 +24,8 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
-    "@hookform/resolvers": "^2.9.1",
-    "@mui/material": "^5.8.3",
-    "@mui/styled-engine-sc": "^5.8.0",
+    "jwt-decode": "^3.1.2",
     "oidc-client": "^1.11.5",
-    "oidc-react": "^2.0.0",
-    "react-hook-form": "^7.32.0",
-    "react-router-dom": "^6.3.0",
-    "yup": "^0.32.11"
+    "react-router-dom": "^6.3.0"
   }
 }

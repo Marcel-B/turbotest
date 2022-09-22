@@ -5,7 +5,7 @@ import { useStore } from "store";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
-export const Oidc = () => {
+export const SigninOidc = () => {
   const setToken = useStore(state => state.setToken);
   const setUser = useStore(state => state.setUser);
   const token = useStore(state => state.token);
@@ -43,5 +43,5 @@ export const Oidc = () => {
   );
 };
 
-export default Oidc;
+export default SigninOidc;
 
