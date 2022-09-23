@@ -1,10 +1,10 @@
 import * as React from "react";
-import LoginUserForm from "login-form";
+import LoginForm from "login-form";
 
 const App = () => {
   return (
     <>
-      <LoginUserForm redirectUrl="/" />
+      <LoginForm redirectUrl="/" />
     </>
   );
 };

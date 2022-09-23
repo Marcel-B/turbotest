@@ -27,24 +27,23 @@ var configuration = builder.Configuration.GetConnectionString("SqlServer");
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(configuration));
 
 builder.Configuration.AddEnvironmentVariables();
+var authority = builder.Configuration["Authority"];
 
 builder.Services
-.AddAuthentication("Bearer")
-.AddJwtBearer("Bearer", options =>
-{
-     options.Authority = "http://localhost:6065";
-    //options.Authority = "http://192.168.2.103:6065";
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    .AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
     {
-        ValidateAudience = false,
-    };
-});
+        options.Authority = authority;
+        options.RequireHttpsMetadata = false;
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateAudience = false,
+        };
+    });
 builder.Services.AddOpenIddict()
     .AddValidation(options =>
     {
-        options.SetIssuer(new Uri("http://localhost:6065"));
-        //options.SetIssuer("http://192.168.2.103:6065");
+        options.SetIssuer(authority);
         options.UseAspNetCore();
         options.UseSystemNetHttp();
     });

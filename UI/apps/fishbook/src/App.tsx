@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useStore } from "store";
 import { BrowserRouter, Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
-import { AppBar, Box, Container, Link, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Container, Grid, Toolbar, Typography } from "@mui/material";
 import Feed from "feed";
 import Overview from "overview";
 import SigninOidc from "signin-oidc";
-import AddMenu from "add-menu";
+import AddMenu, { Neu } from "add-menu";
 import UserMenu from "user-menu";
+import Righthand from "righthand";
+import Loader from "./Loader";
 
 // @ts-ignore
 const LoginUser = React.lazy(() => import("identity/LoginUser"));
@@ -42,11 +44,22 @@ function App() {
         </AppBar>
       </Box>
       <Container sx={{ mt: 2 }}>
-        <Routes>
-          <Route path="/" element={<Feed />}></Route>
-          <Route path="/overview" element={<Overview />}></Route>
-          <Route path="/callback" element={<SigninOidc />}></Route>
-        </Routes>
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            <Routes>
+              <Route path="/" element={<Feed />}></Route>
+              <Route path="/overview" element={<Overview />}></Route>
+              <Route path="/callback" element={<SigninOidc />}></Route>
+              <Route path="/login" element={
+                <Suspense fallback={<Loader />}>
+                  <LoginUser />
+                </Suspense>
+              }></Route>
+            </Routes>
+            <Neu />
+          </Grid>
+          <Grid item xs={4}><Righthand /></Grid>
+        </Grid>
       </Container>
       <Outlet />
     </BrowserRouter>
@@ -54,4 +67,3 @@ function App() {
 }
 
 export default App;
-

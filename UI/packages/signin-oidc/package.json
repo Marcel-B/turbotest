@@ -24,6 +24,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@types/node": "^16.11.41",
     "jwt-decode": "^3.1.2",
     "oidc-client": "^1.11.5",
     "react-router-dom": "^6.3.0"

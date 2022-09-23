@@ -16,8 +16,8 @@ import { getUserManager } from "security";
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 console.log("__Agent URL", process.env.REACT_APP_API_URL);
-// axios.defaults.baseURL = process.env.REACT_APP_API_URL;
- axios.defaults.baseURL = "http://localhost:5046";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+// axios.defaults.baseURL = "http://localhost:5046";
 //axios.defaults.baseURL = "http://192.168.2.103:5046";
 
 axios

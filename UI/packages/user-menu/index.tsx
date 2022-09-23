@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { useStore } from "store";
+import { NavLink } from "react-router-dom";
 
 const UserMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const displayName = useStore(state => state.displayName);
   const logout = useStore(state => state.logout);
-  const setRedirectUrl = useStore(state => state.setRedirectUrl);
 
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -19,7 +19,7 @@ const UserMenu = () => {
     switch (pressedButton) {
       case "Profil":
         setAnchorEl(null);
-        setRedirectUrl("profile");
+        // setRedirectUrl("profile");
         break;
       case "Ausloggen":
         logout();
@@ -56,7 +56,7 @@ const UserMenu = () => {
           {displayName ?? "Login"}
         </MenuItem>
         :
-        <Button color="inherit" onClick={() => setRedirectUrl("login")}>Login</Button>
+        <NavLink to="login">Login</NavLink>
       }
       {renderMenu}
     </>

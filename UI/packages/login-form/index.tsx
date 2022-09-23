@@ -8,10 +8,11 @@ interface Props {
   redirectUrl?: string;
 }
 
-const LoginUserForm = (props: Props) => {
+const LoginForm = (props: Props) => {
   const setUser = useStore(state => state.setUser);
 
   useEffect(() => {
+    // const foo =  process.env.REACT_APP_API_URL;
     console.log("__useEffect - LoginUserForm");
     const userManager = getUserManager();
     userManager
@@ -44,5 +45,5 @@ const LoginUserForm = (props: Props) => {
   );
 };
 
-export default LoginUserForm;
+export default LoginForm;
 

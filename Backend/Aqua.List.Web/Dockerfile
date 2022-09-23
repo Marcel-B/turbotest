@@ -19,4 +19,4 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Aqua.List.Web.dll"]
 
-# docker buildx build -f ./Aqua.List.Web/Dockerfile --platform linux/amd64 --push -t  millegalb/aqua.list.web:2.0.14 .
+# docker buildx build -f ./Aqua.List.Web/Dockerfile --platform linux/amd64 --push -t  millegalb/aqua.list.web:2.0.18 .
