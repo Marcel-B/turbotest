@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useStore } from "store";
 import { AxisOptions, Chart as FooChart } from "react-charts";
 
@@ -15,7 +15,6 @@ type Series = {
 const Chart = () => {
   const fetchMessungen = useStore(state => state.fetchAquariumMessungen);
   const messungen = useStore(state => state.aquariumMessungen);
-  const aquarien = useStore(state => state.aquarien);
   const aquarium = useStore(state => state.aquarium);
   const [foo, setFoo] = useState<DailyStars[]>([]);
 
@@ -45,7 +44,7 @@ const Chart = () => {
       setFoo(l);
     }
 
-  }, [fetchMessungen, setFoo]);
+  }, [fetchMessungen, setFoo, aquarium]);
 
 
   const primaryAxis = React.useMemo(
@@ -66,15 +65,20 @@ const Chart = () => {
 
   return (
     <>
-      <h1>Hallo</h1>
-      {foo.length > 0 &&
-        <FooChart
-          options={{
-            data,
-            primaryAxis,
-            secondaryAxes
-          }}
-        />}
+      {aquarium &&
+        <Fragment>
+
+          <h1>{aquarium?.name}</h1>
+          {foo.length > 0 &&
+            <FooChart
+              options={{
+                data,
+                primaryAxis,
+                secondaryAxes
+              }}
+            />}
+        </Fragment>
+      }
     </>);
 };
 

@@ -60,4 +60,26 @@ public class MessungController : ControllerBase
         await _mediator.Send(new DeleteMessungCommand {Id = id}, cancellationToken);
         return Ok(id);
     }
+
+    [HttpGet("{aquariumId:guid}/Messungen")]
+    [ActionName("GetMessungenByAquariumIdAsync"), Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetMessungenByAquariumIdAsync(
+        [FromRoute, Required] Guid aquariumId,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetMessungenByAquariumIdQuery(aquariumId), cancellationToken);
+        return Ok(result);
+    }
+
+    [HttpGet("{aquariumId:guid}/Messwerte")]
+    [ActionName("GetMesswerteByAquariumIdAsync"), Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetMesswerteByAquariumIdAsync(
+        [FromRoute, Required] Guid aquariumId,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetMesswerteByAquariumIdQuery(aquariumId), cancellationToken);
+        return Ok(result);
+    }
 }

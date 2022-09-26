@@ -45,6 +45,7 @@ public class GetMessungenByAquariumIdQueryHandler : IRequestHandler<GetMessungen
                 var value = mess.FirstOrDefault(x => x.Wert == head);
                 tmp.Add(new AquariumMessungDto(head, value?.Menge));
             }
+
             timestampDtos.Add(new TimestampDto<AquariumMessungDto>(messung.Key, tmp));
         }
 

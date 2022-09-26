@@ -54,7 +54,30 @@ public class MessungRepository : IMessungRepository
     public async Task<IEnumerable<Messung>> GetByAquariumId(Guid aquariumId,
         CancellationToken cancellationToken = default)
     {
-        return await _context.Messungen.Include(s => s.Aquarium).Where(x => x.AquariumId == aquariumId).OrderBy(x => x.Datum)
+        return await _context.Messungen.Include(s => s.Aquarium).Where(x => x.AquariumId == aquariumId)
+            .OrderBy(x => x.Datum)
             .ToListAsync(cancellationToken);
+    }
+
+    public async Task<IEnumerable<string>> GetMesswerteByAquariumId(Guid aquariumId,
+        CancellationToken cancellationToken = default)
+        => await _context
+            .Messungen
+            .Include(s => s.Aquarium)
+            .Where(x => x.AquariumId == aquariumId)
+            .Select(x => x.Wert)
+            .Distinct()
+            .ToListAsync(cancellationToken);
+
+    public async Task<IEnumerable<Tuple<DateTimeOffset, double>>> GetMessungenByMesswertAquariumId(
+        Guid aquariumId,
+        string messwert,
+        CancellationToken cancellationToken = default)
+    {
+        var result = await _context.Messungen
+            .Where(x => x.AquariumId == aquariumId && x.Wert == messwert)
+            .Select(x => new Tuple<DateTimeOffset, double>(x.Datum, x.Menge))
+            .ToListAsync(cancellationToken);
+        return result;
     }
 }

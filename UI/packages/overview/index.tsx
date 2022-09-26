@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import { useStore } from "store";
 import { format } from "date-fns";
@@ -20,7 +20,6 @@ const Overview = () => {
   };
 
   useEffect(() => {
-    console.log("__useEffect - AdminPanel");
 
     fetchAquarien()
       .catch(e => console.error(e));
@@ -32,7 +31,6 @@ const Overview = () => {
   }, [fetchAquarien, aquarium]);
 
   const rows: GridRowsProp = messungen?.timestamps?.map(messung => {
-
     const rowData = messung.messungen.reduce((result, item) => {
       return { ...result, [item.wert]: item.menge };
     }, {});
@@ -48,30 +46,32 @@ const Overview = () => {
 
   return (
     <>
-      <Typography variant="h4">Messwertübersicht</Typography>
-      <Divider orientation="horizontal" sx={{ mb: 2 }} />
-      <Box sx={{ minWidth: 120, paddingBottom: 2 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Aquarium</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={aquarium!.id}
-            label="Aquarium"
-            onChange={handleChange}
-          >
-            {aquarien && aquarien.map(a =>
-              <MenuItem key={a.id} value={a.id}>{a.name}</MenuItem>
-            )}
-          </Select>
-        </FormControl>
-      </Box>
-      {aquarien && aquarien.length > 0 ?
-        <div style={{ height: 300, width: "100%" }}>
-          <DataGrid rows={rows} columns={columns} />
-        </div> : <></>
-      }
-      <Chart />
+      <Fragment>
+        <Typography variant="h4">Messwertübersicht</Typography>
+        <Divider orientation="horizontal" sx={{ mb: 2 }} />
+        <Box sx={{ minWidth: 120, paddingBottom: 2 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Aquarium</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={aquarium?.id}
+              label="Aquarium"
+              onChange={handleChange}
+            >
+              {aquarien && aquarien.map(a =>
+                <MenuItem key={a?.id} value={a?.id}>{a.name}</MenuItem>
+              )}
+            </Select>
+          </FormControl>
+        </Box>
+        {aquarium &&
+          <div style={{ height: 300, width: "100%" }}>
+            <DataGrid rows={rows} columns={columns} />
+          </div>
+        }
+        <Chart />
+      </Fragment>
     </>);
 };
 export default Overview;

@@ -75,10 +75,6 @@ app.UseCors(options =>
         .AllowAnyHeader()
         .AllowAnyMethod()
         .WithOrigins(origins);
-    //"http://localhost:9000",
-    //"http://localhost:3000",
-    //"http://localhost:3007",
-    //"http://192.168.2.103:9005");
 });
 
 app.UseAuthentication();
