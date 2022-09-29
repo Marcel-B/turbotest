@@ -64,7 +64,7 @@ var origins = builder.Configuration["Cors"];
 
 var logger = app.Logger;
 
-logger.LogInformation(origins);
+logger.LogInformation("{Origins}", origins);
 
 app.UseSwagger();
 app.UseSwaggerUI();

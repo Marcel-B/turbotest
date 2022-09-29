@@ -28,7 +28,7 @@ public class MessungController : ControllerBase
         return await _mediator.Send(new GetMessungenQuery(HttpContext.GetUserIdentifier()), cancellationToken);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id:guid}")]
     [ActionName("updateOneAsync"), Produces("application/json")]
     [ProducesResponseType(typeof(MessungDto), StatusCodes.Status201Created)]
     public async Task<MessungDto> UpdateOneAsync(
@@ -50,7 +50,7 @@ public class MessungController : ControllerBase
         return await _mediator.Send(command, cancellationToken);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:guid}")]
     [ActionName("DeleteOneAsync"), Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> DeleteOneAsync(
@@ -75,11 +75,23 @@ public class MessungController : ControllerBase
     [HttpGet("{aquariumId:guid}/Messwerte")]
     [ActionName("GetMesswerteByAquariumIdAsync"), Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetMesswerteByAquariumIdAsync(
+    public async Task<ActionResult<AquariumMesswerteDto>> GetMesswerteByAquariumIdAsync(
         [FromRoute, Required] Guid aquariumId,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetMesswerteByAquariumIdQuery(aquariumId), cancellationToken);
+        return Ok(result);
+    }
+
+    [HttpGet("{aquariumId:guid}/Messungen/{wert}")]
+    [ActionName("GetMessungenByAquariumIdByMesswertAsync"), Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<AquariumMesswerteDto>> GetMessungenByAquariumIdByMesswertAsync(
+        [FromRoute, Required] Guid aquariumId,
+        [FromRoute, Required] string wert,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetMessungenByAquariumIdByMesswertQuery(aquariumId, wert), cancellationToken);
         return Ok(result);
     }
 }

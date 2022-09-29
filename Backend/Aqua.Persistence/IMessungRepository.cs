@@ -8,6 +8,8 @@ public interface IMessungRepository : IEntityRepository<Messung>
 
     Task<IEnumerable<string>> GetMesswerteByAquariumId(Guid aquariumId, CancellationToken cancellationToken = default);
 
-    Task<IEnumerable<Tuple<DateTimeOffset, double>>> GetMessungenByMesswertAquariumId(Guid aquariumId, string messwert,
+    Task<IEnumerable<Tuple<DateTimeOffset, double>>> GetMessungenByAquariumIdByMesswert(
+        Guid aquariumId,
+        string messwert,
         CancellationToken cancellationToken = default);
 }

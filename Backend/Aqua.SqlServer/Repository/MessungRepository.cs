@@ -69,7 +69,7 @@ public class MessungRepository : IMessungRepository
             .Distinct()
             .ToListAsync(cancellationToken);
 
-    public async Task<IEnumerable<Tuple<DateTimeOffset, double>>> GetMessungenByMesswertAquariumId(
+    public async Task<IEnumerable<Tuple<DateTimeOffset, double>>> GetMessungenByAquariumIdByMesswert(
         Guid aquariumId,
         string messwert,
         CancellationToken cancellationToken = default)
